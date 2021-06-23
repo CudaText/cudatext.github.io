@@ -3,12 +3,14 @@
   - fixed
   * changed
 
-1.134.4 (2021/06)
+1.135.0 (2021/06)
 
++ add: option "max_line_len_parsed" is now also used as limit for pair-bracket finder; it gives smoother work with huge lines >1M chars
 + add: Linux: when saving file to a system folder, program runs helper tool 'pkexec' as 'root', to do it (thanks @Shovel)
++ add: Linux: gtk2 version has improved IME support (again patch by @rasberryrabbit)
 + add: command "open folder containing the current file" (thanks @ertank)
 + add: command "open file in default application"
-+ add: option "minimap_drag_immediately", to mimic ST2 minimap behaviour (thanks @Katarn)
++ add: option "minimap_drag_immediately", to mimic Sublime Text 2 minimap behaviour (thanks @Katarn)
 + add: Wiki topic: https://wiki.freepascal.org/CudaText_plugins#Complete_From_Text
 - fix: for huge files >50M, UTF-16 BOM was ignored and UTF-8 was used (thanks @ertank)
 - fix: for huge lines >40M chars, rendering at line end was broken
