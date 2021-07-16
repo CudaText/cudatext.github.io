@@ -3,7 +3,7 @@
   - fixed
   * changed
 
-1.138.0 (2021/07)
+1.138.1 (2021/07)
 
 + add: auto-completion in CSS: support completion of file paths in url(|) function (thanks @eltonfabricio10)
 + add: auto-completion in CSS: append ';' to line after choosing (thanks @eltonfabricio10)
@@ -16,6 +16,8 @@
 + add: API to access 'form' and 'controls' of Code-Tree (thanks @Shovel)
 + add: better support for lexer 'OneC (1C)' which requires handling of Russian chars
 + add: Wiki topic https://wiki.freepascal.org/CudaText#UI_theme_empty_values
+- fix: mouse selection frame must not be painted after a right-click
+- fix: minimap flickering on text typing (thanks anon at linux.org.ru)
 - fix: regression: clicking at exact line end made caret-pos bigger by 1 char
 - fix: when option "autocomplete_autoshow_chars" was on, it shown the listbox after a pause, that gave race condition
 - fix: lexer reST: fixed rules for headers
