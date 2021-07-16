@@ -3,6 +3,23 @@
   - fixed
   * changed
 
+1.138.0 (2021/07)
+
++ add: auto-completion in CSS: support completion of file paths in url(|) function (thanks @eltonfabricio10)
++ add: auto-completion in CSS: append ';' to line after choosing (thanks @eltonfabricio10)
++ add: auto-completion in CSS: support '!important'
++ add: auto-completion in HTML: insert '<' on calling after "  tag|" (thanks @eltonfabricio10)
++ add: new option "autocomplete_html_autoclose": after typing <tag>, it auto-inserts </tag> (thanks @MOPKOBKA at linux.org.ru)
++ add: new option "ui_backup_sessions" (thanks @tmsg)
++ add: Emmet plugin: avoid to expand usual words by Tab (thanks @eltonfabricio10)
++ add: Emmet plugin: support up to 1000 tab-stops, e.g. for 'li*1000'
++ add: API to access 'form' and 'controls' of Code-Tree (thanks @Shovel)
++ add: better support for lexer 'OneC (1C)' which requires handling of Russian chars
++ add: Wiki topic https://wiki.freepascal.org/CudaText#UI_theme_empty_values
+- fix: regression: clicking at exact line end made caret-pos bigger by 1 char
+- fix: when option "autocomplete_autoshow_chars" was on, it shown the listbox after a pause, that gave race condition
+- fix: lexer reST: fixed rules for headers
+
 1.137.2 (2021/07)
 
 + add: more API for the new 'Breadcrumbs' plugin (thanks @Shovel)
