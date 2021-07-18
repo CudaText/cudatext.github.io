@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<link rel="StyleSheet" href="style.css" type="text/css" media="screen" />
+<title>Проверка правописания с учетом синтаксиса</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=HelperSpell.html'>show framing</a></center>")
+		</script>
+
+<h1>Проверка правописания с учетом синтаксиса</h1>
+<hr />
+
+<p>Проверка правописания в SynWrite учитывает синтаксис исходного
+кода. При этом проверяются только слова из комментариев и
+строковых констант. Например, для кода на языке C комментарии имеют 
+вид <span class="inlinecode">/* Какой-то текст */</span>, а строковые 
+константы заключены в двойные кавычки: <span class="inlinecode">"Какой-то текст"</span>.
+</p>
+
+<p>Вот пример результатов проверки для кода на языке Pascal (когда доступны только Английский и Русский словари): <br />
+</p><center>
+<img src="spellsynt.png" alt="Проверка правописания для Pascal файла" /><br />
+</center>
+
+
+<p>Вот пример проверки кода на HTML:<br />
+</p><center>
+<img src="spellhtml.png" alt="Проверка правописания для HTML файла" /><br />
+</center>
+
+
+<br />
+
+<h3>Как настроить проверку с учетом синтаксиса для новых лексеров?</h3>
+<p>Для настройки своего лексера, нужно внести изменения в файл "Lexers.cfg"
+(в папке, где установлен SynWrite). Нужно указать специальные стили
+для вашего лексера: стиль комментариев в секции [CommentStyles] и стиль
+строковых констант в секции [StringStyles]. Можно указать несколько
+стилей через запятую. 
+</p>
+<p>Замечание: файл "Lexers.cfg" обновляется при каждой инсталляции SynWrite.
+Поэтому лучше внести ваши строки в файл "LexersEx.cfg" (создайте его в той же папке).
+</p>
+<br />
+
+</body>
+</html>

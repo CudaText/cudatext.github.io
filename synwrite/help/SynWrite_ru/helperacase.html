@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Автокоррекция регистра</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=HelperACase.html'>show framing</a></center>")
+		</script>
+<h1>Автокоррекция регистра</h1>
+<hr>
+
+<p>В диалоге опций, на вкладке "Переопределения", можно включить авто-коррекцию регистра идентификаторов.<br />
+Эта возможность требудет наличия <a href="helperacp.html">файла автозавершения</a> (c расширением "acp") для лексера. 
+Такие файлы уже есть для большинства популярных лексеров.
+</p>
+
+<p>
+Как это работает: вы печатаете идентификатор в неверном регистре,
+после печатаете любой небуквенный символ, и редактор исправляет регистр идентификатора.
+Пример для лексера Pascal: вы печатаете "WRIteln(", а редактор заменяет это на "WriteLn(".
+</p> 
+
+<p>
+Примечания:
+<ul>
+    <li>Если лексер допускает имена не только из алфавитно-цифровых знаков (например, VBScript допускает "End If"),
+        то такое имя не скорректируется. Нужно указать все части имени (в данном случае "End" и "If") в acp-файле.
+    <li>Возможность не работает при наботе синтаксических строк и комментариев.
+        См. раздел <a href="helperspell.html">Проверка правописания</a>, где указано как настроить синтаксические строки и комментарии. 
+</ul>
+
+</p>
+
+</body>
+</html>

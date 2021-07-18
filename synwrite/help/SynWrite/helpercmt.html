@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<link rel="StyleSheet" href="style.css" type="text/css" media="screen" />
+<title>Commenting</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=HelperCmt.html'>show framing</a></center>")
+		</script>
+
+<h1>Commenting</h1>
+<hr />
+
+<p>There're several commands to comment/uncomment text blocks (menu "Edit -- Comments"):</p>
+
+<table border="1">
+<tr>
+  <th>Command</th>
+  <th>Meaning</th>
+</tr>
+<tr>
+  <td>Toggle block comment</td>
+  <td>For selected lines: add (if not commented) or remove (if commented) line-comment chars - at lines beginning.
+  </td>
+</tr>
+<tr>
+  <td>Toggle block comment (alt.)</td>
+  <td>The same, but place comment chars at first non-space chars position.
+  </td>
+</tr>
+<tr>
+  <td>Block comment</td>
+  <td>For selected lines: add line-comment chars (at lines beginning).
+  </td>
+</tr>
+<tr>
+  <td>Block uncomment</td>
+  <td>For selected lines: remove line-comment chars.
+  </td>
+</tr>
+<tr>
+  <td>Toggle stream comment</td>
+  <td>For selection (can be any, even part of line): add or remove stream-comment chars (at block start and end).
+  </td>
+</tr>
+</table>
+
+<ul>
+<li><b>Line-comment</b> chars are set in lexer properties dialog (first tab of dialog).
+<li><b>Stream-comment</b> chars are set in file Lexers.cfg (it's overwritten on installation) or file LexersEx.cfg
+(create it by yourself, same format), in the folder of SynWrite installation, in section [Comments].
+</ul>
+
+<br />
+
+</body>
+</html>

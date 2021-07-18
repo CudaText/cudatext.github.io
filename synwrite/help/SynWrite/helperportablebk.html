@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Portable Bookmarks</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=HelperPortableBk.html'>show framing</a></center>")
+		</script>
+<h1>Portable Bookmarks</h1>
+<hr />
+
+<p>"Portable bookmarks" are special text comments in the file.
+You can move or rename a file, and its portable bookmarks will remain intact (while "usual" bookmarks
+get lost if you move or rename a file, or if you delete SynWrite history file).
+</p>
+
+<p>Such bookmarks are comments with special uppercase "NOTE" or "TODO" word at comment start.</p>
+
+<p>
+<table border="1">
+	<tr>
+		<td>example for HTML</td>
+		<td><font color=darkblue><tt>&lt;!--NOTE: Text here --&gt;</tt></font> </td>
+	</tr>
+	<tr>
+		<td>example for CSS</td>
+		<td><font color=darkblue><tt>/*NOTE: Text here */</tt></font> </td>
+	</tr>
+	<tr>
+		<td>example for PHP</td>
+		<td><font color=darkblue><tt>//TODO: Text here</tt></font> </td>
+	</tr>
+	<tr>
+		<td>example for files without lexer</td>
+		<td><font color=darkblue><tt>(*NOTE: Text here *)</tt></font> </td>
+	</tr>
+</table>
+</p>
+
+<p>To handle such bookmarks, use two commands in the "Bookmarks" menu: "Drop portable bookmark" and "Go to portable bookmark".
+</p>
+
+<p>Notes:
+<ul>
+<li> You can write such comments by hands (or even create snippets for them), 
+  spaces before comment are not mandatory, separate line for comment is not mandatory too. 
+<li> You can strip <font color=darkblue><tt>(*NOTE</tt></font> part from lines in the "Go to portable bookmark" dialog - 
+  hidden option exists for that.
+</ul>
+</p>
+
+</body>
+</html>

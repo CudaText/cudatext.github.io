@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Indentation-based folding</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=FoldIndent.html'>show framing</a></center>")
+		</script>
+<h1>Indentation-based folding</h1>
+<hr />
+
+<p>SynWrite supports folding based on indentation levels of lines. 
+Example lexer is Python, see how it's configured. The following tweaks must be applied
+to lexer in order to support indent-based folding:</p>
+
+<ul>
+<li> uncheck lexer property "Skip spaces while parsing".
+<li> delete ending rules, just set "Close block at text end" option for opening rules.
+<li> set "Group index" to 20 for opening rules (20 is special constant which tells
+SynWrite that this rule is indent-aware).
+<li> add new parsers, which will catch 1st word in each line with leading spaces and tabs.
+See how it's done in Python lexer, 3 parsers are added there: "Word1stXXXXXXX" 
+(1st of them is for class/function tree items, 2nd is for if/for/while blocks, and 3rd is for all other words).
+<li> move these new parsers to the top of parsers list.
+<li> set token types names, for new parsers (which catch leading spaces+tabs) to "1nnnnnnnn" (first char is "1", others are any).
+<li> in "Rules" tab -- select rule which detects keywords -- select "Conditions" tab -- select 
+listbox item with "[x] Identifier" condition checked -- add to it "[x] 1st word" checked too 
+("1st word" is an example, you may have "1nnnnnn").
+</ul>
+
+<p>Note: tab character is counted as 4 spaces, when calculating indent levels. This is default for Python.</p>
+
+</body>
+</html>

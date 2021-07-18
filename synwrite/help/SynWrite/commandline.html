@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Command Line</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=CommandLine.html'>show framing</a></center>")
+		</script>
+<h1>Command Line</h1>
+<hr>
+<p>
+Executable file "Syn.exe" supports the following command line notations:
+
+<ul>
+<li>Syn
+<li>Syn "file1" [ "file2" ... ] [ options ]
+<li>Syn "folder1" [ "folder2" ... ] [ options ]
+<li>Syn "/two=file1|file2|line1|line2|column1|column2|delta"
+<li>Syn "/cmp=file1|file2"
+<li>Syn /reg
+</ul>
+
+<p>
+When run without parameters, program opens empty editor window or the last session/project. <br />
+When run with filenames list, program opens given files in separate tabs. <br />
+Instead of passing file-names, you can pass folder-names - all text files from specified folders and all their subfolders will be opened.<br />
+</p>
+
+<p>
+When run with "/two" key, program shows two files, in two groups, and scrolls both files to specified line/column positions.
+Line and column numbers are optional. "Delta" means vertical offset between caret and editor edge (minimal is 0).<br />
+When run with "/cmp" key, program calls file-compare plugin for two files (only if such plugin installed).<br />
+When run with "/reg" key, program only shows "Integration with Explorer" dialog.<br />
+</p>
+
+<p>
+Optional keys are:
+<ul>
+<li> <b>/ro</b> - Set read-only mode for opened file(s).
+<li> <b>/s</b> - Force option "Allow to run single instance only" to on.
+<li> <b>/n=Number</b> - Go to specified line number after opening file(s).
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Syntax-Aware Spelling</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=HelperSpell.html'>show framing</a></center>")
+		</script>
+<h1>Syntax-Aware Spelling</h1>
+<hr />
+
+<p>Spell-checking feature in SynWrite is syntax-aware. This means that only those words are spell-checked, which 
+are inside syntax comments and strings. For example, in C language syntax comments are
+<span class="inlinecode">/* Text here */</span> and syntax strings are double-quoted:
+<span class="inlinecode">"Text here"</span>.
+</p>
+
+<p>
+An example image of live spelling in Pascal source code (when only English and Russian dictionaries are enabled):<br />
+<center>
+<img src="spellsynt.png" alt="Live spelling in Pascal file" /><br />
+</center>
+</p>
+
+<p>
+An example image of live spelling in HTML code:<br />
+<center>
+<img src="spellhtml.png" alt="Live spelling in HTML file" /><br />
+</center>
+</p>
+
+<br />
+
+<h3>How to enable syntax-aware spelling for new lexers?</h3>
+<p>
+To use this feature in custom (user-installed) lexers, you need to edit file "Lexers.cfg" in SynWrite installation folder.
+In this file you need to specify styles of your lexer: comment styles in section [CommentStyles] and string styles in section [StringStyles].
+Several styles are comma-separated.
+</p>
+
+<p>Note that "Lexers.cfg" file is overwritten on each installation. So better write your strings to file "LexersEx.cfg"
+(create it in the same folder).
+</p> 
+<br />
+
+</body>
+</html>

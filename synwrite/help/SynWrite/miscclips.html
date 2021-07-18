@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Text Clips</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=MiscClips.html'>show framing</a></center>")
+		</script>
+<h1>Text Clips</h1>
+<hr />
+
+<ul>
+<li> <a href="#in">Introduction</a>
+<li> <a href="#txt">Format of text-collection</a>
+<li> <a href="#hotkey">List hotkeys</a>
+</ul>
+
+<a name="in"><h2>Introduction</h2></a>
+
+<p>Clips are small text fragments, which are grouped by folders.
+They are not binded to any lexers.
+</p>
+
+<p>
+<center>
+<img src="panelclips.png" alt="Clips panel" />
+</center>
+</p>
+
+<p>To call clips, first activate the Clips panel by menu command "Window -- Panels -- Text Clips panel",
+then select desired folder in the panel combobox. 
+Double-click panel items to insert clips into editor.
+You have context menu to perform some actions on clips.
+</p>
+
+<p>Note: to display all Unicode characters in the Clips panel, you need to use rich font, such as Tahoma 
+(Options dialog, "Fonts" tab, button "Output panel").
+</p>
+
+<p>There are clips of such kinds: </p>
+<ul>
+<li>Text-collections. Files with "txt" extension, each can contain any number of clips, one clip per line.
+<li>Usual snippets. Files with "synw-snippet" extension <a href="snippets.html">described here</a>. Lexers of snippets are ignored here.
+</ul>
+
+<p>Files are located in the subfolders of "Data\clips" subfolder of SynWrite installation folder.
+Each subfolder name is a group shown in Clips panel, if it's not empty.
+Any number of files is allowed in one folder.
+</p>
+
+<br>
+<a name="txt">
+<h2>Format of text-collection</h2></a>
+
+<p>File encoding is ANSI or UTF-16 with BOM.
+Simple format: one line is one clip. Each line has format:<br>
+
+<div class="code">NameStr=ValueStr</div>
+or without "=" char:<br> 
+<div class="code">ValueStr</div>
+</p>
+
+<ul>
+<li>To use char "=" not as separator, just escape it as "\=".
+<li>Inside value, special characters "\n" mean line breaks.
+</ul>
+
+<br>
+<a name="hotkey">
+<h2>List hotkeys</h2></a>
+
+<p>Predefined clips don't have hotkeys, but you can add them in your clips. 
+Such hotkey moves focus to its clip, while Clips panel listbox is focused.<br />
+For this purpose save clip name with "[N]" substring, where "N" is a single letter or digit hotkey. 
+Even for snippet format you can add such hotkey inside snippet name.
+</p>
+<br />
+
+</body>
+</html>

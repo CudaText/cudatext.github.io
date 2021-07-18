@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Micro-Map</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=HelperMicroMap.html'>show framing</a></center>")
+		</script>
+<h1>Micro-Map</h1>
+<hr />
+
+<p>Micro-Map is a vertical colored bar near editor's right border. 
+To show it, turn on "Show micro-map bar" flag in the Options dialog.<br />
+It has functionality similar to vertical scroll-bar, but with additional coloring applied.
+You can click micro-map to scroll the document. While mouse cursor is over micro-map, statusbar shows hint with editor line number.
+</p>
+
+<center>
+<img src="micromap.png" alt="Micro-map image"/>
+</center>
+
+<p>Bar shows the following colored labels:
+</p>
+
+<ul>
+<li> Full-width bar (light blue) - current editor view area 
+<li> Marks along left border - states of editor lines:
+  <ul>
+      <li>new line (green)
+      <li>modified line (yellow)
+      <li>saved line (dark blue)
+  </ul>
+<li> Marks along right border:
+  <ul>
+      <li>search marks (green)
+      <li>misspelled words marks (red)
+  </ul>
+</ul>
+
+<p>
+Notes:
+</p>
+<ul>
+    <li>Search marks appear after "Find all" command performed, or after option "Highlight all occurences of selected word" has found some matches.
+    <li>Misspelled words marks appear after the "Live spelling" feature activates.
+</ul>
+
+</body>
+</html>

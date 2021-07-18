@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Multi-Selections</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=MultiSel.html'>show framing</a></center>")
+		</script>
+<h1>Multi-Selections</h1>
+<hr />
+
+<p>When using <a href="multicarets.html">multi-carets</a>, you may add selection to each caret.
+To do this, just select text block with left mouse button, while Ctrl is pressed.
+(If you just click with Ctrl pressed, caret will not have selection.)
+</p>
+
+<p>You can also add selections later, after carets appear, using commands:
+</p>
+
+<ul>
+<li> Shift+arrows - expand/shrink selections by 1 char/line
+<li> Shift+Ctrl+arrows - make selections by jumping to next/previous word boundary
+<li> Shift+Home, Shift+End - make selections till line start/end
+</ul>
+
+<p>Here is animation, which shows carets/selections in action, while typing HTML list:</p>
+<center>
+<img src="msel.gif" alt="Animation" />
+</center>
+
+  
+<p>Clipboard-related commands work with carets, both with selections and without them.
+Some details about this:
+</p>
+
+<table border="1">
+	<tr>
+		<th>Command</th>
+		<th width="42%">Behaviour, when there're no selections</th>
+		<th width="42%">Behaviour, when at last one selection present</th>
+	</tr>
+	<tr>
+		<td>Copy to clipboard</td>
+		<td>Copies entire lines, containing carets.
+                    (Ignores multiple carets on same line.)</td>
+		<td>Copies only selections text.
+                    (Ignores carets without selections.)</td>
+	</tr>
+	<tr>
+		<td>Cut to clipboard</td>
+		<td>Similarly to "Copy" w/o selections.</td>
+		<td>Similarly to "Copy" with selections.</td>
+	</tr>
+	<tr>
+		<td>Paste from clipboard</td>
+		<td colspan="2">First, selections are cleared (deleted).
+                  Then, command pastes text into each caret position.
+                  Special case is when clipboard lines count equals to carets count - 
+                  in this case, first line is inserted at first caret,
+                  second line is inserted at 2nd caret, etc.</td>
+	</tr>
+	<tr>
+		<td>Delete char</td>
+		<td>Deletes one char at each caret position.</td>
+		<td>Deletes only selections text. (Ignores carets without selections.)</td>
+	</tr>
+</table>
+
+
+<p>Note. There is a difference with usual caret behaviour: usual caret can be "unbound" from its selection 
+(using program option "Preserve selection"),
+while multi-carets are "bound" to their selection regions.
+</p>
+
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<link rel="StyleSheet" href="style.css" type="text/css" media="screen" />
+<title>Формат даты/времени</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=MiscDateFormat.html'>show framing</a></center>")
+		</script>
+
+<h1>Формат даты/времени</h1>
+<hr />
+
+<p>Ниже приведен список описателей, которые задают конкретный вид строки для 
+команды "Правка -- Вставить дату/время".
+Используйте эти описатели при задании опции "Формат времени/даты" 
+в диалоге настроек.
+</p>
+
+<table border="1" frame="hsides" rules="rows">
+  <tbody>
+    <tr>
+      <th> <b>Конструкция</b></th>
+      <th> <b>Отображение</b></th>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>c</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает дату в коротком формате и после нее время в длинном
+		формате. Время не отображается, если значение указывает на точную
+		полночь.
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>d</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает день в виде числа без начальных нулей (1-31).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>dd</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает день в виде числа с начальными нулями (01-31).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>ddd</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает день недели в сокращенном виде (Пн-Вс).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+
+      <p>dddd</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает день недели в полном виде (понедельник-воскресенье).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>ddddd</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает дату в коротком формате (31.12.2001).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>dddddd</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает дату в длинном формате (31 Января 2001 г.).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>e</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает год, как число без начальных нулей в текущем
+		периоде/эре (только для локализаций Японии, Кореи и Тайваня). </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>ee</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает год, как число с начальными нулями в текущем
+		периоде/эре (только для локализаций Японии, Кореи и Тайваня). </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>g</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает краткое обозначение периода/эры (только для
+		локализаций Японии и Тайваня). </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>gg</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает полное обозначение периода/эры (только для
+		локализаций Японии и Тайваня). </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>m</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает месяц в виде числа без начальных нулей (1-12). Если
+		конструкция m находится непосредственно после конструкции h или hh, то
+		отображаются минуты, а не месяц.
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>mm</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает месяц в виде числа с начальными нулями (01-12).
+		Если конструкция m находится непосредственно после конструкции h или
+		hh, то отображаются минуты, а не месяц.
+		</p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>mmm</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает месяц в сокращенном виде (янв-дек).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>mmmm</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает месяц в полном виде (Январь-Декабрь).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>yy</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает год в виде двух цифр (00-99).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>yyyy</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает год в виде четырех цифр (0000-9999).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>h</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает час в виде числа без начальных нулей (0-23).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>hh</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает час в виде числа&nbsp;с начальными нулями (00-23).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>n</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает минуты в виде числа без начальных нулей (0-59).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>nn</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает минуты в виде числа с начальными нулями (00-59).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>s</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает секунды в виде числа без начальных нулей (0-59).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>ss</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает секунды в виде числа с начальными нулями (00-59).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>z</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает милисекунды в виде числа без начальных нулей (0-999).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>zzz</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает милисекунды в виде числа с начальными нулями (000-999).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>t</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает время в коротком формате (23:59).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>tt</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает время в длинном формате (23:59:59).
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>am/pm</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Указывает на 12-часовое отображение времени для предыдущей
+		конструкции h или hh. Отображает 'am' для часов ранее полдня и 'pm' для
+		часов после полдня. Конструкция не зависит от регистра.
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>a/p</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Указывает на 12-часовое отображение времени для предыдущей конструкции h или hh.
+		Отображает 'a' для часов ранее полдня и 'p' для часов после полдня.
+		Конструкция не зависит от регистра.
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>ampm</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Указывает на 12-часовое отображение времени для предыдущей
+		конструкции h или hh. </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>/
+      </p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает разделитеть полей в дате.
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>:</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Отображает разделитеть полей во времени.
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top">
+      <p>'xx'/"xx"</p>
+      </td>
+      <td align="left" valign="top">
+      <p>Символы в одиночных или двойных кавычках отображаются "как
+		есть" и не влияют на остальное форматирование.
+      </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br />
+
+</body>
+</html>

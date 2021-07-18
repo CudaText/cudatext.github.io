@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Emmet</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=HelperZenCoding.html'>show framing</a></center>")
+		</script>
+<h1>Emmet</h1>
+<hr>
+
+<ul>
+<li> <a href="#in">Introduction</a>
+<li> <a href="#prof">Profiles</a>
+</ul>
+
+<a name="in"></a>
+<h2>Introduction</h2>
+<p>
+<a href="http://www.emmet.io/" target="_blank">Emmet</a> is a plugin (install it via "Addons Manager"), it gives you set of abbreviations that lets you write HTML and CSS very fast. 
+It's easy to understand and saves a lot of time.
+There are several sets of abbreviations: 
+HTML (active by default), 
+CSS (active for lexers CSS, LESS, SCSS, SASS, Stylus and for HTML-based lexers when you're inside "style" part), 
+XSL (active for lexers XML, XSLT).
+</p>
+
+<p>Here are some examples to give an impression how Emmet works.
+</p>
+
+<h2>Example 1</h2>
+Text to write in editor: <span class="code">p*3</span><br>
+Now expand this abbreviation by Emmet command. You will get the following code:
+<pre class="code">
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+</pre>
+<p>Multiplications can be used for almost all abbreviations.</p>
+
+<h2>Example 2</h2>
+Text to write in editor: <span class="code">table>tr*2>td</span><br>
+After expanding you will get this code:
+<pre class="code">
+&lt;table&gt;
+&nbsp;&nbsp;&nbsp;&lt;tr&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;/td&gt;
+&nbsp;&nbsp;&nbsp;&lt;/tr&gt;
+&nbsp;&nbsp;&nbsp;&lt;tr&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;/td&gt;
+&nbsp;&nbsp;&nbsp;&lt;/tr&gt;
+&lt;/table&gt;
+</pre>
+
+<h2>Example 3</h2>
+Text to write in editor: <span class="code">select>option#item-$*3</span><br>
+After expanding you will get this code:
+<pre class="code">
+&lt;select&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;option id="item-1"&gt;&lt;/option&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;option id="item-2"&gt;&lt;/option&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;option id="item-3"&gt;&lt;/option&gt;
+&lt;/select&gt;
+</pre>
+<br>
+
+<a name="prof"></a>
+<h2>Profiles</h2>
+<p>You can change active Emmet profile using plugin command.
+The following profiles are available:
+</p>
+
+<ul>
+<li> "html" — default output profile.
+<li> "xhtml" — the same as "html", but outputs empty elements with closed slash: <span class="inlinecode">&lt;br /&gt;</span>.
+<li> "xml" — default for XML and XSL syntaxes: outputs each tag on a new line with indentation, empty elements are outputted with closing slash: <span class="inlinecode">&lt;br/&gt;</span>.
+<li> "xml_zen" — the same as "xml", but outputs leaf tags (i.e. tags without nested tags) with additional newline 
+     (e.g. &lt;td&gt; is leaf tag in <span class="inlinecode">table&gt;tr&gt;td</span>).  
+<li> "line" — used to output expanded abbreviation without any indentation and newlines.
+<li> "plain" — the same as "line", but doesn't move caret.  
+</ul>
+<br>
+    
+</body>
+</html>

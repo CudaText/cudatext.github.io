@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Lexer configuration dialog</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=Dialog.html'>show framing</a></center>")
+		</script>
+<h1>Lexer configuration dialog</h1>
+<hr />
+
+<p>This dialog is used for to customize lexer. It includes:</p>
+<ul>
+<li> Common properties        
+<li> Text styles                   
+<li> Token rules                    
+<li> Block rules                    
+<li> Sublexer rules                
+<li> Code templates                
+<li> Sample text                     
+</ul>
+
+<p>
+<center>
+<img src="dialog.png" alt="Dialog shot" />
+</center>
+
+
+<h2>Button commands</h2>
+<ul>
+<li> <strong>Export</strong> - Opens dialog to save lexer configuration to file (*.LCF).
+<li> <strong>Import</strong> - Opens dialog to load lexer configuration from file (*.LCF).  
+<li> <strong>Apply</strong>	- Applies changes without dialog closing.                                                   
+<li> <strong>OK</strong> - Applies changes.                                                         
+<li> <strong>Cancel</strong> - Cancels changes.                                                     
+</ul>
+    
+<h2>Preview text</h2>
+<p>At the bottom of the dialog editor the sample code is placed. Any change of lexer configuration effects on the sample code. This preview text is also used in the &quot;Customize lexer styles&quot; dialog that is intended to change only styles.</p>
+
+<h2>Common page</h2>
+<ul>
+<li><strong>Lexer name</strong> - name of the lexer. Usually it is a name of file format/language.
+<li><strong>File extensions</strong> - list of file extensions to autodetect lexer.
+<li><strong>Token type names</strong> - are associated with the   integer value (line number). They are used to simplify token type assignment to   the token rules and selecting a set of token types for conditions of block   rules. Token type is integer value in the range 0..31.
+<li><strong>Default style</strong> - default style which first is applied to the editor canvas. If default style is not specified, default font and color properties are used.
+<li><strong>Selection mark style</strong> - style for selected block in the syntax memo. If no style is selected to draw selection in the editor default foreground and background are used.
+<li><strong>Search mark style</strong> - style to mark out search results in the syntax memo. If no style is selected to draw search results in the editor default foreground and background are used.
+<li><strong>Current line style</strong> - style that is used to draw current line (line with the caret). If you don't want highlight current line select style type &quot;Only Background&quot; and color of background &quot;None&quot;.
+<li><strong>Skip spaces while parsing</strong> - checkbox specifies how to process space characters (space, tab, CR, LF, FF).  If it is checked all space characters will be skipped before token rules   checking, otherwise they will not be skipped.
+<li><strong>Do not skip end of line</strong> - specifies whether   line breaks should be parsed.
+<li><strong>Restart analysis from line start</strong> - if it is   ON, parser results are cleared starting from start of line where text was   changed, otherwise they are cleared after position of text changing.
+<li><strong>Always synchronized block analysis</strong> -   specifies whether block analysis should be always performed with text parsing,   otherwise analyzer tries to perform block analysis after whole text was parsed.
+<li><strong>Disable full refresh if text size is greater</strong> - specifies threshold after which full refresh (when text is changed) of sytactical obects will not be performed. If this value is 0 (by default), full refreshing is disabled. Full refreshing takes more time, but sometimes it may be useful for some parser's rules (for example, parser expression &quot;.*&quot; will not work correctly without full refresh).
+</ul>
+
+</body>
+</html>

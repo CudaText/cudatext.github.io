@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Sessions</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=Sessions.html'>show framing</a></center>")
+		</script>
+<h1>Sessions</h1>
+<hr />
+
+<p>Sessions are partial states of the program, which are saved into files with "synw-session" extension.
+You can find sessions control commands in the main menu, under "File -- Sessions".
+If some session is opened, its name is shown in the SynWrite window caption in curly brackets { }.
+</p>
+
+<p>Sessions hold the following properties:</p>
+
+<ul>
+<li> grouping mode
+<li> groups splitter position (for modes 2x1, 1x2, 1+2)
+<li> properties of each named tab:
+  <ul>
+  <li> file name
+  <li> group index
+  <li> scroll position (ie. number of top visible line)
+  <li> caret position
+  <li> state "read-only"
+  <li> state "word wrap"
+  <li> state "code folding enabled"
+  <li> state "line numbers visible"
+  <li> mouse selection mode (normal/lines/columns)
+  <li> editors splitter position (each editor can be splitted to master/slave editors)
+  <li> folded ranges list
+  <li> column markers positions
+  <li> tab color
+  </ul>
+</ul>
+
+<p>Default session with name "(default)" is used when you didn't create named session but the option "Save last session on exit" is in action.
+File of this session is saved near "Syn.ini" file (default folder is "%Appdata%\SynWrite").
+</p>
+
+<p>If you want to open session files by double-clicking on them in Windows Explorer, check out the SynWrite dialog "Options -- Explorer integration".
+</p>
+
+<p>Command "Open/Add session" does the following: it adds tabs from session to currently opened tabs.
+</p>
+
+</body>
+</html>

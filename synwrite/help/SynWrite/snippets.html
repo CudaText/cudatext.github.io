@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<link rel="StyleSheet" href="style.css" type="text/css" media="screen" />
+<title>Snippets</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=Snippets.html'>show framing</a></center>")
+		</script>
+
+<h1>Snippets</h1>
+<hr />
+
+<ul>
+  <li><a href="#in">Introduction</a></li>
+  <li><a href="#tabstops">Tabstops</a></li>
+  <li><a href="#mirror">Mirror tabstops</a></li>
+  <li><a href="#mode">Tabstops mode</a></li>
+  <li><a href="#macros">Macros</a></li>
+  <li><a href="#files">Files</a></li>
+  <li><a href="#dist">How to make snippets distro</a></li>
+</ul>
+
+<a name="in"></a>
+<h2>Introduction</h2>
+
+<p>
+Snippets are small text fragments, which can be inserted into text. They can be binded to lexers.
+(Note: similar feature named "Code templates" is removed.)
+To insert snippet text, first activate needed lexer (snippets already exist for C, C++, Pascal, Java etc),
+call dialog "Tools -- Snippets", and choose needed item with Enter.
+</p>
+<p>
+To create a snippet, call dialog "Tools -- New snippet". It will prompt for all properties
+(caption, alias, lexers list, text), and will suggest to save file to needed folder.
+</p>
+<p>
+If snippet has an alias, then you can type it in the source code, and press Tab - this will insert snippet instantly.
+(You need to type the entire alias.)
+Several snippets may have same caption, and even same alias; when expanding "duplicate" alias with Tab, you'll see
+dialog with all variants. 
+<p>
+If snippet text contains Tab-chars, they all will be replaced with spaces, if editor configured so
+(the global setting is considered, or the local override-setting for current lexer).
+</p>
+<br />
+
+<a name="tabstops"></a>
+<h2>Tabstops</h2>
+<p>
+Snippet text can contain so called "tabstops" - positions, which will have red markers, and which will be jumped over with Tab key.
+Maximal 10 tabstops are allowed, they are typed so: 
+</p>
+<p>
+<span class="inlinecode">${1}</span> <br />
+... <br />
+<span class="inlinecode">${9}</span> <br />
+<span class="inlinecode">${0}</span> <br />
+</p>
+
+<p>
+They are activated in such order: first ${1}, then ${2} ... and at last ${0}.
+</p>
+<p>
+You can write tabstops with default text:
+<pre class="code">${1:text here}</pre>
+</p>
+<p>
+You can miss any tabstops in list:
+<pre class="code">${1:text} text ${3:text} text ${0:end text}</pre>
+</p>
+<br />
+
+<a name="mirror"></a>
+<h2>Mirror tabstops</h2>
+<p>
+You can have so called mirror tabstops, i.e. specify same tabstop index several times:
+<pre class="code">
+start ${1}, carets here: ${2} and here: ${2} and here: ${2}, ended at ${0}.
+</pre>
+In this example tabstop-2 has mirrors, on its activating - multi-carets will appear in 2 additional positions;
+so you can type text in 3 positions at the same time.
+</p>
+<br />
+
+<a name="mode"></a>
+<h2>Tabstops mode</h2>
+<p>
+If snippet text contains more than one tabstop, then on snippet insertion special mode is activated -
+in this mode Tab key works specially, it jumps to next tabstop (and selects default tabstop text).
+This mode is deactivated automatically, when you jump to last tabstop.
+You can see when this mode is active, by seeing red triangles-markers on tabstop positions
+(if no such markers left - mode is deactivated).
+</p>
+<p>
+You can distract from filling tabstops, and for example scroll to any editor position, but
+Tab key still works specially (mode is still on), and will jump to next tabstop.
+</p>
+<p>
+You can turn this mode off, if you want: by removing all markers ("Bookmarks -- Markers -- Clear markers") or by collecting markers
+("Bookmarks -- Markers -- Collect marker").
+</p>
+<br />
+
+<a name="macros"></a>
+<h2>Macros</h2>
+<p>
+The following macros are allowed in snippets text:
+</p>
+<ul>
+    <li> <span class="inlinecode">${sel}</span> - Replaced with text selected before snippet insertion. (If snippet called with Tab key, it's empty string.)
+    <li> <span class="inlinecode">${cp}</span> - Replaced with clipboard text.
+    <li> <span class="inlinecode">${date:nnnn}</span> - Replaced with date/time stamp, using 
+                                  <a href="miscdateformat.html">specifier string</a> "nnnn".
+    <li> <span class="inlinecode">${fname}</span> - Replaced with current file name (w/out path and extension).
+</ul>
+
+<p>
+Note: if you need in snippet text string like
+<span class="inlinecode">${...}</span>
+, you need to escape it: 
+<span class="inlinecode">\${...}</span>
+.
+</p>
+<br />
+
+<a name="files"></a>
+<h2>Files</h2>
+
+<p>
+Snippets are stored inside separate files.
+These are text files in UTF8-no-BOM encoding, with extension "synw-snippet".
+They can be placed in any subfolder of "Data\snippets" folder.
+Files and subfolders names have no meaning, but it's recommended to name new subfolders like "AuthorName.LangName",
+so users can easily find manually installed snippets, and delete them.
+</p>
+
+<h4>Example of file</h4>
+<pre class="code">
+name=do-while loop
+id=do
+lex=C,C++
+text=
+do
+{
+	${0:/* code */}
+} while (${1:/* condition */});
+</pre>
+
+<h4>Format of file</h4>
+
+<p>
+First lines have format "str=value" (no spaces around "="), where "str" is one of strings:
+</p>
+<ul>
+    <li>name – specifies snippet caption (any string).
+    <li>id — specifies snippet keyword (latin letters, digits and dots) (can skip entire line).
+    <li>lex — specifies lexers list, comma-separated, for which snippet is active 
+          (can skip entire line, then snippet will be always active).
+</ul>
+<p>
+Then follows the line "text=" without value, and all next lines - are snippet text.
+Trailing blank lines are discarded.
+</p>
+<br />
+
+<a name="dist"></a>
+<h2>How to make snippets distro</h2>
+
+<p>You can create ZIP/RAR archive with your snippets, which can be auto-installed into SynWrite -
+user needs to open your archive in SynWrite, and confirm installation.
+To create such package, compress into archive root: 
+</p>
+
+<ul>
+    <li> Folder "AuthorName.LexerName" with your "synw-snippet" files. (It will be copied into "Data\snippets" folder.)
+    <li> Text file "install.inf" with the following contents.
+</ul>
+
+<h4>Example of install.inf</h4>
+<pre class="code">
+[info]
+title=LexerName snippets
+type=template
+subdir=snippets
+</pre>
+<br />
+
+</body>
+</html>

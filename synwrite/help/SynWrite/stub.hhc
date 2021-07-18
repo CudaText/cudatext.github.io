@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML><HEAD>
+</HEAD>
+<BODY>
+<UL>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Overview"><param name="Local" value="01Syn.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Mouse Usage"><param name="Local" value="IntroMouse.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Command Line"><param name="Local" value="CommandLine.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="FAQ"><param name="Local" value="FAQ.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Multi-Carets"><param name="Local" value="MultiCarets.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Multi-Selections"><param name="Local" value="MultiSel.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Groups of Tabs"><param name="Local" value="Groups.html"></OBJECT>
+
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Coding Helpers"></OBJECT>
+  <UL>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Auto-Completion"><param name="Local" value="HelperACP.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Auto-Closing of Tags"><param name="Local" value="HelperAClose.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Auto-Correction of Id Case"><param name="Local" value="HelperACase.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Snippets"><param name="Local" value="Snippets.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="SyncEditing"><param name="Local" value="HelperSyncEdit.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="SmartTagTabbing"><param name="Local" value="HelperSmartTagTabbing.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Emmet (Zen Coding)"><param name="Local" value="HelperZenCoding.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Color Preview"><param name="Local" value="HelperColorPreview.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Images Preview"><param name="Local" value="HelperImagePreview.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Syntax-Aware Spelling"><param name="Local" value="HelperSpell.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Inserting Date/Time"><param name="Local" value="HelperInsertDate.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Portable Bookmarks"><param name="Local" value="HelperPortableBk.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Markers"><param name="Local" value="HelperMarkers.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Column Markers"><param name="Local" value="HelperColMarkers.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Micro-Map"><param name="Local" value="HelperMicroMap.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Commenting"><param name="Local" value="HelperCmt.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="HTML Tidy"><param name="Local" value="HelperTidy.html"></OBJECT>
+  </UL>
+
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Additional Panels"></OBJECT>
+  <UL>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Project Manager"><param name="Local" value="ProjMan.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Explorer Plugin"><param name="Local" value="PluginExplorer.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="SynFTP Plugin"><param name="Local" value="SynFTP.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Text Clips"><param name="Local" value="MiscClips.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Console"><param name="Local" value="PyConsole.html"></OBJECT>
+  </UL>
+
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Syntax of Regular Expressions"><param name="Local" value="RegEx.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Encodings"><param name="Local" value="Enc.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="External Tools"><param name="Local" value="ExternalTools.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Plug-ins and Add-ons"><param name="Local" value="PluginsAddons.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Sessions"><param name="Local" value="Sessions.html"></OBJECT>
+
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Dialogs"></OBJECT>
+  <UL>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Dialog 'Find/Replace'"><param name="Local" value="DialogFind.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Dialogs 'Commands', 'Project Files List'"><param name="Local" value="DialogCmdList.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Dialog 'Project Properties'"><param name="Local" value="DialogProjOpt.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Dialog 'Lorem Ipsum Generator'"><param name="Local" value="DialogLorem.html"></OBJECT>
+  </UL>
+
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Miscellaneous"></OBJECT>
+  <UL>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="TC Lister Plugin"><param name="Local" value="TCListerPlugin.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Key Shortcuts"><param name="Local" value="Keys.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Customizing Status Line"><param name="Local" value="MiscStatusText.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="New File Templates"><param name="Local" value="MiscFileTpl.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Text Converters"><param name="Local" value="MiscConv.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Date/Time Format"><param name="Local" value="MiscDateFormat.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="How To Make IDE"><param name="Local" value="MiscHowToMakeIDE.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Icons Credits"><param name="Local" value="MiscIconCredits.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Source Code"><param name="Local" value="MiscSource.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="License Agreement"><param name="Local" value="Lic.html"></OBJECT>
+  </UL>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Donate"><param name="Local" value="Donate.html"></OBJECT>
+</UL>
+</BODY></HTML>

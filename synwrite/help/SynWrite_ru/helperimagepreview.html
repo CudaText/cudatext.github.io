@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<link rel="StyleSheet" href="style.css" type="text/css" media="screen" />
+<title>Предпросмотр изображений</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=HelperImagePreview.html'>show framing</a></center>")
+		</script>
+
+<h1>Предпросмотр изображений</h1>
+<hr />
+
+<p>Есть возможность предпросмотра графических файлов (jpg/gif/png/bmp/ico), 
+на которые есть ссылки в HTML коде, например, такие:
+</p><div class="code">&lt;img src="images/untitled.jpg" alt="untitled" /&gt;</div>
+
+
+<p>Когда курсор задерживается над именем файла, появляется графическая
+подсказка.<br />Если файл не находится, то в подсказке отображается
+текст "???".
+</p>
+<center>
+<img src="imagepreview.png" alt="Images hints" />
+</center>
+
+<p>Замечания:
+</p>
+<ul>
+	<li> Предпросмотр изображений в форматах jpg/gif/ico требует наличия
+	библиотеки GDI+, которая входит в Windows, начиная с Windows XP.</li>
+	<li>Если ссылка указывает на сетевой ресурс, то предпросмотр не выполняется.</li>
+</ul>
+
+</body>
+</html>

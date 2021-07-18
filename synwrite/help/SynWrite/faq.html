@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>FAQ</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=FAQ.html'>show framing</a></center>")
+		</script>
+
+<h1>Frequently Asked Questions</h1>
+<hr>
+
+<p>Common questions:</p>
+<ul>
+<li> <a href="#portable">How to make program portable?</a>
+<li> <a href="#iniloc">How to copy program settings to another PC?</a>
+<li> <a href="#speed">How to speed-up program?</a>
+<li> <a href="#colors">How to adjust program colors?</a>
+<li> <a href="#two_files">How to open two files side-by-side?</a>
+<li> <a href="#column_mode">Is there a "Column Mode" command like in Notepad++?</a>
+<li> <a href="#guides">How to disable "indentation guides"?</a>
+<li> <a href="#plugini">How to assign lexers/shortcuts to command plugins?</a>
+</ul>
+
+<p>Lexers-related questions:</p>
+<ul>
+<li> <a href="#import">How to import/export lexers?</a>
+<li> <a href="#keep_own">How to keep my own lexer settings on reinstalling?</a>
+<li> <a href="#html_spell">How to disable red underlines for misspelled HTML tags?</a>
+<li> <a href="#lexfontsize">How to change font size for specific lexer only?</a>
+</ul>
+
+<p>Misc questions:</p>
+<ul>
+<li> <a href="#fonts">What monospaced fonts are good?</a>
+<li> <a href="#lang">How to create program translation?</a>
+<li> <a href="#name">Why such program name?</a>
+</ul>
+<br />
+
+<hr>
+<p>
+<a name="import">
+<h3>How to import/export lexers.</h3>
+<p>You can export/import lexers to/from text files. Such files are written in "Delphi resources" format
+and have extension "lcf".</p>
+<p>1st method:</p>
+<ul>
+<li> Activate needed lexer (in Lexer menu)
+<li> Call menu command "Options -- Customize lexer"
+<li> In the opened "Lexer properties" dialog press Export or Import button
+<li> (Note: import will overwrite selected lexer from chosen file)
+</ul>
+<p>Alternative method:</p>
+<ul>
+<li> (No need to select lexer first)
+<li> Call menu command "Options -- Customize lexer library"
+<li> In the opened "Lexer library" dialog click needed lexer, then press "Import lexer" or "Export lexer" toolbar button
+<li> (Note: import will not overwrite selected lexer, new lexer will be created)
+</ul>
+
+<p>
+<hr>
+<p>
+<a name="speed">
+<h3>To speed-up program start:</h3>
+<p>Open "Options -- Customize lexer library" dialog, and delete (not just disable!) unneeded lexers.
+Then save the lexer library.</p>
+
+<p>After you have customized the lexer library, save its copy under different name:
+old name is "LexLib.lxl", new name may be "MyLib.lxl" (it's recommended to place it into the same folder,
+so "Syn.ini" key will not contain path).
+You can create such copy using "Save lexer library with another name" button in the "Lexer library" dialog.
+After that, make sure you activated your new library: press "Choose another lexer library" button
+in the "Lexer library" dialog, and browse for your new file.
+</p>
+
+<p>You should also turn off the following options in the Options dialog:
+<ul>
+<li> "Spell Check" tab -- "Enable live spell cheking"
+<li> "History" tab -- "Remove non-existing items from recents list at startup"
+</ul>
+</p>
+
+<h3>To speed-up editor redrawing:</h3>
+<p>Turn off these options:
+<ul>
+<li> "View Settings" tab -- "Show horizontal ruler"
+<li> "Select/Highlight" tab -- "Highlight pair brackets"
+</ul>
+</p>
+
+<p>
+<hr>
+<p>
+<a name="portable">
+<a name="iniloc">
+<h3>How to make app portable / How to copy settings to another PC.</h3>
+<p>Since last versions, app is always portable - settings are stored in ini-files in "Settings" subfolder
+of program folder. (File "portable.ini" not needed.) <br />
+Note: do not install app to "Program Files", default install-folder is "C:\SynWrite".
+</p>
+
+<p>
+<hr>
+<p>
+<a name="colors">
+<h3>How to adjust program colors.</h3>
+<p>To change SynWrite interface colors:
+</p>
+<ul>
+<li> call "Options" dialog, "Colors" tab
+<li> change the toolbar theme and/or interface items' colors
+</ul>
+
+<p>To change colors of lexers' elements:
+</p>
+<ul>
+<li> call needed lexer in Lexer menu
+<li> call command "Options -- Customize lexer styles"
+<li> for needed items change their colors/fonts
+</ul>
+
+<p>
+<hr>
+<p>
+<a name="two_files">
+<h3>To open two files side-by-side:</h3>
+<p>
+Use the <a href="groups.html">Groups of tabs</a> feature: set grouping mode to "2 horizontally", then drag any tab from 1st group to 2nd one.<br />
+If needed, you may use toolbar commands "Sync vertical scrolling"/"Sync horizontal scrolling"
+to synchronize scrolling of active tabs in groups 1 and 2.
+</p>
+
+<h3>To split view of a single file:</h3>
+<p>Right-click tab header and call popup menu command "Split this tab".
+You may also split tab horizontally, using splitter's popup menu.
+</p>
+
+<p>
+<hr>
+<p>
+<a name="keep_own">
+<h3>How to keep lexers settings on app reinstalling.</h3>
+<p>You can keep your own lexer settings, using one of the following:
+</p>
+<ul>
+<li> If you just need to keep customized lexer's styles: you can reinstall SynWrite and
+then perform command "Options -- Advanced -- Restore lexer styles". This command
+restores your custom styles from SynStyles.ini file, which is auto-saved on every
+OK button press in Lexer properties dialog.
+<p>
+<li> If you need to keep entire lexer config (including internal lexer tweaks):
+you can export your custom lexer to a file,
+and after SynWrite reinstalling you can import it back.
+See <a href="#q0">Export/Import</a> topic.
+<p>
+<li> If you have created new lexer library file and activated it (using "Choose another lexer library" button
+in the "Lexer library" dialog), then don't worry about reinstalling - your custom library file
+won't be changed.
+</ul>
+
+<hr>
+<p>
+<a name="column_mode">
+<h3>Is there a "Column Mode" command like in Notepad++.</h3>
+<p>Yes, it's command "Edit -- Edit column". It places multi-selections for selected column block,
+so you may type new block content.
+After finished with typing, do a simple click out of block, to cancel multi-carets mode.
+
+<p>Note: "Edit column" has no special shortcut, you can use shortcut for other command
+  "Edit -- Multi-carets -- Carets from selection, left edge", which is used internally for "Edit column" command.
+</p>
+
+<p>
+<hr>
+<p>
+<a name="fonts">
+<h3>What monospaced fonts are good for program.</h3>
+<p>Default font "Consolas" looks good in Windows Vista/7/8.
+But you may try other monospaced fonts for use in SynWrite:
+</p>
+<ul>
+<li> Lucida Console
+<li> Liberation Mono
+</ul>
+
+<p>Lucida Console is part of Windows. To add Liberation font,
+download <a href="https://fedorahosted.org/liberation-fonts/" target=_blank>ttf package</a> and
+install "LiberationMono-Regular.ttf".
+</p>
+
+<p>Note: for better readability it's suggested to set option "Line spacing" to value 1 or 2.
+</p>
+
+<p>
+<hr>
+<p>
+<a name="guides">
+<h3>How to disable "indentation guides".</h3>
+<p>To hide indentation guides (vertical lines, which show syntax blocks such as "{...}" in C language),
+you need to use option "View Settings -- Block staples".
+</p>
+
+<p>
+<hr>
+<p>
+<a name="html_spell">
+<h3>How to hide red underlines for misspelled HTML tags.</h3>
+<ul>
+<li> Activate HTML lexer
+<li> Call dialog "Options -- Customize lexer" (for HTML lexer)
+<li> Click "Styles" tab of dialog; you'll see two styles "Tag id - underlines", "Tag attrib - underlines";
+  click them and change their color/underline styles on the right side of dialog
+<li> Save lexer library when prompted
+</ul>
+
+<p>You can keep your styles on SynWrite reinstalling - see <a href="#keep_own">another question</a>.
+</p>
+
+<p>You may need to do the same for "PHP_dev_HTML" lexer (HTML sublexer of PHP(dev) lexer).
+To call properties of this lexer, go into "Options -- Customize lexer library" dialog.
+</p>
+
+<p>
+<hr>
+<p>
+<a name="lang">
+<h3>How to create SynWrite translation.</h3>
+<ul>
+<li> Download <a target=_blank href="http://yktoo.com/">DKLang Translation Editor</a>
+<li> In Translation Editor open "Readme\Syn.dklang" file. Create your new LNG file.
+<li> Put your LNG file into "Lang" subfolder of SynWrite folder, select it in Options dialog and test it.
+<li> Send your file to contact email (About box).
+</ul>
+
+<p>
+<hr>
+<p>
+<a name="name">
+<h3>Program name.</h3>
+<p>
+In march 2010, there was a usual Total Commander plugin named "Syn2".
+Name "Syn2" appeared from famous Delphi component named SynEdit.
+"2" meaned that plugin was rewritten (by first author Alexander Ryabov) using another Delphi component, EControl.
+</p>
+<p>
+Syn2 was forked by me, Alexey, and our first version was "Syn2 v2.1". After some time we began to search for new name,
+and Matthias (sourceforge project admin) gave few variants: SynPad, SynText, SynWrite etc etc...
+and we have chosen "SynWrite".
+</p>
+
+<p>
+<hr>
+<p>
+<a name="lexfontsize">
+<h3>How to change font size for specific lexer.</h3>
+<p>Open "Lexer library" dialog (command "Options -- Customize lexer library"),
+select needed lexer and double-click it to open lexer properties dialog.
+In the lexer properties dialog create "Default" style, if it's not created yet:
+</p>
+<ul>
+<li> activate tab "Styles" and create new style,
+<li> rename style to "Default" using edit-field below the styles list,
+<li> for this new style set "Style type" = "Custom font",
+<li> button "Set custom font" is enabled now, press it and choose needed font.
+</ul>
+<p>You have a style with custom font attached. Now activate dialog tab "Common" and
+set option "Default style" to this style.
+</p>
+
+<p>
+<hr>
+<p>
+<a name="plugini">
+<h3>How to assign lexers/shortcuts to command plugins.</h3>
+<p>
+First, call menu command "Options -- Advanced -- Edit file SynPlugins.ini". In file SynPlugins.ini find section [Commands] and needed plugin line.
+Example:
+
+<div class="code">
+JS Format\Format=py:syn_js_format;run;JavaScript,JSON;Ctrl+Alt+F;
+</div>
+
+<p>
+After "=" char are ";"-separated values.<br /> 
+Lexers list (","-separated) is 3rd value (in example: JavaScript, JSON).<br /> 
+Shortcut is 4th value (in example: Ctrl+Alt+F).<br />  
+You can also assign key-combination like [Ctrl+Q, Q, B] - separate key-combo with "|" char:
+<span class="code">Ctrl+Q|Q|B</span>
+<p>
+
+</body>
+</html>

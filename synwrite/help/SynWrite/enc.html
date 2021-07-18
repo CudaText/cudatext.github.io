@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Encodings</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=Enc.html'>show framing</a></center>")
+		</script>
+<h1>Encodings</h1>
+<hr />
+
+<ul>
+<li> <a href="#me">Encoding menu</a>
+<li> <a href="#wr">What to do if I see wrong encoding?</a>
+<li> <a href="#utf">How to adjust UTF-8 detection?</a>
+<li> <a href="#li">How to edit encodings menu?</a>
+</ul>
+
+<a name="me"><h2>Encoding menu</h2></a>
+
+<p>There are two submenus in "File -- Encoding" menu:
+</p>
+<ul>
+<li> <b>Reload as</b><br>
+This re-reads file from disk in selected encoding.<br>
+If file is no-named, only in-memory encoding is changed.<br>
+If file is named and modified, then additional confirmation allows to choose:
+re-read file or change encoding in memory only.
+<br>
+<li> <b>Convert to</b><br>
+This only changes encoding in-memory, without file re-reading or saving.<br>
+After that you should save the file.
+</ul>
+
+<p>An example shows difference between "Reload as" and "Convert to":
+</p>
+<ul>
+<li> Reloading:<br> OEM char #169 "&reg;" &rarr; ANSI char #169 "&copy;"
+<li> Converting:<br> OEM char #169 "&reg;" &rarr; ANSI char #174 "&reg;"
+</ul>
+
+<p>Also you can click statusbar field with encoding name, this is the same as "Reload as".
+</p>
+<br>
+
+<a name="utf"><h2>How to adjust UTF-8 detection?</h2></a>
+
+<p>If you see some UTF-8 file (without so called BOM signature) loaded in ANSI encoding, this means that UTF-8 detection failed.
+This is because detection analyzes only first 32Kb of text, so it may fail on bigger files.
+To adjust the detection buffer size, use hidden option in Syn.ini file:
+</p>
+
+<pre class="code">
+[Setup]
+Utf8Buffer=128
+</pre>
+
+<p>(The value is buffer size in Kb. This line is absent by default in [Setup] section.)
+</p>
+<br>
+
+<a name="li"><h2>How to edit encodings menu?</h2></a>
+
+<p>You can edit predefined encodings list (except Unicode list) in the file "Enc.cfg", in SynWrite installation folder.
+It is text file in INI format. Note that this file is overwritten on each installation.
+</p>
+<br>
+
+</body>
+</html>

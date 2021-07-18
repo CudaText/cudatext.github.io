@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Markers</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=HelperMarkers.html'>show framing</a></center>")
+		</script>
+<h1>Markers</h1>
+<hr>
+
+<p>
+In the "Bookmarks" menu you will find "Markers" submenu with markers-related commands. Markers are small red triangles which show positions in the text (while bookmark shows entire line with a color and a gutter icon, marker shows only triangle below the single position). Commands are:
+</p>
+
+<ul>
+<li> <b>Drop marker</b> - Add a marker on caret position (triangle may be barely visible because caret is above it).
+<li> <b>Collect marker</b> - Jump to last placed marker, and delete this marker (works like a "stack", removes stack item).
+<li> <b>Swap marker</b> - Jump to last placed marker, delete this marker, but add new marker on previous caret position.
+<li> <b>Go to last marker</b> - Jump to last placed marker without deleting it.
+<li> <b>Clear markers</b> - Remove all markers in current file.
+</ul>
+
+<p>Markers are per-file, so e.g. "Collect" takes marker only inside the current file.</p>
+<br />
+
+</body>
+</html>

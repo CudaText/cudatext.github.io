@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/tpl.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Block rules</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=Rules.html'>show framing</a></center>")
+		</script>
+<h1>Block rules</h1>
+<hr />
+
+<ul>
+<li> <a href="#block">Block types</a>
+<li> <a href="#ranges">Text ranges</a>
+<li> <a href="#hi">Highlight</a>
+<li> <a href="#cond">Conditions</a>
+</ul>
+
+<p>
+<center>
+<img src="rules.png" alt="Block rules" />
+</center>
+
+
+            <p>Block rules are applied to the array of tokens. Block rules   are checked after each token detection.&nbsp;</p>
+            <a name="block"></a>
+            <h2>Block types&nbsp;</h2>
+            <p><strong>Block type</strong> specifies action after successful   conditions check.&nbsp;</p>
+            <p>There are four rule types:</p>
+            <ol>
+              <li value="1">Tag detector - sets style of token (with Identifier   index) </li>
+              <li value="2">Line separator - creates line separator </li>
+              <li value="3">Range start - creates text range </li>
+              <li value="4">Range end - closes text range. </li>
+            </ol>
+            <p>&nbsp;</p>
+            <p><strong>Indexing in block rules</strong></p>
+            <p>Some properties of block rule use indexes. All indexes are   back offset from the indexing reference point.&nbsp;</p>
+            <p>There two case of reference point:&nbsp;</p>
+            <p>1. Start of conditions (index 0 corresponds to the first   checked token).&nbsp;<br />
+            2. End of conditions (index 0 corresponds to the last checked   token).&nbsp;</p>
+            <p><strong>Example:</strong></p>
+            <p class="code">Rule &quot;class derived&quot; of LexLib.Pascal:<br />
+              0. EQUAL   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;identifier&gt;<br />
+              1. EQUAL <strong>)</strong>&nbsp;&nbsp;&nbsp;&nbsp; &lt;symbol&gt; <br />
+              2. SKIP&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&lt;symbol, identifier&gt;<br />
+              3. EQUAL <strong>(</strong> &nbsp;&nbsp;&nbsp;&nbsp;&lt;symbol&gt;<br />
+              4. EQUAL <strong>class</strong> &lt;identifier&gt;<br />
+            5.   EQUAL <strong>=</strong> &nbsp;&nbsp;&nbsp;&nbsp;&lt;symbol&gt;</p>
+            <p class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TComponent = class ( TPersistent , IInterface ,   IInterfaceComponentReference )<br />
+  Conditions start &nbsp;&nbsp;9 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8 &nbsp;&nbsp;7 &nbsp;&nbsp;6 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 &nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br />
+  Conditions end &nbsp;&nbsp;&nbsp;&nbsp;1   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 &nbsp;-1 &nbsp;-2 &nbsp;&nbsp;&nbsp;&nbsp;-3 &nbsp;&nbsp;&nbsp;&nbsp;-4 &nbsp;&nbsp;&nbsp;-5 &nbsp;&nbsp;&nbsp;&nbsp;-6 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-7 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-8 </p>
+            <p>Due to there is SKIP condition in this rule, we do not know   length of token sequence that satisfies this rule. To specify indexing reference   point use <strong>Relative to end of condition</strong>. flag. When it is True   indexing reference point - conditions end, otherwise indexing reference point -   conditions start. In this example we must set this flag to True.&nbsp;</p>
+            <p><strong>Identifier index</strong> - back offset of identifier   token. In example above identifier index may be 1 (token &quot;TComponent&quot;) or -1   (token &quot;class&quot;).&nbsp;<br />
+            The default value of the Identifier Index is 0. It is not   necessary to specify this property.&nbsp;</p>
+            <p><strong>Block offset</strong> - back offset of text range   start/end. It is used only for &quot;Range start/end&quot; rules.&nbsp;</p>
+
+            <p><strong>Grammar rule</strong> -   name of grammar rule which is used instead of conditions sequence to test   current sequence of tokens.&nbsp;</p>
+            <p><strong>Parent block, Strict parent block, Not a parent,   Always enabled</strong> - are common for all rules, see &quot;<a href="common.html">Common properties</a>&quot;.&nbsp;</p>
+            <p><strong>Group index</strong> - integer value that is used to   filter text ranges by the syntax tree view. Default is 0, i.e. no filtering   performed by the syntax tree.&nbsp;</p>
+            <p><strong>Change token type</strong> - specifies token type   which will be assigned to identifier token. This property available only for   &quot;Tag detector&quot; rules.&nbsp;</p>
+            <p><strong>Line break position</strong> - specifies position of   the line separator (above or under token with Ident Index). This property   available only for &quot;Line separator&quot; rules.&nbsp;</p>
+            <p><strong>Range end condition</strong> - reference to the block   rule that will close text range, reference to the block rule, text range of   which will be closed. This property available only for &quot;Range start&quot; rules.&nbsp;</p>
+            <p><strong>Range start condition</strong> - reference to the   block rule text range of that will be closed by this rule. This property   available only for &quot;Range end&quot; rules.&nbsp;</p>
+            <p><strong>Require same ident</strong> - When this flag is True,   when closing text range condition checks identifiers of range start and range   end. Only for &quot;Range end&quot; rules.&nbsp;</p>
+            <p><strong>Cancel next rules</strong> - specifies that block   rules checking loop must be broken if this rule is successful.&nbsp;</p>
+            
+            <a name="ranges"></a>
+            <h2>Text ranges </h2>
+            <p>These properties are applied to created text ranges, i.e.   they are used only for rule type &quot;Range start&quot;.&nbsp;</p>
+            <p><strong>Name format string</strong> - is used for formatting   text range name that is used in TSyntaxTreeView. If it is empty,   Identifier token will be taken as the range name. See Name formatting (for block   rules) to understand principles of name formatting.&nbsp;</p>
+            <p><strong>Group format string</strong> - is used for formatting   text range group name that is used in TSyntaxTreeView. If it is empty,   there is no group for this text range. If any text ranges within one parent have   identical group name, Group node will be created with caption of this group name   and all these text ranges will be children of this group node. See Name   formatting (for block rules) to understand principles of building name   format.&nbsp;</p>
+            <p><strong>Collapsed text icon</strong> - is used for formatting   string which is used to paint collapsed text icon (text displayed when text   range is collapsed). When this property is empty collapsed text icon is not   displayed (collapsed text range is shown as line separator).&nbsp;</p>
+            <p><strong>Close block at end of text</strong> - when this Flag   is True, opened text range will be closed at end of text. Only for &quot;Range start&quot;   rules.&nbsp;</p>
+            <p><strong>Self closing range</strong> - specifies whether rule   should close previously opened text range before opening new text range.&nbsp;</p>
+            <p><strong>Initially closed (no end rule)</strong> - specifies   whether text range should be closed immediately after opening. Text range will   occupy tokens that was used when checking conditions or grammar rule.&nbsp;</p>
+            <p><strong>Display in syntax tree view</strong> - specifies   whether text range must be displayed in TSyntaxTreeView control. Only for &quot;Range   start&quot; rules.&nbsp;</p>
+            <p><strong>Con not be collapsed</strong> - specifies whether   text range can be collapsed by user. Only for &quot;Range start&quot; rules.&nbsp;</p>
+            <p><strong>Draw block staple</strong> - specifies whether text   ranges of this rule must be pined together by the staple.&nbsp;</p>
+            
+            <a name="hi"></a>
+            <h2>Highlight</h2>
+            <p><strong>Style</strong> - For &quot;Range   start&quot; rule specifies style of all token in the associated text ranges. For &quot;Tag   detect&quot; rule specifies style of token with Ident Index. For &quot;Line separator&quot;   rule specifies line color of separator.&nbsp;</p>
+            <p><strong>Highlight type</strong> - specifies highlighting   region: &nbsp;</p>
+               <div>
+                <table cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <td valign="top" width="30%"><div>Disabled&nbsp;</div></td>
+                      <td valign="top" width="70%"><div>No highlighting&nbsp;</div></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" width="30%"><div>Only bounding tokens&nbsp;</div></td>
+                      <td valign="top" width="70%"><div>Only bounding tokens will be highlighted&nbsp;</div></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" width="30%"><div>All tokens without bounds&nbsp;</div></td>
+                      <td valign="top" width="70%"><div>All tokens without bounds will be   highlighted&nbsp;</div></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" width="30%"><div>All range&nbsp;</div></td>
+                      <td valign="top" width="70%"><div>All tokens in text range will be   highlighted&nbsp;</div></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+
+            <p><strong>Highlight lines of block</strong> - when this flag is   True, all lines of text range will be highlighted (will have the same foregound   and background colors) with the specified Style. If   style have ftBackGround type only backgound will be highlighted. Only for &quot;Range   start&quot; rules.&nbsp;</p>
+            <p><strong>Invert colors of selection</strong> - available only   if &quot;Highlight lines of block&quot; is True. It specifies style of the selection in   Syntax Memo. If it is True, inverted style colors will be used to paint   selection, else default selection style will be used. Only for &quot;Range start&quot;   rules.&nbsp;</p>
+
+            <p>Active highlighting specify that text range may be   highlighted only when caret is placed in some predefined position. Only for   &quot;Range start&quot; rules.&nbsp;</p>
+            <p><strong>Caret position</strong> - specifies caret position in   text range: &nbsp;</p>
+            <div>
+              <div>
+                <table cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <td valign="top" width="19%"><div>Any position (always)&nbsp;</div></td>
+                      <td valign="top" width="81%"><div>range will be always highlighted independently of caret   position&nbsp;</div></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" width="19%"><div>Bounds of the range&nbsp;</div></td>
+                      <td valign="top" width="81%"><div>range will be highlighted only when caret at the bounds of   the range (two caret position) (for example, highlighting   brackets)&nbsp;</div></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" width="19%"><div>Bounding tokens&nbsp;</div></td>
+                      <td valign="top" width="81%"><div>range will be highlighted only when caret at the bounding   tokens&nbsp;</div></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" width="19%"><div>In the range&nbsp;</div></td>
+                      <td valign="top" width="81%"><div>range will be highlighted only when caret is anywhere   within text range&nbsp;</div></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" width="19%"><div>Begin of bounding tokens&nbsp;</div></td>
+                      <td valign="top" width="81%"><div>Text range is highlighted when caret is at the first   charecter of the bounding tokens&nbsp;</div></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <p><strong>Select minimal range</strong> - specifies that only   nearest text range of this rule must be selected for active highlighting. For   example, when we highlight &quot;begin ... end&quot; block, we want to highlight only   nearest block.&nbsp;</p>
+
+              <strong>Syntax tree decoration</strong> <br />
+            Here you may specifier styles and image indexes for the tree   node associated with text range and group tree node created for this text   range.&nbsp;
+            
+            <a name="cond"></a>
+            <h2>Conditions</h2>
+            <p>Conditions specify current position validation for this rule.   If validating is successful corresponded action defined by the block rule type   will be performed. There are any number of condition entries. Each condition   have next attributes:&nbsp;</p>
+            <p><strong>Condition (type) </strong>- may be one of the   following: &nbsp;</p>
+            <div><div>
+              <table cellspacing="0">
+                  <tbody>
+                    <tr>
+                      <td valign="top" width="20%"><div>Equal&nbsp;</div></td>
+                      <td valign="top" width="80%"><div>Token must have token type to be in defined types and token   sting must be in key list&nbsp;</div></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" width="20%"><div>Not equal&nbsp;</div></td>
+                      <td valign="top" width="80%"><div>Token must not have token type to be in defined types and   token sting must not be in key list&nbsp;</div></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" width="20%"><div>Mask&nbsp;</div></td>
+                      <td valign="top" width="80%"><div>Token must have token type to be in defined types and token   sting must be in key list (with mask)&nbsp;</div></td>
+                    </tr>
+                    <tr>
+                      <td valign="top" width="20%"><div>Skip&nbsp;</div></td>
+                      <td valign="top" width="80%"><div>Skips all tokens that have specified token type until next   condition will be successful&nbsp;</div></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <p>If key list is empty second part of condition is   omitted.&nbsp;</p>
+            <p><strong>Token types</strong> - is a set of token types to   check condition.&nbsp;</p>
+            <p><strong>Key list</strong> - is an array of strings to check   condition.&nbsp;</p>
+            <p><strong>Ignore case</strong> - specifies whether it compares   strings without case sensitive.&nbsp;</p>
+</body>
+</html>

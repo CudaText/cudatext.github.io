@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Text Converters</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=MiscConv.html'>show framing</a></center>")
+		</script>
+<h1>Text Converters</h1>
+<hr>
+
+<p>There is plugin "Text Converter" (install it via Addons Manager) which allows to encode text 
+by replacing text fragments with another fragments.
+Set of converters in plugin menu can be customized.
+Open folder "Data\conv" inside SynWrite install folder, you'll see there "txt" files.
+Each file defines two converter menu items: "encode" item converts text in forward direction 
+and "decode" item converts back. 
+"Decode" item is not shown, if you add "_" char in filename just before extension.
+</p>
+
+<p>Addons Manager has special kind of add-ons for this plugin. 
+Names of these add-ons start with string "Text converter:".
+</p>
+
+<h2>Format of txt-files</h2>
+<ul>
+<li>Encoding: ANSI or UTF-16 (with BOM).
+<li>Lines are processed if they're not empty, and don't start with single ";" char.
+<li>Lines define substring convertion in one of the forms:
+<ul>
+    <li><span class="inlinecode"><font color="blue">StrFrom</font> <font color="green">StrTo</font></span>
+      - two strings separated with a space, all <span class="inlinecode">StrFrom</span> occurences
+      will be replaced with <span class="inlinecode">StrTo</span>.
+    <li><span class="inlinecode">;;{<font color="blue">StrFrom</font>} <font color="green">StrTo</font></span>
+      - first substring is enclosed into <span class="inlinecode">;;{ }</span>, it's needed if it contains spaces or starts with ";". 
+</ul> 
+</ul>
+
+
+</body>
+</html>

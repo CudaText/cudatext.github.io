@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>External Tools</title>
+</head>
+
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=ExternalTools.html'>show framing</a></center>")
+		</script>
+<h1>External Tools</h1>
+<hr />
+
+<ul>
+<li> <a href="#in">Introduction</a>
+<li> <a href="#par">Parameters macros</a>
+<li> <a href="#nav">Navigating to error lines</a>
+<li> <a href="#pre">Using "Output pattern" presets</a>
+<li> <a href="#hlp">Calling CHM/HLP helpfiles</a>
+<li> <a href="#ww">Calling online helps</a>
+<li> <a href="#js">Calling JS scripts</a>
+</ul>
+
+<!------------------>
+<a name="in">
+<h2>Introduction</h2>
+<p>The external tools dialog "Tools -- Customize external tools" allows to create menu items to call external applications:
+<ul>
+<li> Graphical (GUI) application.
+<li> Console-based applications.
+     Console applications have a text window and runs on a dosbox command line.
+     You can catch their output and, for example, send it to Output panel.
+<li> Batch BAT and CMD files.
+     These are treated as console applications and their output can be catched.
+<li> Help CHM and HLP files.
+     Current editor word will be used as keyword to search in these files.
+<li> Web sites links.
+     Current editor word can be used for web links.
+</ul>
+</p>
+<p>
+For console-based applications it's possible to have several forms of integration:
+show output in Output panel; copy output to new file;
+replace selection with output etc. To use these choices, you must check "Capture output" option
+and then use "Output type" dropdown.
+</p>
+<p>
+All external tools' items are added to the "Tools" submenu of main menu, and also (optionally)
+to the editor context menu.<br />
+The maximal number of external tools is currently 16.
+</p>
+
+<!------------------>
+<br>
+<a name="par">
+<h2>Parameters macros</h2>
+
+<p>In "File name" and "Parameters" fields of external tools configuration the following macros are allowed.
+Most of them can be inserted by a button near "Parameters" field.
+</p>
+<table border="1" >
+	<tr>
+		<td>
+		  {FileName}<br />
+		  {FileDir}<br />
+		  {FileNameOnly}<br />
+		  {FileNameNoExt}<br />
+		  {FileExt}
+		</td>
+		<td>File properties for currently focused group:
+		  <ul>
+		  <li> full path <br />
+		  <li> folder path, without file name <br />
+		  <li> name only, without folder path <br />
+		  <li> name without extension and path <br />
+		  <li> extension
+		  </ul>
+		</td>
+	</tr>
+		<td>
+		  {FileName2}<br />
+		  {FileDir2}<br />
+                  etc
+		</td>
+		<td>File properties for opposite group. <br />
+                  (If current group is 1st - for group 2, if 2nd - for group 1, else - empty strings.)
+		</td>
+	</tr>
+	</tr>
+		<td>
+		  {FileNameN1} - {..N6}<br />
+		  {FileDirN1} - {..N6}<br />
+                  etc
+		</td>
+		<td>File properties for groups 1...6.
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+      {ProjectDir}<br />
+		  {ProjectWorkDir}<br />
+		  {ProjectMainFileName}<br />
+		  {ProjectMainFileDir}
+		</td>
+		<td>Project properties:
+		  <ul>
+      <li>folder of project file (*.synw-proj)
+		  <li>project working folder
+		  <li>project main file's full path
+		  <li>project main file's folder
+		  </ul>
+		</td>
+	</tr>
+
+	<tr>
+		<td>{CurrentWord}</td>
+		<td>Word at current editor caret. (Can be empty.)</td>
+	</tr>
+	<tr>
+		<td>{CurrentLine}</td>
+		<td>Entire current editor line. (Can be empty.)</td>
+	</tr>
+	<tr>
+		<td>{CurrentLineNum}</td>
+		<td>Number of current editor line (1-based).</td>
+	</tr>
+	<tr>
+		<td>{CurrentColumnNum}</td>
+		<td>Number of current editor column (1-based).</td>
+	</tr>
+
+	<tr>
+		<td>{SelectedText}</td>
+		<td>Current editor selection text. (Can be empty.)</td>
+	</tr>
+	<tr>
+		<td>{SelectedTextForWeb}</td>
+		<td>Current editor selection text, adapted for internet URL.
+            E.g. selection "some word info" will give string "some+word+info". (Can be empty.)</td>
+	</tr>
+	<tr>
+		<td>
+		  {SelectionFileName} <br />
+		  {SelectionFileNameNum}
+		</td>
+		<td>Path of temporary file, which contains current editor selection (Unicode content). 
+		  Second variant: make numbered filename like "SynwSel_10.txt" to not overwrite prev copy.
+		</td>
+	</tr>
+	<tr>
+		<td>
+		  {SelectionFileNameAnsi} <br />
+		  {SelectionFileNameAnsiNum}
+		</td>
+		<td>Path of temporary file, which contains current editor selection (ANSI content).
+		  Second variant: make numbered filename.
+		</td>
+	</tr>
+
+	<tr>
+		<td>{ContentFileName}</td>
+		<td>Path of temporary file, which contains current editor text (Unicode content).</td>
+	</tr>
+	<tr>
+		<td>{ContentFileNameAnsi}</td>
+		<td>Path of temporary file, which contains current editor text (ANSI content).</td>
+	</tr>
+
+	<tr>
+		<td>{Interactive}</td>
+		<td>Some text - it's prompted to type before tool execution.</td>
+	</tr>
+	<tr>
+		<td>{InteractiveFile}</td>
+		<td>Some file name - it's prompted to select before tool execution.</td>
+	</tr>
+	<tr>
+		<td>{InteractiveDir}</td>
+		<td>Some folder name - it's prompted to select before tool execution.</td>
+	</tr>
+
+	<tr>
+		<td>{SynDir}</td>
+		<td>SynWrite property - installation folder path.</td>
+	</tr>
+	<tr>
+		<td>{SynIniDir}</td>
+		<td>SynWrite property - settings files ("Syn*.ini") folder path.</td>
+	</tr>
+	<tr>
+		<td>{SynDrive}</td>
+		<td>SynWrite property - drive letter with ":" char, of installation path.</td>
+	</tr>
+</table>
+
+<!------------------>
+<br>
+<a name="nav">
+<h2>Navigating to error lines</h2>
+To let SynWrite navigate to errors and warnings in code by clicking lines in the Output pane, it's nessesary to have an output pattern enabled. Activate checkbox "Capture output", choose "Output type" = "Send to Output pane" and press "Output pattern" button. For some tools there are already output patterns available - you can call them using "Load preset" button. If your tool is not listed there, then you have to configure an output pattern by yourself.
+
+<h3>Example</h3>
+<p>For example, we have a C++ file "c:\test\ab.cpp" and want to use C++ Compiler "qcc.exe" as external tool. The configuration dialog should look like this:</p>
+<p><img src="externaltools1.png"></p>
+<p>Now when you call this tool, the following command is executed: <br>
+<span class="code">"C:\qcc\qcc.exe" "c:\test\ab.cpp"</span><br>
+Instead of opening a console window, all output is captured by SynWrite and written into output window.
+You may see compiler's strings like these:</p>
+<p>
+<pre class="code">
+c:\test\ab.cpp (10) Error: missing op1
+c:\test\ab.cpp (11) Error: missing op2
+c:\test\ab.cpp (12) Error: missing something
+</pre>
+</p>
+<p>You see our compiler has found some errors in our example file. For troubleshooting SynWrite has option to "navigate" to affected error lines. That means you can jump to error position in source code file. To make this navigating work, we have to define "output pattern" for this external tool. We should make a regular expression denoting output lines. It can be:
+<pre>
+<span class="code">.+ \(\d+\) .*</span>
+</pre>
+</p>
+
+<p>Then we should surround parts of regular expression in parentheses ( ).
+Surrounded parts: 1st part ".+" is a filename, 2nd part "\d+" is error line number.
+<pre>
+<span class="code">(.+) \((\d+)\) .*</span>
+</pre>
+</p>
+
+<p>
+This is the regular expression we should enter in the "Regular expression" field of dialog. For "filename" field we must specify "1" (as 1st subexpression is filename), for "line" field we specify "2" (as 2nd subexpression is line number), for "column" field "--" can be left. The "Output pattern" dialog should now look like this:</p>
+<p><img src="externaltools2.png"></p>
+
+<p>If you have specified all the fields, test them: enter a test line in the "Test output line" field
+and press the "Test" button.
+</p>
+<p>Note: In some cases "filename" subexpression number can be left as "--". This is needed when a tool doesn't write filenames to the output, and filename is constant for the whole tool output.
+</p>
+
+<!------------------>
+<br>
+<a name="pre">
+<h2>Using "Output pattern" presets</h2>
+<p>
+If you have made your "Output pattern" configuration, then you can save it to a file (to share it).
+"Output pattern" dialog has buttons "Load preset" and "Save preset", use the second one to
+save your preset to a file.
+You'll be prompted for two strings: a) tool name, b) tool executable filename (without path).
+You'll see saved preset filename in a messagebox.
+</p>
+
+<!------------------>
+<br>
+<a name="hlp">
+<h2>Calling CHM/HLP helpfiles</h2>
+<p>
+External tools gives you also fast access to CHM and HLP Files. SynWrite opens these files for you and uses the current word or text selection as search text in your helpfile. It's good if you work with syntax manuals like official "php_manual_en.chm" for PHP language. You mark a word like "array" in SynWrite and call this CHM file. The manual will open the pages you are looking for.</p>
+
+<p>First you create a new external tool with your chm or hlp file as filename.<br><br><img src="externaltools3.png"></p><br>
+<p>Now select or set the cursor on the word "array" in editor window and call your new created item "Tools -- PHP Manual". The CHM file will open and you see all suitable pages with information about your word "array".<br><br><img src="externaltools4.png"></p>
+
+<!------------------>
+<br>
+<a name="ww">
+<h2>Calling online helps</h2>
+<p>You may also call web sites with given keyword.
+As an example, here's how to set up calling of official help on HTML tags:
+</p>
+  <ul>
+  <li> <b>Name:</b> Tag Help
+  <li> <b>File name:</b> one of names "iexplore.exe", "firefox.exe", "chrome.exe", "opera.exe" (without quotes)
+  <li> <b>Parameters:</b> http://www.w3schools.com/tags/tag_<font color=blue>{CurrentWord}</font>.asp
+  </ul>
+<p>Now place caret on any HTML tag name and call command "Tools -- Tag Help".
+</p>
+
+<!------------------>
+<br>
+<a name="js">
+<h2>Calling JS scripts</h2>
+<p>You may call JavaScript (JS) scripts using
+<a href="http://en.wikipedia.org/wiki/windows_script_host" target="_blank">WSH</a> standard functionality.
+Here's how to set up properties of a tool which needs a filename as parameter:
+</p>
+  <ul>
+  <li> <b>Name:</b> My Script
+  <li> <b>File name:</b> cscript.exe
+  <li> <b>Parameters:</b> "C:\MyScript\MyScript.js" "{FileName}"
+  <li> <b>Capture output:</b> checked
+  <li> <b>Output type:</b> Send to Output panel
+  <li> <b>Encoding:</b> OEM (DOS)
+  </ul>
+</p>
+<br>
+
+</body>
+</html>

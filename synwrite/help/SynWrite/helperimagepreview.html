@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Images Preview</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=HelperImagePreview.html'>show framing</a></center>")
+		</script>
+<h1>Images Preview</h1>
+<hr />
+
+<p>This feature allows to preview graphic files (jpg/gif/png/bmp/ico), 
+which are referenced in HTML tags, for example:
+<div class="code">&lt;img src="images/untitled.jpg" alt="untitled" /&gt;</div>
+</p>
+
+<p>When you hold mouse over image filename, graphic hint appears.<br>
+If filename isn't found on local PC, hint will show "???" text.
+</p>
+<center>
+<img src="imagepreview.png" alt="Images hints" />
+</center>
+
+<p>Notes:
+<ul>
+<li> Preview of jpg/gif/ico images requires GDI+ library. This library is installed by default on Windows XP and newer systems.
+<li> Filenames which are web links are not previewed.
+</ul>
+</p>
+
+</body>
+</html>

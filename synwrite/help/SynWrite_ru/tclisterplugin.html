@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<link rel="StyleSheet" href="style.css" type="text/css" media="screen" />
+<title>Lister-плагин для Total Commander</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=TCListerPlugin.html'>show framing</a></center>")
+		</script>
+
+<h1>Lister-плагин для Total Commander</h1>
+<hr />
+
+<ul>
+	<li> <a href="#sr">Интеграция с поиском </a><a href="tclisterplugin.html#sr">TotalCmd</a></li>
+	<li> <a href="#hid">Скрытые настройки</a></li>
+</ul>
+
+<p>
+<a name="sr"></a>
+</p><h2>Интеграция с поиском TotalCmd</h2>
+
+<p>Часто задаются таким вопросом: в TotalCmd после заполнения панели
+поиска (Alt+F7) и вызова SynWrite как просмотрщика (F3) можно ли
+продолжить поиск в SynWrite той строки, что искалась в
+TotalCmd? Ответ - можно. Первый способ:
+</p>
+<ul>
+	<li>Включить скрытую опцию "TcHistory" <br />(важно: это работает только с TC 8.0+).</li>
+</ul>
+Другой способ:<br />
+<ul>
+	<li> Выключить скрытую опцию "SynDialog".</li>
+	<li> Использовать для поиска не Ctrl-F или F3, а меню просмотрщика.</li>
+</ul>
+Еще способ:
+<ul>
+	<li> Выключить скрытую опцию "SynDialog".</li>
+	<li>Назначить в настройках SynWrite на сочетания Ctrl-F и F3 команды "Поиск - через Lister" и "Поиск далее - через Lister".</li>
+</ul>
+<br />
+
+<a name="hid"></a>
+<h2>Скрытые настройки</h2>
+
+<p>Вот список опций для работы SynWrite Lister-плагином. Опции задаются в файле LSPlugin.ini (он находится рядом с файлом wincmd.ini), в секции [Syn2].</p>
+
+<table border="1">
+  <tr>
+      <td><b>TcHistory</b>=N
+      </td>
+      <td>Включение (при N=1) или выключение (N=0) хранения истории поиска SynWrite в ini-файле TotalCmd (т.е. wincmd.ini). Когда включено, для хранения истории поиска используется файл и секция самого TotalCmd, т.е. TotalCmd
+      увидит всю историю поиска SynWrite.
+      </td>
+  </tr>  
+  <tr>
+      <td><b>SynDialog</b>=N
+      </td>
+      <td>Включение (при N=1) или выключение (N=0) использования диалога поиска/замены SynWrite. Если выключено, Lister будет показывать собственный диалог поиска, а диалог SynWrite стандартными командами Lister не будет вызываться.
+      </td>
+  </tr>  
+  <tr>
+      <td><b>QViewToolbars</b>=панель1,панель2,...
+      </td>
+      <td>Разрешить отображение тулбаров и спец.панелей в режиме QuickView. На месте панельN могут быть следующие значения:
+          <ul>
+		  <li>Menu
+		  <li>File
+		  <li>Edit
+		  <li>View
+		  <li>QS
+		  <li>Tree
+          <li>Clip
+          <li>Output
+          <li>User1
+          <li>User2
+          <li>User3
+		  </ul> 
+      </td>
+  </tr>  
+  <tr>
+      <td><b>QViewTree</b>=расшир1,расшир2,...
+      </td>
+      <td>Разрешить отображение панели с Деревом в режиме QuickView, но только
+для указанных расширений файлов. Эта настройка перекрывает (если не пустое
+значение) действие QViewToolbars.
+      </td>
+  </tr>  
+  <tr>
+      <td><b>QViewRO</b>=N
+      </td>
+      <td>Включение (при N=1) или выключение (N=0) режима "Только чтение" для QuickView.
+      </td>
+  <tr>
+      <td><b>RO</b>=N
+      </td>
+      <td>Включение (при N=1) или выключение (N=0) режима "Только чтение" не для QuickView.
+      </td>
+  </tr>  
+</table>
+
+<p>Прим.: QuickView - это специальный режим работы Lister, который активируется командой Ctrl+Q в файловых панелях TotalCmd.</p>
+
+</body>
+</html>

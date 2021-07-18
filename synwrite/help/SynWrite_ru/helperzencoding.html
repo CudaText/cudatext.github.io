@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<link rel="StyleSheet" href="style.css" type="text/css" media="screen" />
+<title>Emmet</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=HelperZenCoding.html'>show framing</a></center>")
+		</script>
+
+<h1>Emmet</h1>
+<hr />
+
+<ul>
+<li> <a href="#in">Введение</a></li>
+<li> <a href="#prof">Профили</a></li>
+</ul>
+
+<a name="in"></a>
+<h2>Введение</h2>
+<p>
+<a href="http://www.emmet.io/" target="_blank">Emmet</a> -
+это плагин, который ставится через "Менеджер дополнений".
+Он дает сокращения для ускоренного набора кода HTML и CSS.
+Его просто освоить и получить значительную экономию времени.
+Доступны несколько наборов сокращений: 
+HTML (по умолчанию),
+CSS (для лексеров CSS, LESS, SCSS, SASS, Stylus и для HTML-лексеров, если каретка находится внутри style-блоков),
+XSL (для лексеров XML, XSLT).
+</p>
+<p>
+Вот несколько примеров, чтобы составить впечатление о работе Emmet.
+</p>
+<h2>Пример 1</h2>
+Исходный текст в редакторе: <span class="code">p*3</span><span class="code"></span><br />
+Можно расширить это сокращение командой Emmet, оно заменится на код:
+<pre class="code">&lt;p&gt;&lt;/p&gt;<br />&lt;p&gt;&lt;/p&gt;<br />&lt;p&gt;&lt;/p&gt;<br /></pre>
+<p>Подобным образом можно размножать почти любое из сокращений.</p>
+
+<h2>Пример 2</h2>Исходный текст в редакторе: 
+<span class="code">table&gt;tr*2&gt;td</span><span class="code"></span><br />После расширения получится:
+<pre class="code">&lt;table&gt;<br />&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&lt;/table&gt;<br /></pre>
+
+<h2>Пример 3</h2>Исходный текст в редакторе: 
+
+<span class="code">select&gt;option#item-$*3</span><span class="code"></span><br />
+После расширения получится:
+<pre class="code">&lt;select&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;option id="item-1"&gt;&lt;/option&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;option id="item-2"&gt;&lt;/option&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;option id="item-3"&gt;&lt;/option&gt;<br />&lt;/select&gt;<br /></pre>
+<br />
+
+<a name="prof"></a>
+<h2>Профили</h2>
+<p>Профиль - это стиль конечных выражений, влияет на оформление пустых элементов (<span class="inlinecode">&lt;br&gt;</span> или <span class="inlinecode">&lt;br /&gt;</span> или <span class="inlinecode">&lt;br/&gt;</span>),
+расстановку дополнительных пробелов, сдвигов и концов строк. 
+Можно изменить активный профиль командой плагина.
+Доступные профили:
+</p>
+
+<ul>
+	<li>"html" &mdash; умолчательный профиль.</li>
+	<li> "xhtml" &mdash; такой же как "html", но пустые элементы 
+	оформляются так: <span class="inlinecode">&lt;br /&gt;</span>.</li>
+	<li> "xml" &mdash; умолчание для файлов XML и XSL: каждый тег
+	размещается на новой строке с подходящим сдвигом, пустые элементы
+	оформляются так: <span class="inlinecode">&lt;br/&gt;</span>.</li>
+	<li>"xml_zen" &mdash; такой же как "xml", но в максимально вложенные 
+	узлы добавляются пустые строки (например, в <span class="inlinecode">table&gt;tr&gt;td</span>).</li>
+	<li> "line" &mdash; применяется для раскрытия сокращений без разбиения строк и сдвигов. 
+	Пустые элементы оформляются так: <span class="inlinecode">&lt;br /&gt;</span>.</li>
+	<li> "plain" &mdash; такой же как "line", но без перемещения каретки внутрь (только для сложных конструкций).</li>
+</ul>
+<br />
+    
+</body></html>

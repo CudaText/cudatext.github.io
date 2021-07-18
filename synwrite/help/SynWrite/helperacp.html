@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Auto-Completion</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=HelperACP.html'>show framing</a></center>")
+		</script>
+<h1>Auto-Completion</h1>
+<hr>
+
+<ul>
+<li><a href="#u">Introduction</a></li>
+<li><a href="#htm">Intelligent HTML auto-completion</a></li>
+<li><a href="#css">Intelligent CSS auto-completion</a></li>
+<li><a href="#sp">Misc features</a></li>
+<li><a href="#fl">Files set</a></li>
+<li><a href="#fm">Common file format</a></li>
+</ul>
+
+<!----------------------------->
+<p>
+<h2><a name="u">Introduction</a></h2>
+</p>
+
+<p>Auto-completion feature suggests you possible continuations of typed words, when you press Ctrl+Space.
+Here's an example in PHP file:
+<center><img src="acp.png" alt="Completion popup" /></center></p>
+</p>
+
+<p>There's also Parameters Hint feature. For example, in PHP file type "zip_entry_open(" and press Ctrl+Shift+Space shortcut:
+the hint appears near caret, and this hint changes while you type parameters.
+<center><img src="acp_hint.png" alt="Parameters hint" /></center></p>
+</p>
+
+<br>
+<!-------------------------------------->
+<p>
+<h2><a name="htm">Intelligent HTML auto-completion</a></h2>
+</p>
+
+<p>HTML lexer has its own special auto-complete behaviour. On typing tag name the popup displays
+list of tags:
+<center><img src="acp_htm_tags.png" alt="HTML tags" /></center>
+</p>
+
+<p>On entering tag attribute the popup displays list of corresponding attributes:
+<center><img src="acp_htm_attr.png" alt="Tag attributes" /></center>
+</p>
+
+<p>And on entering attribute value the list of possible values is shown:
+<center><img src="acp_htm_values.png" alt="Attribute values" /></center>
+</p>
+
+<p>Note: during showing of HTML tags list you may press Ctrl+Enter to insert current tag and close it with ">".
+</p>
+<br>
+<!-------------------------------------->
+<p>
+<h2><a name="css">Intelligent CSS auto-completion</a></h2>
+</p>
+
+<p>CSS ("Style sheets") lexer also has its own special auto-complete behaviour.
+Popup can suggest list of property names:
+<center><img src="acp_css_names.png" alt="Property names" /></center>
+</p>
+
+<p>or list of property values:
+<center><img src="acp_css_values.png" alt="Property values" /></center>
+</p>
+
+<p>CSS auto-complete works also inside HTML documents, on entering "style" attribute:
+<center><img src="acp_css_style.png" alt="Style attribute" /></center>
+</p>
+
+<br>
+<!-------------------------------------->
+<p>
+<h2><a name="sp">Misc features</a></h2>
+</p>
+
+<p>The following miscellaneous auto-completion features are available. They can be enabled/disabled in the Options dialog,
+"Auto-complete" tab.</p>
+<ul>
+<li> You can add to completion popup words from the currently edited file.
+Current file words are available for any lexer, while usual auto-completion is available
+for limited set of lexers.
+<li> You can automatically call completion popup by entering some predefined number of characters.
+</ul>
+
+<br>
+<!-------------------------------------->
+<p>
+<h2><a name="fl">Files set</a></h2>
+</p>
+
+<p>
+Auto-completion files are located in the subfolder "Data\autocomplete" of SynWrite installation folder.
+There are several formats of such files:
+</p>
+<ul>
+<li> Common file format, described below. These are files with "acp" extension.</li>
+<li> Format for HTML auto-completion. This is file "Html_List.ini".
+<li> Format for CSS auto-completion. This is file "Css_List.ini".
+<li> Format for HTML <a href="helpersmarttagtabbing.html">SmartTagTabbing</a> feature.
+This is file "Html_Tabbing.ini".
+</ul>
+
+<br>
+<!----------------------------->
+<p>
+<h2><a name="fm">Common file format</a></h2>
+</p>
+
+<p>Common auto-completion file format is ANSI text file, it contains list of lines in forms:
+</p>
+
+<pre class="code">
+Type Id |Hint
+Type Id (Param1; Param2; ...) |Hint
+Type Id (Param1; Param2; ...): ResultType |Hint
+</pre>
+
+<p>Strings "Type" are shown in the 1st column of auto-completion popup,
+strings "Id" are shown in the 2nd column, and "Hint" - in the 3rd one.
+Parameters list inside brackets is used for Parameters Hint. <br />
+Both ";" and "," chars can be params delimiters. "|Hint" part is optional. <br />
+If "\" char is present in hint part, then it must be escaped: "\\". <br />
+If space is needed in id part, it must be written as "%20" (it's allowed for any char in range 0x20..0x2F).
+</p>
+
+<p>First line in the file can be the "control" line: it specifies what chars are "word chars" for the
+used syntax:
+<span class="inlinecode">#chars ListOfChars</span> <br />
+For example, if word chars are minus sign, dot, and # sign, the control line would be:
+<pre class="code">#chars .-#
+</pre>
+</p>
+
+</body>
+</html>

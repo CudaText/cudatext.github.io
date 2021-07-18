@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Текстовые конвертеры</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=MiscConv.html'>show framing</a></center>")
+		</script>
+<h1>Текстовые конвертеры</h1>
+<hr>
+
+<p>Есть плагин "Text Converter" (в "Менеджере дополнений"), который позволяет кодировать текст заменой подстрок на другие подстроки.
+Список конвертеров в меню плагина настраивается.
+Для этого откройте подпапку "Data\conv" в папке, где установлен SynWrite,
+вы увидите там файлы с расширением "txt".
+Каждый txt-файл определяет до двух пунктов меню: пункт "кодировать" производит
+прямую конвертацию, а пункт "декодировать" производит обратную.
+Можно убрать пункт "декодировать", если в имени файла добавить символ "_" перед расширением.
+</p>
+
+<p>"Менеджер дополнений" имеет такие файлы конвертеров. Названия начинаются с "Text converter:".
+</p>
+
+<h2>Формат txt-файлов</h2>
+<ul>
+<li>Кодировка ANSI или UTF-16 (с BOM).
+<li>Строки обрабатываются, если они непусты и не начинаются с одиночного символа ";".
+<li>Строки определяют замену подстрок, в одной из форм:
+<ul>
+    <li><span class="inlinecode"><font color="blue">СтрокаИз</font> <font color="green">СтрокаВ</font></span>
+      - две строки, разделенные пробелом - все вхождения <span class="inlinecode">СтрокаИз</span> заменятся на <span class="inlinecode">СтрокаВ</span>.
+    <li><span class="inlinecode">;;{<font color="blue">СтрокаИз</font>} <font color="green">СтрокаВ</font></span>
+      - первая строка заключена в <span class="inlinecode">;;{ }</span>, что нужно для строк с пробелами или начинающихся с ";". 
+</ul> 
+</ul>
+
+</body>
+</html>

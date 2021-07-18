@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<link rel="StyleSheet" href="style.css" type="text/css" media="screen" />
+<title>Диалоги "Команды", "Файлы проекта"</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=DialogCmdList.html'>show framing</a></center>")
+		</script>
+
+<h1>Диалоги "Команды", "Файлы проекта"</h1>
+<hr />
+
+<ul>
+  <li> <a href="#in">Введение</a></li>
+  <li> <a href="#fuzzy">Обычный и нечеткий поиск</a></li>
+  <li> <a href="#fold">Файлы проекта: имена файлов и папок</a>
+  <li> <a href="#word">Файлы проекта: поиск по содержимому</a>
+</ul>
+
+<a name="in"></a>
+<h2>Введение</h2>
+
+<p>Эти два диалога функционируют одинаково. В обоих случаях
+отображается список
+текстовых элементов и поле для условия поиска. Можно перемещать
+выделение в списке (даже при фокусе на условии поиска)
+сочетаниями Up, Down, PageUp, PageDown, Ctrl+Home, Ctrl+End. Если
+условие поиска не пусто, то отображаются только подходящие ему элементы.</p>
+
+<br />
+
+<a name="fuzzy"></a>
+<h2>Обычный и нечеткий поиск</h2>
+
+
+<p>Если включена опция "Нечеткий поиск" (внизу диалога), то применяется
+"fuzzy" алгоритм: подходящими будут считаться те элементы, в которых
+есть все указанные в условии символы,
+но не обязательно подряд. Примеры:
+</p>
+<ul>
+ <li>для "fsav" подходит "<font color="red">F</font>ile: <font color="red">Sav</font>e file"</li>
+  <li> для "fsav" подходит "<font color="red">F</font>ocu<font color="red">s</font>ing: Toggle m<font color="red">a</font>ster/sla<font color="red">v</font>e focus"</li>
+</ul>
+
+<p>Если опция "Нечеткий поиск" выключена, то подходящими будут
+считаться элементы, содержащие каждое из введенных слов. Примеры:
+</p>
+<ul>
+  <li>для "fi re" подходит "<font color="red">Fi</font>le: <font color="red">Re</font>open file"</li>
+  <li> для "fi re ti" подходит "Run: <font color="red">Ti</font>dy - con<font color="red">fi</font>gu<font color="red">re</font>"</li>
+</ul>
+<br />
+
+<a name="fold"></a><h2>Файлы проекта: имена файлов и папок</h2>
+
+<p>Только в диалоге "Файлы проекта":<br />
+Можно в условии поиска применять символ "\", чтобы указать на поиск папки и/или файла. Примеры:
+</p>
+<ul>
+  <li>(обычный поиск) для "<u>mypro</u>\mycla" подходит "D:\Test\<font color="red">MyPro</font>ject\<font color="red">mycla</font>ss.py"</li>
+  <li>(обычный поиск) для  "\my" или "my" подходят файлы с "My" в имени (но не в пути)</li>
+  <li>(обычный поиск) для  "<u>my</u>\" подходят файлы с "My" в пути (но не в имени)</li>
+  <li>(нечеткий поиск) для "<u>te\my</u>\my.py" подходит "D:\<font color="red">Te</font>st<font color="red">\</font><font color="red">My</font>Project\<font color="red">my</font>class<font color="red">.py</font>"</li>
+</ul>
+<br />
+
+<a name="word"></a><h2>Файлы проекта: поиск по содержимому</h2>
+
+<p>Только в диалоге "Файлы проекта":<br />
+В конце условия на имена файлов можно использовать конструкцию <font color=blue>@текст</font>, 
+чтобы оставить только те файлы, которые содержат такую строку <font color=blue>текст</font>.</p>
+<p>Поиск внутри файлов будет с учетом регистра, если в конструкции использован один "@", 
+и без учета регистра, если применено "@@".
+Поиск всегда будет внутри слов (не "слова целиком").</p>
+<br />
+
+</body>
+</html>

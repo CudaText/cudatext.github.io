@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>SynFTP Plugin</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=SynFTP.html'>show framing</a></center>")
+		</script>
+<h1>SynFTP Plugin</h1>
+<hr />
+
+<ul>
+<li> <a href="#in">Introduction</a>
+<li> <a href="#conf">Configuring</a>
+  <ul>
+  <li> <a href="#conf_general">General configuration</a>
+  <li> <a href="#conf_profile">Profile configuration</a>
+  <li> <a href="#conf_prfile">Private key file</a>
+  <li> <a href="#conf_hidden">Hidden options</a>
+  </ul>
+<li> <a href="#cache">Cache paths</a>
+<li> <a href="#tb">Toolbar</a>
+<li> <a href="#panels">Panels</a>
+</ul>
+
+<p>
+<a name="in"></a>
+<h2>Introduction</h2>
+
+<p>"SynFTP" panel plugin can be activated using corresponding tab at the bottom of the "Tree/Project" panel.</p>
+<p>
+<center>
+<img src="panelftp.png" alt="SynFTP panel" />
+</center>
+</p>
+
+<p>It allows to browse remote FTP or SFTP folders, download remote files, and after you edit and save such downloaded files 
+they will be auto-uploaded to their original remote location.
+Also you can copy files to remote folders: open any local file, then activate SynFTP, browse to some remote folder and
+press "Upload file" button of SynFTP. 
+<br />
+This plugin is a port of NppFTP plugin for Notepad++.
+</p>
+
+<br>
+<a name="conf"></a>
+<h2>Configuring</h2>
+
+<p>There are two configuration dialogs for SynFTP. These can be accessed by clicking on the settings button in the SynFTP toolbar (gear icon).
+</p>
+
+<a name="conf_general"></a>
+<h4>General configuration</h4>
+<p>In the general configuration dialog, the default cache location can be entered. See <a href="#cache">Cache paths</a> for more details. It will map to the root directory on the server ('/')
+and if no other cache locations are provided by a profile, this will always be the target.
+</p>
+
+<a name="conf_profile"></a>
+<h4>Profile configuration</h4>
+<p>In the profiles configuration dialog, profiles can be created, modified and deleted. Initially, no profiles exists and no connection can be made.
+To create a new profile, click the New button and enter the name of the new profile. Please provide a unique name for your own ease of use.
+Renaming and deleting a profile is done with the corresponding buttons.
+</p>
+<p>In the connections tab, settings for each connection can be entered. At minimum provide a hostname (address) and port.<br>
+In the transfers tab, settings for FTP transfers can be edited.<br>
+In the cache tab, specific cache mappings can be added for the selected profile. See <a href="#cache">Cache paths</a> for more details.
+</p>
+
+<a name="conf_prfile"></a>
+<h4>Private key file</h4>
+
+<p>
+In the profiles settings dialog, you can configure server connections via a "private key". 
+This is much more secure than connections by password. Clear "Password" field and check option "Try private key file authentification". 
+The key file must be in 
+<a href="https://help.ubuntu.com/community/ssh/openssh/keys" target="_blank">OpenSSH key</a> format.
+Specify the path to this file in the edit field of the same dialog. Field "Passphrase" is used to decrypt the key file (only applicable if the key file actually is encrypted.)
+</p>
+
+<a name="conf_hidden"></a>
+<h4>Hidden options</h4>
+
+<p>SynFTP has few options which must be edited in the file "SynFTP.xml", which is located in "%AppData%\SynWrite\SynFTP" folder by default.</p>
+<ul>
+<li> "menuSplit": specifies maximal rows number in accounts menu. E.g. if it's set to 20, then each 20 accounts are placed on separate column in the menu.
+</ul>
+
+<br>
+<a name="cache"></a>
+<h2>Cache paths</h2>
+<p>When downloading files from a server, they are by default stored in the cache. When a file in the cache is saved, it will automatically be uploaded. To allow more fine grained control over what files go to where, a cache mapping can be created. A cache map consists of a local directory and an external path. The local directory provides the location on the local computer to look for files to upload and to download to. For example, if "C:\ftpfiles\myserver\home" were entered, files in that directory and subdirectory would be transferred to the correspodning path on the external server. The external path provides the location to download files from and upload to. For example, "/home/myuser/public_html/" would map files on that path and its subpaths to the corresponding directory.
+Determining a cache map for a file transfer is done on a first match basis (rather than 'best fit'). For example, consider the following scenario:
+</p>
+
+<p>Profile cache maps:
+</p>
+<pre class="code">
+Local                        External
+C:\webfiles                  /home/user/public_html
+C:\webfiles                  /home/user2/public_html
+C:\rootfiles                 /root
+D:\serverfilesystem          /
+</pre>
+
+<p>General cache map:
+</p>
+<pre class="code">
+C:\myuser@server.com\        / (fixed)
+</pre>
+
+<p>Downloads:
+</p>
+<pre class="code">
+The external file "/home/user/public_html/index.html" would be transferred to "C:\webfiles\index.html"
+The external file "/home/user/.bash_rc" would be transferred to "D:\serverfilesystem\home\user\.bash_rc"
+The external file "/root/apache.conf" would be transferred to "C:\rootfiles\apache.conf"
+The external file "/vmlinuz.img" would be transferred to "D:\serverfilesystem\vmlinuz.img"
+No download would be directed to "C:\myuser@server.com\"
+</pre>
+
+<p>Uploads:
+</p>
+<pre class="code">
+The local file "C:\webfiles\home\user\.bash_rc" would be transferred to "/home/user/public_html/home/user/.bash_rc" (user2 will NOT be considered)
+The local file "D:\serverfilesystem\boot\grub\menu.lst" would be transferred to "/boot/grub/menu.lst"
+The local file "C:\myuser@server.com\home\user\public_html\index.html" would be transferred to "/home/user/public_html/index.html"
+</pre>
+
+<p>Ordering is important. The general cache map will always be considered last, the profile maps will be considered from top to bottom. So if
+</p>
+<pre class="code">
+D:\serverfilesystem          /
+</pre>
+<p>were to be at the top, all files would be downloaded to "D:\serverfilesystem".
+</p>
+
+<br>
+<a name="tb"></a>
+<h2>Toolbar</h2>
+<p>
+The toolbar provides the following buttons:
+</p>
+<ul>
+<li><b>Connect/Disconnect</b>: Connect to a server (select server from a dropdown menu), or disconnect from the current server.
+<li><b>Open directory</b>: Show input dialog, and then jump to entered remote directory, e.g. "/pub/music".
+<li><b>Download file</b>: If a file is selected in the treeview, download it to cache and open it for editing.
+<li><b>Upload file</b>: If a directory is selected in the treeview, upload the currently opened file to that directory.
+<li><b>Refresh</b>: Reread content of the current remote directory.
+<li><b>Abort current operation</b>: If a transfer is active, abort it.
+<li><b>Settings</b>: Access settings dialogs.
+<li><b>Show/Hide log panel</b>: Show or hide the FTP tab of the Output panel.
+<li><b>About plugin</b>: Show information about plugin version.
+</ul>
+
+<br>
+<a name="panels"></a>
+<h2>Panels</h2>
+<h4>Treeview panel</h4>
+<p>
+If an FTP session is active, the treeview will show the files on the server. Some actions of the toolbar depend on the selected object in the treeview (see toolbar).
+Double-clicking on a directory will show its contents. Double-clicking on a file will download it to the cache and open it.
+</p>
+
+<h4>Queue panel</h4>
+<p>The queue panel shows the currently active and queued file transfers, along with their progress and file path. Right-clicking on an item
+allows to abort or cancel it, depending whether the transfer is active or queued.
+</p>
+
+<h4>Log panel</h4>
+<p>The log panel shows the output of various operations.
+If something goes wrong, look for errors here.
+Default colors: notifications are blue, server messages are green, errors are red.
+Log panel appears as a part of the application's Output panel, after you click "Show log panel" button on SynFTP toolbar. 
+</p>
+
+
+</body>
+</html>

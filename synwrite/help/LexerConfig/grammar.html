@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/tpl.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Grammar</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=Grammar.html'>show framing</a></center>")
+		</script>
+<h1>Grammar</h1>
+<hr />
+
+<p>
+<center>
+<img src="grammar.png" alt="Grammar" />
+</center>
+
+<p>Grammar rules allow testing for complex sequences of tokens.<br />
+  Grammar rules   are separated by semicolons.</p>
+  
+        <p>Syntax of grammar definitions: </p>
+        <p class="code">Rule ::= RuleName '=' Branch_list ';'<br />
+          <br />
+          Branch_list ::= Item_list<br />
+  &nbsp;&nbsp;&nbsp;        | Branch_list '|' Item_list<br />
+  <br />
+  Item_list ::= Element              <br />
+&nbsp;&nbsp;&nbsp;  | Item_list Element    <br />
+<br />
+Element ::= Item            <br />
+&nbsp;&nbsp;&nbsp; | Item '*'            <br />
+&nbsp;&nbsp;&nbsp; | Item '+'            <br />
+&nbsp;&nbsp;&nbsp; | Item '?'    <br />
+<br />
+Item ::= RuleName         <br />
+&nbsp;&nbsp;&nbsp; | '&quot;' Term '&quot;'<br />
+&nbsp;&nbsp;&nbsp; | ''' Term '''<br />
+&nbsp;&nbsp;&nbsp;&nbsp;| '&lt;' TokenType '&gt;'<br />
+&nbsp;&nbsp;&nbsp; | '(' Item_list ')' </p>
+
+      <p>where:</p>
+      <ul>
+      <li> &quot;<strong>Term</strong>&quot; - case insensitive string
+      <li> <strong>'Term'</strong> - case sensitive string
+      <li> <strong>TokenType</strong> - name of token type
+      <li> <strong>RuleName</strong> - name of grammar rule
+      </ul>
+
+        <p>Repeaters:</p>
+        <ul>
+        <li> '<strong>*</strong>' - any number of entries including   none
+        <li> '<strong>+</strong>' - at least one entry
+        <li> '<strong>?</strong>' - one entry or none
+        </ul>
+        <p>There are special grammar rule &quot;<strong>Skip</strong>&quot;. 
+        It is used after each match operation to   skip unused tokens (for example, comments).</p>
+
+</body>
+<!-- InstanceEnd --></html>

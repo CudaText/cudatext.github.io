@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Total Commander Lister Plugin</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=TCListerPlugin.html'>show framing</a></center>")
+		</script>
+
+<h1>Total Commander Lister Plugin</h1>
+<hr />
+
+<ul>
+<li> <a href="#sr">Integration with TotalCmd search</a>
+<li> <a href="#hid">Hidden options</a>
+</ul>
+
+<p>
+<a name="sr"></a>
+<h2>Integration with TotalCmd search</h2>
+
+<p>One commonly asked question is how to use TotalCmd's search string while SynWrite Lister plugin
+is called from TotalCmd search results panel (Alt+F7). This is possible, use one of the following methods:
+</p>
+<ul>
+<li> turn on SynWrite option "TcHistory" (see below)
+  <br>(note: this option works only with TC 8.0+)
+</ul>
+or:<br>
+<ul>
+<li> turn off SynWrite option "SynDialog" (see below)
+<li> call search not using Ctrl-F/F3 but using Lister's menu
+</ul>
+or:
+<ul>
+<li> turn off SynWrite option "SynDialog" (see below)
+<li> in SynWrite options assign Ctrl-F/F3 to commands "Lister find"/"Lister find next"
+</ul>
+
+<br />
+<a name="hid"></a>
+<h2>Hidden options</h2>
+
+This is a list of hidden options of SynWrite <u>Lister plugin</u>.
+Options are read from LSPlugin.ini file (it's located in the same folder as your wincmd.ini file),
+from [Syn2] section. 
+</p>
+
+<table border="1">
+	<tr>
+		<td>
+		<b>SynDialog</b>=N
+		</td>
+		<td>
+		This turns off (N=0) or on (N=1) flag, which allows SynWrite to show its own custom Search/Replace dialog,
+instead of default Lister dialog.
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<b>TcHistory</b>=N 
+		</td>
+		<td>
+		This turns off (N=0) or on (N=1) flag, which allows SynWrite to use Total Commander ini file directly,
+section [SearchText] inside it. When on, SynWrite will store its search strings history directly into
+TotalCmd ini file.
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<b>QViewToolbars</b>=Item1,Item2,...
+		</td>
+		<td>
+		This allows to show some toolbars/panels in QuickView mode. Possible values of items are:
+          <ul>
+		  <li>Menu
+		  <li>File
+		  <li>Edit
+		  <li>View
+		  <li>QS
+		  <li>Tree
+          <li>Clip
+          <li>Output
+          <li>User1
+          <li>User2
+          <li>User3
+		  </ul> 
+		</td>    
+	</tr>
+	<tr>
+		<td>    
+		<b>QViewTree</b>=ext1,ext2,...
+		</td>
+		<td>
+		This allows to show Tree panel in QuickView mode for specified file extensions only. This key, if not empty, overrides the QViewToolbars key.
+		</td>
+	</tr>
+	<tr>
+		<td>    
+		<b>QViewRO</b>=N
+		</td>
+		<td>
+		This turns off (N=0) or on (N=1) "Read-only" mode for QuickView.
+		</td>
+	</tr>
+	<tr>
+		<td>    
+		<b>RO</b>=N
+		</td>
+		<td>
+		This turns off (N=0) or on (N=1) "Read-only" mode for non-QuickView.
+		</td>
+	</tr>
+</table>
+
+<p>Note: QuickView is a special TotalCmd mode, which is activated by Ctrl+Q key in TotalCmd file panels.
+</p>
+
+</body>
+</html>

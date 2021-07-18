@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/tpl.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Token rules (parser)</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=Parser.html'>show framing</a></center>")
+		</script>
+<h1>Token rules (parser)</h1>
+<hr />
+
+<ul>
+<li><a href="#over">Overview</a>
+<li><a href="#prop">Properties of tokens</a>
+<li><a href="#exp">Expression examples</a>
+</ul>
+
+<p>
+<center>
+<img src="parser.png" alt="Token rules" />
+</center>
+
+
+<a name="over"></a>
+<h2>Overview</h2>
+
+<p>Token is an text element. Tokens have start and end position in text. Tokens can not intersect each other.
+<ul>
+<li>They are defined by the parsing procedure, after which token array is created. Token array is sequential, i.e. end position of token will be less start position of the next token.
+<li>Token rules are checked sequentially. After first successful checking of rule loop is stopped.
+<li>Token rules are intended for detecting tokens. You can control token rules in the page &quot;Parser&quot; of the lexer configuration dialog.
+</ul>
+
+<a name="prop"></a>
+<h2>Properties of tokens</h2>
+
+<p><strong>Token type</strong> - integer value that will be assigned to all tokens detected by means of this rule. It's required only if you want use this tokens in the block detection algorithm. To simplify token type assignment "Token type names" are used.
+<p><strong>Token style </strong> - style that will be applied to all tokens detected by means of this rule.
+<p><strong>Rule expression</strong> - regular expression for detecting token. Regular expression is applied to current analysis position. If it matches, current position is incremented on the length of found token and token rules loop is stopped. 
+<strong>Default modifiers</strong> for regular expression: <strong>(?imxr-s)</strong>, i.e. ignore case, multiline (<strong>^, $</strong> - start, end of line), supports comments, full russian charset, any metacharacter &quot;.&quot; (dot) does not include end of line &quot;\n&quot;.
+Rule expression is most robust operation in lexer configuration. Below some examples are given.
+
+<a name="exp"></a>
+<h2>Expression examples</h2>
+
+<h4>Identifier</h4>
+<p class="code">[a-z_]\w*</p>
+<p>First character is literal, others are word characters (including digits). 
+
+<h4>String</h4>
+<p class="code">'.*?('|$)</p>
+<p>From the single quote to the next single quote or to the end of line. Multiplier is &quot;non-greedy&quot; to check next conditions
+<span class="code">('|$)</span> before incrementing position. <span class="code">('|$)</span> means either single quote or end of line.
+
+<h4>Float const</h4>
+<p class="code">#with exp. dot is optional <br />
+  \d+ \.? \d+ e [\+\-]? \d+ |<br />
+  #without exp. dot is required<br />
+\d+ \. \d+</p>
+<p><span class="code">\d+</span>  - means at least one digit. <br />
+  <span class="code">\.?</span> - means optional dot<br />
+  <span class="code">[\+\-]?</span> - means optional &quot;+&quot; or &quot;-&quot;.
+  
+<h4>Integer const</h4>
+<p class="code">\d+</p>
+<p>Note: integer const must be listed after float const because of any float will be treated as integer until dot or exponent symbols.
+
+<h4>Single line comment</h4>
+<p class="code">//.*</p>
+<p>Any character from // to end of line. Metacharacter dot does not include end of line, so it is optional to place $ end of line metacharacter at the end of expression.
+
+<h4>Multi-line comment</h4>
+<p class="code">(?s)\{.*?(\}|\Z)</p>
+<p>We turn on modifier &quot;s&quot; to include end of line in metacharacter &quot;.&quot; (dot). It will select text from symbol &quot;{&quot; to the symbol &quot;}&quot; or to the end of text. If we skip end of text, i.e. <span class="code">(?s)\{.*?\}</span>, it will cause comment not detected.
+
+<h4>Multi-line define</h4>
+<p class="code">(?-i)\#define<br />
+  (.*\\\s*\n)* # lines with line folding <br />
+.*           # last line</p>
+<p>This is an example of complex expression for preprocessor directive &quot;define&quot;. <br />
+  <span class="code">\#define</span> - means that token starts with #define <br />
+  <span class="code">(.*\\\s*\n)*</span> - means multiple any character until symbol &quot;\&quot;, then it skips spaces, includes end of line. All this expression can be repeated some times (or not once).<br />
+  <span class="code">.*</span>  - means all characters until end of line.</p>
+
+</body>
+</html>

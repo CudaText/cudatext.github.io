@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Color Preview</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=HelperColorPreview.html'>show framing</a></center>")
+		</script>
+<h1>Color Preview</h1>
+<hr />
+
+<ul>
+<li> <a href="#pre">Color preview</a>
+<li> <a href="#rec">Recent colors menu</a>
+</ul>
+
+<h2><a name="pre">Color preview</a></h2>
+<p>
+This feature allows to preview color tokens used in HTML and CSS files.
+When you hover mouse cursor over color tokens, small colored hint appears. 
+</p>
+
+<center>
+<img src="colorpreview.png" alt="Color hint" />
+</center>
+
+<p>If you hover mouse over such HTML quoted string, hint will show both colors:
+<pre class="code">
+&lt;div style="color: #A0C; background-color: #ACC;"&gt;
+</pre>
+</p>
+
+<center>
+<img src="colorpreview2.png" alt="Color hint for 2 colors" />
+</center>
+
+<p>If you need to preview color token inside a HTML comment, you need to double-click it first.
+</p>
+
+<center>
+<img src="colorpreview3.png" alt="Color preview: need to select token" />
+</center>
+
+<p>Same applies for <a href="http://www.w3schools.com/html/html_colornames.asp" title="" target="_blank">HTML color names</a> -
+you need  to double-click color names first.
+Selection is always has higher priority than mouse-over token.
+So you need to cancel selection before you can preview other colors.
+</p>
+
+<p>If color token is invalid (e.g. contains non-hex digit), you'll see
+message about that in the program statusbar.
+</p>
+
+
+<br>
+<h2><a name="rec">Recent colors menu</a></h2>
+<p>
+Color codes which you've recently selected in the "Color Picker" (it is now a plugin), are added to the "Recent colors" menu.
+This menu appears near "Help" menu item, as colored rectangle.
+</p>
+<center>
+<img src="colorrecent.png" alt="Recent colors" />
+</center>
+
+<p>Hints:
+</p>
+<ul>
+<li>You can manually add colors to recents menu: right-click the color code in text and select "Add to recent colors".
+<li>You can delete items from recents menu individually: hold down Ctrl key while calling menu item.
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Auto-Correction of Id Case</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=HelperACase.html'>show framing</a></center>")
+		</script>
+<h1>Auto-Correction of Id Case</h1>
+<hr>
+
+<p>In the Options dialog, "Lexer Overrides" tab, you can enable auto-correction of identifiers' case.<br />
+This feature needs <a href="helperacp.html">auto-completion file</a> (with extension "acp") for lexer.
+Such acp-files exist already for most of popular lexers.
+</p>
+<p>
+How this works: you type valid id but in wrong case, 
+then you type any non-word character, and editor corrects your id.
+For example, for Pascal lexer: you type "WRIteln(", and editor replaces this to "WriteLn(".
+</p> 
+
+<p>
+Notes:
+<ul>
+    <li>If lexer allows id with spaces or other spec-chars (e.g. VBScript allows id "End If"), then
+such id cannot be corrected. You need to have all parts of id (e.g. "End" and "If") listed in acp-file.
+    <li>This feature works only when you're not typing syntax comments/strings. See topic
+    <a href="helperspell.html">Syntax-Aware Spelling</a> for info about configuring syntax comments and strings. 
+</ul>
+ 
+</p>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Name formatting (for block rules)</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style1 {color: #009900}
+.style2 {color: #990000}
+-->
+</style>
+</head>
+
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=NameFmt.html'>show framing</a></center>")
+		</script>
+<h1>Name formatting (for block rules)</h1>
+<hr />
+
+<p>
+<center>
+<img src="namefmt.png" alt="Name formatting" />
+</center>
+
+<p>Name format string is used for formatting Name, Group name and Collapsed text icon of the text range.
+<p>In format string all entries of kind: %sINT, %eINT, %psINT,   %peINT will be replaced with the token, index of which will be calculated on the   assumption of the format expression.
+<p>Letters specify the reference index.
+
+<ul>
+<li> %s - start of current text range      
+<li> %e - end of current text range        
+<li> %ps - start of parent text range      
+<li> %pe - end of parent text range        
+</ul>
+
+<p>There may be several entries of &quot;p&quot; metacharacter. For   example,
+%pps - means start of parent of parent text range.
+<p>Also after these specifiers you may use &quot;L&quot; or &quot;Z&quot;:
+<ul>
+<li>L - defines string from line start to the token (including   this token)        
+<li>Z - defines string from the token to the end of line   (including this token)   
+</ul>
+
+<p>For example: %SL2 - defines string from line start to second token from   text range start.
+<p>Token index will be calculated as reference index minus Index (INT).
+
+<p><strong>Extension of name formatting syntax</strong>&nbsp;</p>
+<p>Syntax <br />
+  <span class="code">%(S|E)P*(L|Z)?[0-9]+  </span></p>
+  <p>is expanded to <span class="code"><br />
+  %(S|E)P*([\[]&lt;token&gt;[\]]&lt;offset&gt;?)?</span></p>
+  <p>where &lt;token&gt; is a specific token that is &quot;searched   from the specified&nbsp;starting point (S for first token in the range , or E for the   last token)&nbsp;towards the respective range end (up- or downwards). The   search-direction&nbsp;is kept in the variable &quot;rngdir&quot; which is set in the &quot;S&quot; ,   &quot;E&quot; decision.&nbsp;</p>
+  <div>
+  <div class="code">
+example:  line(s) is/are &quot;.... for x = 1 to 12 do ...... end ;  ...&quot;                                 <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;   1 2 3 4&nbsp;  5&nbsp;  6&nbsp;  ...    &nbsp;&nbsp;&nbsp;27&nbsp;  28  </div>
+</div>
+<p>range-start = &quot;for&quot;, <br />
+  range-end = &quot;end&quot;&nbsp;<br />
+  then &quot;...%s[to] ...&quot; will skip forward to the token &quot;to&quot;   (with index 4).&nbsp;<br />
+The token values are searched on a &quot;asis&quot; basis, there is no   case-insensitivity&nbsp;option yet.&nbsp;<br />
+A &quot;numeric number following the token value will define an   &lt;offset&gt; relative&nbsp;to the found token.&nbsp;<br />
+For this clause, the variable &quot;idx&quot; is not set by taking the   static&nbsp;numeric value as in &quot;...%s2 ...&quot; , instead the &quot;found token   index&quot; is kept.&nbsp;</p>
+<p>For &quot;%S...&quot; the search starts at idx=0 up to max 28. ---&gt;   rngdir = +1;&nbsp;<br />
+For &quot;%E...&quot; the search starts at idx=28 downto min 0. ---&gt;   rngdir = -1;&nbsp;</p>
+Note: Avoid to search for tokens that can occur at multiple   places (for&nbsp;example a &quot;;&quot; between statements).&nbsp;</p>
+<p>The above syntax is simple as it allows to identify the&nbsp;<br />
+block-start-tokens &quot;for x = 1 to 12 do&quot;<br />
+block-body anything after block-start tokens up to<br />
+block-end-tokens &quot;end ;&quot;&nbsp;</p>
+<p>but many syntax formats do not trivially support this   separation.&nbsp;</p>
+
+<p>Any such clause (either absolute or given by token value)   can &quot;start a token&nbsp;range&quot; by additionally specifying:&nbsp;</p>
+<div>
+  <div class="code">
+%(S|E)...~(S|E)P*[0-9]+
+  </div>
+</div>
+or
+<div>
+  <div class="code">
+%(S|E)...~(S|E)P*([\[]&lt;token&gt;[\]]&lt;offset&gt;?)?
+  </div>
+</div>
+or
+<div>
+  <div class="code">
+%(S|E)...~[\[]&lt;token&gt;[\]]
+  </div>
+</div>
+<p>The first form uses the static index specification to define   the end-range:&nbsp;<br />
+&quot;%s0~s3&quot; results in &quot;for x = 1&quot; (tokens 0, 1, ... 3)&nbsp;</p>
+<p>The 2nd form uses the new syntax to &quot;search for an end-token   beginning at the&nbsp;starting range index (idx) up- or down-wards.&nbsp;<br />
+&quot;%s0~s[do]&quot; results in &quot;for x = 1 to 12 do&quot; (tokens 0, 1, ...   6) if a search is not satisfied, the complete range up to &quot;e0&quot;   is taken.&nbsp;Because of the same &quot;S&quot;, the search starts with &quot;TagStr[idx]&quot;   ...&nbsp;</p>
+<p>&quot;s0~e[do]&quot; results in the same string, but starts at the   final &quot;end&quot;&nbsp;of the block and scanning downwards.&nbsp;<br />
+Caution: This may produce WRONG results if nested loops are   scanned !&nbsp;<br />
+  I could not find a valid representation of &quot;range-start&quot;   token-streams, the range-body alone and/or the range-end   token-stream.<br />
+Such information may be helpful to better display blocks   and/or&nbsp;collapse display of the &quot;block-body&quot; alone.&nbsp;</p>
+<p>The 3rd form is an abbreviation where the S/E indicators are   taken to be&nbsp;identical as the starting point&nbsp;<br />
+S1~[do]1&quot; results in &quot;x = 1 to 12&quot; (tokens 1, 2, ... 5)&nbsp;</p>
+<p>The &lt;offset&gt; &quot;1&quot; will here skip back by 1 from the   found&nbsp;token &quot;do&quot;.&nbsp;The range-end is kept in the variable &quot;to_idx&quot;.&nbsp;</p>
+<p>The &quot;token-value&quot; to search for can not be whitespace   #00..#20. Leading and trailing whitespace withing the &quot;...[vvvvvvv] ...&quot; enclosed   by [ and ]&nbsp;characters sequence is removed before searching. the &quot;vvvvvv&quot;   can contain escaped characters like &quot;... [\]] ...&quot; to allow &quot;[&quot; and/or   &quot;]&quot; to be part&nbsp;of the value. The \r, \n, \f ...escapes are not supported   here.&nbsp;</p>
+<p>The token accumulation simply (?) takes all tokens from &quot;idx&quot;   ... &quot;to_idx&quot;&nbsp;and builds a string by appending all tokens with ONE &quot; &quot;   (blank) as separating&nbsp;delimiter. There is no process to keep the original token   positions within&nbsp;the source line(s) and any whitepace including cr/lf's there.   This may be an&nbsp;addition but I currently do not see a need for it.&nbsp;</p>
+<p>c) &quot;ranges as specified above may accumulate many tokens and   it may be desirable&nbsp;to &quot;limit&quot; the result string.&nbsp;<br />
+This can be done by using another operand syntax&nbsp;</p>
+<div class="code">
+%(S|E)...~[0-9]+
+</div>
+or
+<div class="code">
+%(S|E)...~(S|E)([\[]&lt;token&gt;[\]]&lt;offset&gt;?)?~[0-9]+
+</div>
+or
+<div class="code">
+%(S|E)...~[\[]&lt;token&gt;[\]]~[0-9]+
+</div>
+<p>In all three forms the &quot;~&quot; is immediately followed by a   numeric value which&nbsp;is interpreted as&nbsp;&quot;maximum number of tokens in the substituted string&quot;, if the   range takes&nbsp;MORE than this maximum&nbsp;The value is internally kept in the variable &quot;rngmax&quot;   below.&nbsp;When the result string is accumulated (taking all tokens   between &quot;idx&quot; up-&nbsp;resp. down-to &quot;to_idx&quot;) the number of appended tokens can not   go beyond &quot;rngmax&quot;. If this happens the result will be created in the form &quot;t-1   t-2 -- t-max ...&quot; with&nbsp;the ellipsis string &quot; ...&quot; appended.</p>
+
+<p>Example:</p>
+<p class="code"><span class="style2">function</span> <span class="style1">TMyClass</span>.<span class="style2">MyFunction</span> ...</p>
+<p>we have rule:<br />
+  <span class="code">0| .<br />
+  1| <span class="style1">[any Identifier]</span><br />
+  2| <span class="style2">function</span></span></p>
+<p>reference start of text range will point to &quot;.&quot;, so<br />
+  format string<br />
+  <span class="code">&quot;%s2 =&gt; %s1.%s-1&quot;</span><br />
+  results<br />
+  <span class="code">&quot;<span class="style2">function</span> =&gt; <span class="style1">TMyClass</span>.MyFunction&quot;</span></p>
+
+</body>
+</html>

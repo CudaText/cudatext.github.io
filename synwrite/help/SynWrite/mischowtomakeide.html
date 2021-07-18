@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>How to make an IDE?</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=MiscHowToMakeIDE.html'>show framing</a></center>")
+		</script>
+
+<h1>How to make an IDE for your own language?</h1> 
+<hr />
+
+<p>This topic shows how to create your own portable package of SynWrite which will support
+your custom programming language. As an example, you may look at ready one, which is called
+<a href="http://sourceforge.net/projects/gcbasic/forums/forum/629990/topic/4769315" target="_blank"><b>GCB@Syn</b></a>, and supports GCBasic language.
+
+<ul>
+<li> Unpack "SynWrite.rar" archive (you may download it at homepage) to a folder, e.g. "C:\SynWrite".
+  <br />Make this installation portable by creating an empty file "Portable.ini" in this folder.
+<p>
+<li> Delete files which won't be used in your package. These are:
+  <ul>
+  <li> "Syn2.wlx" (Total Commander plugin).
+  <li> maybe "Dictionaries" folder if you don't need spell-checker feature.
+  <li> unneeded language files from "Lang" folder.
+  <li> maybe "Plugins" folder. If you delete "Plugins" folder, you may also delete file "SynPlugins.sample.ini" in "C:\SynWrite". 
+  <li> maybe "Readme" folder, maybe you only want to keep "SynWrite.chm" as this file is called by Help buttons from some dialogs.
+  <li> some content from "Data" folder:
+    <ul>
+    <li>"clips" folder is for "Text Clips" panel
+    <li>"colors" folder is for Options dialog color presets 
+    <li>"newdoc" folder is for command "File -- New" 
+    <li>etc
+    </ul>  
+  <li> maybe most of tools from "Tools" folder (e.g. ColorPicker.exe, Tidy.exe, Emmet.js etc) or entire "Tools" folder.
+  <li> file "Tidy.cfg" if commands "HTML Tidy" isn't needed.
+  <li> file "Pluginst.inf". 
+  </ul>
+<p>
+<li> Run SynWrite, open Lexer Library dialog ("Options -- Customize lexer library") and delete unneeded lexers.
+  Then save the library. File "LexLib.lxl" should become way too smaller.
+  <br />Also delete unneeded ACP files from "Data\autocomplete" folder.
+<p></p>  
+<li> Import your own needed lexers (e.g. "GreatCowBasic" for GCB@Syn) into Lexer Library.  
+  <br />Put corresponding ACP files (if any) to "Data\autocomplete" folder. 
+<p></p>
+<li> It's very good idea to hide unneeded (e.g. HTML-related) menu items in UI. You can hide menu items using "SynHide.ini" file,
+  read help topic about it. 
+<p>
+<li> Run SynWrite, open "Options -- External tools" dialog, and create your own items for compilers, BAT files, Help files, etc.
+   <ul>
+   <li>It's a good idea to preconfigure also compilers output patterns - users then can jump from compilers error messages into
+   source code error line.
+   <li>It's a good idea to create an item for your own language CHM file with F1 key.
+   </ul>
+<p>
+<li> Don't forget to delete unneeded INI files from "C:\SynWrite" before packing this folder.<br />
+  Leave Syn.ini with preconfigured tools and options.<br />
+  Delete SynState.ini and SynStyles.ini and SynSpell*. 
+</ul>
+
+<hr />
+<br />
+<p>That's mostly all. GCB@Syn package also adds tool IDE.exe, which sets the GCB env-variable, so external tools can be preconfigured
+using this env-variable (ide.exe is launcher for Syn.exe). This may be needed if you want to call tools from outside of Syn folder.
+
+</body>
+</html>

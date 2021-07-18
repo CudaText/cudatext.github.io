@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>SmartTagTabbing</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=HelperSmartTagTabbing.html'>show framing</a></center>")
+		</script>
+<h1>SmartTagTabbing</h1>
+<hr />
+<p>
+SmartTagTabbing is a special feature for HTML documents (it can also be used
+with PHP lexer while caret is inside HTML part).
+The original idea is taken from one nice text editor called Intype.
+</p>
+<p>The feature has two major parts:
+</p>
+<ul>
+    <li><a href="#a001">Expanding of tag names by Tab key</a></li>
+    <li><a href="#a002">Jumping over tag parts with Tab key</a></li>
+</ul>
+
+<h2><a name="a001">Expanding of tag names</a></h2>
+<p>
+In editor enter some tag name, e.g. "a" or "title" without HTML bracket, and press Tab key.
+The full tag form will be substituted instead of a typed word.
+</p>
+<table>
+	<tr>
+		<td>a</td>
+		<td>&rarr;</td>
+		<td><span class="code">&lt;a href=&quot;http://www.com/&quot; title=&quot;Title&quot; target=&quot;_blank&quot;&gt;&lt;/a&gt;</span></td>
+	</tr>
+	<tr>
+		<td>td</td>
+		<td>&rarr;</td>
+		<td><span class="code">&lt;td&gt;&lt;/td&gt;</span></td>
+	</tr>
+</table>
+<p>
+If you have typed wrong tag name, then Tab pressing will do nothing (and show warning text in the application status-bar).<br />
+This feature is similar to the "Code Templates" feature, but is more powerful because:
+<ul>
+  <li>it works for all known HTML tags</li>
+  <li>it allows auto-selection of tag parts after expansion</li>
+  <li>it has easier-to-call Tab key</li>
+</ul>
+</p>
+
+<h2><a name="a002">Jumping over tag parts with Tab key</a></h2>
+<p>
+After you have expanded tag name into full form, you can continue to press Tab key - this results in caret jumping over tag parts (Note: only for complex tags like &lt;a&gt;, &lt;img&gt; etc):<br /><br />
+<img src="smarttagtabbing.gif" />
+</p>
+<p>
+So Tab pressing, while caret is inside tag brackets,
+allows to quickly jump over tag parts, delete unneeded parts
+(which are auto-selected) with Del, and jump to the following parts.
+</p>
+
+<p>
+<u>Notes for jumping feature</u>
+</p>
+
+<ul>
+<li>If caret is placed outside of any tag brackets, then
+Tab key performs the usual operation (insert Tab character or spaces).</li>
+<li>This special jumping is performed only for those tags which have
+sub-parts in their full form, such as &lt;a&gt;, &lt;img&gt; etc. Simple tags like
+&lt;table&gt;, &lt;tr&gt; etc are not affected.</li>
+<li>There's a special tweak for &lt;img&gt; tag, which allows to auto-select
+adjacent "width"+"height" parts with a single Tab pressing.</li>
+</ul>
+<br>
+
+<h2>Customizing tags list</h2>
+<p>
+To edit predefined tag forms, or to add new tags, you can edit the file
+"Html_Tabbing.ini", located in "Data\autocomplete" subfolder of SynWrite folder.
+This file is overwritten on each SynWrite installation, so keep a copy of it.
+</p>
+<br>
+
+</body>
+</html>

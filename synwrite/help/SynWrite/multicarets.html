@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Multi-Carets</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=MultiCarets.html'>show framing</a></center>")
+		</script>
+<h1>Multi-Carets</h1>
+<hr />
+
+<ul>
+<li> <a href="#in">Introduction</a>
+<li> <a href="#hint">Hints</a>
+<li> <a href="#esc">How to use Esc to cancel multi-carets mode</a>
+</ul>
+
+<a name="in"></a>
+<h2>Introduction</h2>
+
+<p>Multi-carets feature allows to add many carets (text blinking cursors), using one of the methods:
+</p>
+
+<ul>
+<li> Click on any position with Ctrl key pressed.
+<li> Click on any position ("beginning"), then click on another line ("ending") with Ctrl+Shift keys pressed:
+     this will add multiple carets aligned in a column.
+<li> Make a several lines selection (stream or column), then use commands "Edit -- Multi-carets -- Carets from selection...". 
+<li> Make a search with placing search marks, then use commands "Edit -- Multi-carets -- Carets from search marks...". 
+</ul>
+
+<p>
+<center>
+<img src="mcaret_column.png" alt="Carets aligned in a column" /> <br />
+<i>Carets aligned in a column (Ctrl+Shift+click)</i> <br />
+</center>
+</p>
+
+<p>The animated image shows multi-carets in action in HTML editing:
+</p>
+<p>
+<center>
+<img src="mcaret_typing.gif" alt="Carets in action" /> <br />
+<i>Carets in action</i> <br />
+</center>
+</p>
+
+<p>Most of important editor commands work synchroniously on all carets positions:
+<ul>
+<li> carets moving: Left/ Right/ Up/ Down/ Home/ End/ Ctrl+Left (move word left)/ Ctrl+Right (move word right).
+<li> text typing and deleting.
+<li> clipboard operations: Copy/ Cut/ Paste, they operate on all lines with carets.
+<li> special actions: delete word left/ delete word right/ 
+  delete line/ indent line/ unindent line/ delete to line start/ delete to line end.
+</ul>
+
+<br />
+<a name="hint"></a>
+<h2>Hints</h2>
+ 
+<ul>
+<li> To cancel multi-carets mode, just click without Ctrl pressed.
+<li> To remove a caret, just click it again with Ctrl pressed.
+<li> Lines with carets are marked on gutter with different color.
+<li> When several carets move to the same position, "duplicate" carets are discarded.
+<li> When only one caret is left, multi-carets mode is deactivated and "usual" caret appears.
+<li> These commands cancel multi-carets mode: Ctrl+A, Shift+Alt+arrows.
+<li> These commands ignore multi-carets mode and just scroll the view: PageUp, PageDown, Ctrl+Home, Ctrl+End.
+<li> Multi-carets feature can be disabled in the Options dialog. 
+</ul>
+
+<br />
+<a name="esc"></a>
+<h2>How to use Esc key to cancel multi-carets mode?</h2>
+
+<p>Go to Options dialog.<br />
+First, you need to set option "Esc key" to "Do nothing".<br />
+Then, in the "Keys" tab, assign Esc key to one of the commands:
+</p>
+<ul>
+<li> Multi-carets -- Remove carets, keep first
+<li> Multi-carets -- Remove carets, keep last
+</ul>
+
+
+</body>
+</html>

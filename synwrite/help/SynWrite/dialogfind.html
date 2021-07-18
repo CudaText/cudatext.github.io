@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Dialog "Find/Replace"</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=DialogFind.html'>show framing</a></center>")
+		</script>
+<h1>Dialog "Find/Replace"</h1>
+<hr />
+
+<ul>
+<li> <a href="regex.html">Regular expressions</a>
+<li> <a href="#spec">Special characters</a>
+<li> <a href="#opt">Dialog options</a>
+  <ul>
+  <li> <a href="#opt_opt">"Options" group</a> 
+  <li> <a href="#opt_scope">"Scope" group</a>
+  <li> <a href="#opt_other">Blue labels</a>
+  </ul>
+<li> <a href="#keys">Keyboard shortcuts</a>
+</ul>
+
+<a name="spec"></a>
+<h2>Special characters</h2>
+
+<p>If you have checked dialog option "Special characters" (it can't be checked together with "Regular expressions"),
+the special chars syntax is activated for input fields ("Search for" and "Replace with"). 
+The following special text strings are handled in this mode as a single char:
+</p>
+
+<table border="1">
+	<tr>
+		<td width="50"><b>\n</b></td>
+		<td>Newline char (same as regex \x0A)</td>
+	</tr>
+	<tr>
+		<td><b>\r</b></td>
+		<td>Carriage-return char (same as regex \x0D)</td>
+	</tr>
+	<tr>
+		<td><b>\t</b></td>
+		<td>Tabulation char (same as regex \x09)</td>
+	</tr>
+	<tr>
+		<td><b>\\</b></td>
+		<td>Backslash char "\"</td>
+	</tr>
+	<tr>
+		<td><b>\0</b></td>
+		<td>Null char (same as regex \x00)</td>
+	</tr>
+</table>
+
+<br />
+<hr />
+<a name="opt"></a>
+<h2>Dialog options</h2>
+
+<a name="opt_opt"></a>
+<h3>"Options" group</h3>
+
+<table border="1" cellpadding="10">
+	<tr>
+		<td width="200"><b>Case sensitive</b></td>
+		<td>Makes search case-sensitive, i.e. words "Some" and "some" will be different.</td>
+	</tr>
+	<tr>
+		<td><b>Whole words</b></td>
+		<td>Allows to find only whole words, i.e. word "some" cannot be found inside 
+"awesome" or "somewhat".</td>
+	</tr>
+	<tr>
+		<td><b>Regular expressions</b></td>
+		<td>Activates <a href="regex.html">RegEx</a> syntax for input text fields ("Search for" and "Replace with").</td>
+	</tr>
+	<tr>
+		<td><b>Special characters</b></td>
+		<td>Activates <a href="#spec">special characters</a> syntax for input text fields.</td>
+	</tr>
+	<tr>
+		<td><b>Prompt on replace</b></td>
+		<td>Enables confirmation messagebox on doing "Replace all" operation, for each found position.</td>
+	</tr>
+	<tr>
+		<td><b>Select results</b></td>
+		<td>Enables to place multi-selections on found matches, for "Find all" operation.<br />
+                 (When option is off, only search marks will be placed on found matches.)</td>
+	</tr>
+	<tr>
+		<td><b>Bookmark results</b></td>
+		<td>Enables to place bookmarks on each found line, for "Find all" operation.<br>
+         (To remove bookmarks, use menu command "Bookmarks -- Clear all bookmarks".)</td>
+	</tr>
+	<tr>
+		<td><b>Extend selection</b></td>
+		<td>Performs "Extend selection" operation for "Find next" operation. I.e. text will be selected from the edge of previous selection block (or caret position if nothing selected) to the found position.</td>
+	</tr>
+</table>
+
+<a name="opt_scope"></a>
+<h3>"Scope" group</h3>
+
+<table border="1" cellpadding="10">
+	<tr>
+		<td width="200"><b>Search in selection</b></td>
+		<td>Performs search only inside selected block.<br>
+        (Note that search in selection makes new smaller selection, so you can't find all matches in selection by pressing "Find next" button.)</td>
+	</tr>
+	<tr>
+		<td><b>Search from caret</b></td>
+		<td>Starts search from caret (text blinking cursor) position, not from text beginning or ending.<br />
+		(Note: option is ignored for "Replace all" operation.)
+		</td>
+	</tr>
+	<tr>
+		<td><b>Wrap search</b></td>
+		<td>Enables to continue search from the opposite text edge (i.e. continue from text beginning when ending is reached, or continue from text ending when beginning is reached with backward search).</td>
+	</tr>
+	<tr>
+		<td><b>Skip collapsed</b></td>
+		<td>Disables search inside collapsed text blocks, which are made using "text folding" editor feature.</td>
+	</tr>
+	<tr>
+		<td><b>Entire text/<br> Comments/<br> Strings/ ...</b></td>
+		<td>Enables syntax-sensitive search. You can allow to find positions only inside syntax comments
+        (e.g. <span class="inlinecode">/*....*/</span> in C language), or in syntax strings (e.g. double-quoted strings in C language), or
+        in both comments and strings. This way you can minimize number of false positives in search.<br> 
+        (Option has no effect if lexer is not active or lexer does not "know" comments/strings.)</td>
+	</tr>
+</table>
+
+<a name="opt_other"></a>
+<h3>Blue labels</h3>
+
+<table border="1">
+<tr>
+  <td>»?</td>
+  <td>Shows menu with quick help on RegEx syntax.</td>
+</tr>
+<tr>
+  <td>&gt;&gt;</td>
+  <td>Switches dialog between compact and normal modes.</td>
+</tr>
+<tr>
+  <td>»Search <br /> »Replace</td>
+  <td>Switches dialog between Find and Replace modes.</td>
+</tr>
+<tr>
+  <td>»Multiline</td>
+  <td>Switches dialog between multi-line and single-line views.<br />
+      Note: this doesn't affect RegEx modifiers, it's only to show multi-line edit fields.</td>
+</tr>
+<tr>
+  <td>»Docked</td>
+  <td>Switches dialog between "docked into main form" and "separate dialog" modes.<br />
+    Note: in the docked mode some dialog features don't work (transparency, hotkeys). </td>
+</tr>
+<tr>
+  <td>Transparency</td>
+  <td>Shows more options: the level of dialog transparency (from "disabled" to "maximal"), 
+    and option "on losing focus" (it enables transparency only after switching focus out of this dialog).</td>
+</tr>
+</table>
+
+<br />
+<a name="keys"></a>
+<h2>Keyboard shortcuts</h2>
+
+<p>The following keyboard shortcuts are available in Find/Replace dialogs:</p>
+
+<ul>
+<li> <b>F1</b> - Show this help topic.
+<li> <b>F2</b> - Toggle multi-line mode.
+<li> <b>F4</b> - Toggle RegEx mode.
+<li> <b>F5</b> - Show dialog to enter Unicode hex code to insert.
+<li> <b>Ctrl+D</b> - Toggle docked mode.
+<li> <b>Ctrl+F1</b> - Show quick RegEx help menu.
+<li> <b>Ctrl+F / Ctrl+H</b> - Toggle Find/Replace mode. (Note: hotkey may be redefined in options.)
+</ul>
+
+<p>When edit field is focused:</p>
+<ul>
+<li> <b>Alt+Down</b> - Show history popup menu. 
+<li> <b>Ctrl+Down</b> - Copy text from "Search for" to "Replace with" field.
+<li> <b>Alt+Delete</b> (while combobox is expanded) - Delete selected item from combobox dropdown list.
+<li> <b>Ctrl+E</b> - Paste from clipboard with regex-escaping (ie, prepend special regex chars with a backslash).
+</ul>
+
+<p>Feature: if Ctrl is pressed, "Replace" action won't jump to next found match after replacing current match (good for very big files).</p>
+<br />
+
+</body>
+</html>

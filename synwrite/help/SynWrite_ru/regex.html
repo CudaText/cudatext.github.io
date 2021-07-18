@@ -1,0 +1,811 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<link rel="StyleSheet" href="style.css" type="text/css" media="screen" />
+<title>Синтаксис регулярных выражений</title>
+</head>
+
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=RegEx.html'>show framing</a></center>")
+		</script>
+
+<h1>Синтаксис регулярных выражений</h1>
+<hr />
+<ul>
+  <li><a href="#a001">Введение</a></li>
+  <li><a href="#a002">Простые совпадения</a></li>
+  <li><a href="#a003">Экранирующие последовательности</a></li>
+  <li><a href="#a004">Классы символов</a></li>
+  <li><a href="#a005">Метасимволы - концы строк</a></li>
+  <li><a href="#a006">Метасимволы - предопределенные классы</a></li>
+  <li><a href="#a007">Метасимволы - концы слов</a></li>
+  <li><a href="#a008">Метасимволы - квантификаторы</a></li>
+  <li><a href="#a009">Метасимволы - перечисления</a></li>
+  <li><a href="#a010">Метасимволы - группировки</a></li>
+  <li><a href="#a011">Метасимволы - обратные ссылки</a></li>
+  <li><a href="#a012">Модификаторы</a></li>
+  <li><a href="#a014">Просмотр вперед и назад</a></li>
+  <li><a href="#eng">PCRE-движок</a></li>
+  <li><a href="#case">Изменение регистра</a></li>
+</ul>
+
+<h2><a name="a001">Введение</a></h2>
+
+<p>Регулярные выражения - это широко применяемый способ описания
+шаблонов для текстового поиска. Специальные <b>метасимволы</b>
+позволяют указывать, например, что искомая последовательность находится
+в начале или конце строки, либо содержит n повторов конкретного
+символа.</p>
+
+<h2><a name="a002">Простые совпадения</a></h2>
+
+<p>
+Любой одиночный символ дает совпадение с собой, если только он не <b>метасимвол</b>.</p>
+
+<p>Последовательность символов дает совпадение с собой, например,
+поиск <span class="inlinecode">bluh</span>
+позволит найти <span class="inlinecode">bluh</span>
+в целевом тексте.</p>
+
+<p>Поскольку некоторые символы используются как <b>метасимволы</b>,
+то для поиска их самих применяется <b>экранирование</b>,
+то есть перед ними ставится символ "обратный слеш" <span class="inlinecode">\</span>.
+Например, есть метасимвол <span class="inlinecode">^</span>,
+указывающий на начало строки в тексте. Поиск по <span class="inlinecode">\^</span> будет находить сам
+символ <span class="inlinecode">^</span>. Аналогично, поиск по <span class="inlinecode">\\</span> будет
+находить сам <span class="inlinecode">\</span>, и так далее.</p>
+
+<p><strong>Примеры:</strong>
+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">foobar</span></td>
+      <td> найдет 'foobar'</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\^FooBarPtr</span></td>
+      <td>найдет '^FooBarPtr'</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2><a name="a003">Экранирующие последовательности</a></h2>
+
+<p>Символы можно указывать, используя синтаксис <b>экранирующих последовательностей</b>,
+подобный тому, что применяется в C и Perl: <span class="inlinecode">\n</span> найдет разрыв строки, <span class="inlinecode">\t</span>
+- символ табуляции и т.д.<br />
+Последовательность <span class="inlinecode">\xnn</span>, где nn это hex-цифры, задает символ, имеющий код nn в кодироке ASCII.<br />
+Unicode-символ можно задать так - <span class="inlinecode">\x{nnnn}</span>, где nnnn это одна или больше hex-цифр.</p>
+
+
+<table>
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\xnn</span></td>
+      <td>ASCII-символ с hex-кодом nn</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\x{nnnn}</span></td>
+      <td>Unicode-символ с hex-кодом nnnn</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\t</span></td>
+      <td> символ табуляции (TAB), совпадает с <span class="code">\x09</span></td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\n</span></td>
+      <td> символ новой строки (NL), совпадает с <span class="code">\x0a</span></td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\r</span></td>
+      <td> символ перевода каретки (CR), совпадает с <span class="code">\x0d</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Примеры:</strong>
+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">foo\x20bar</span></td>
+      <td>найдет 'foo bar' (с пробелом внутри)</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\tfoobar</span></td>
+      <td>найдет 'foobar' вместе с табулятором</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2><a name="a004">Классы символов</a></h2>
+
+<p>Набор из символов описывается через заключение списка символов в скобки <span class="inlinecode">[]</span>
+и позволяет находить <b>один</b> из перечисленных символов.</p>
+
+<p>Если первый символ, стоящий после <span class="inlinecode">[</span>,
+это <span class="inlinecode">^</span>, то класс будет находить любой символ вне указанного далее списка.</p>
+
+<p><strong>Примеры:</strong>
+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">foob[aeiou]r</span></td>
+      <td> найдет строки 'foobar', 'foober' и им подобные, но не
+		найдет 'foobbr', 'foobcr' и им подобные.</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">foob[^aeiou]r</span></td>
+      <td> найдет строки 'foobbr', 'foobcr' и им подобные, но не
+		найдет 'foobar', 'foober' и им подобные.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Внутри списка символ <span class="inlinecode">-</span>
+играет особую роль, он указывает на <b>диапазон</b>,
+например, <span class="inlinecode">a-z</span>
+описывает все символы от "a" до "z".
+</p>
+
+<p>Чтобы сам символ  <span class="inlinecode">-</span>
+сделать членом класса, нужно разместить его в начале или в конце списка, либо
+можно поставить перед ним обратный слеш. Чтобы использовать <span class="inlinecode">]</span>, нужно разместить его в
+начале или поставить перед ним обратный слеш.</p>
+
+<p><strong>Примеры:</strong>
+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">[-az]</span></td>
+      <td> находит 'a', 'z' и '-'</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">[az-]</span></td>
+      <td>находит 'a', 'z' и '-'</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">[a\-z]</span></td>
+      <td> находит 'a', 'z' и '-'</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">[a-z]</span></td>
+      <td> находит все 26 символов от 'a' до 'z'</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">[\n-\x0D]</span></td>
+      <td> находит любой из символов #10,#11,#12,#13</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">[\d-t]</span></td>
+      <td> находит любую цифру, '-' и 't' </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">[]-a]</span></td>
+      <td> находит любой символ от ']' до 'a'</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2><a name="a005">Метасимволы</a></h2>
+
+<p>Метасимволы - это специальные символы, составляющие основу синтаксиса
+регулярных выражений. Ниже описаны разные типы метасимволов.<br />
+
+</p>
+
+<h2>Метасимволы - разделители строк</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">^</span></td>
+      <td> начало строки</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">$</span></td>
+      <td> конец строки</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\A</span></td>
+      <td> начало текста</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\Z</span></td>
+      <td>конец текста</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">.</span></td>
+      <td>любой символ <b>внутри</b> строки</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\z</span></td>
+      <td>символ(ы) конца строки. В отличии от <span class="inlinecode">$</span>,
+	находит символы, а не позиции, где строки кончаются. Находит
+	все варианты концов строк: <span class="inlinecode">\x0D\x0A</span> или <span class="inlinecode">\x0D</span> или <span class="inlinecode">\x0A</span>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Примеры:</strong>
+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">^foobar</span></td>
+      <td>найдет последовательность 'foobar', но только если она в начале строки</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">foobar$</span></td>
+      <td>найдет последовательность 'foobar', но только если она в конце строки</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">^foobar$</span></td>
+      <td>найдет последовательность 'foobar', но только если она сама строка</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">foob.r</span></td>
+      <td> найдет 'foobar', 'foobbr', 'foob1r' и им подобные</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+Метасимвол <span class="inlinecode">^</span> по
+умолчанию ищет только начала строк или всего текста, а <span class="inlinecode">$</span> - концы строк или всего
+текста. Сами символы концов строк они не ищут.<br />
+Можно при поиске рассматривать текст как коллекцию строк,
+в этом случае <span class="inlinecode">^</span> находит
+позиции после разделителей строк, а <span class="inlinecode">$</span> - перед разделителями.
+Так происходит, если включен <b>модификатор (?m)</b>.<br />
+ <span class="inlinecode">\A</span> и <span class="inlinecode">\Z</span>
+действуют аналогично <span class="inlinecode">^</span> и <span class="inlinecode">$</span>,
+но ищут начало/конец всего текста. При выключенном <b>модификаторе (?m)</b>
+действие <span class="inlinecode">\A</span> совпадает с <span class="inlinecode">^</span>, <span class="inlinecode">\Z</span>
+совпадает с <span class="inlinecode">$</span>.</p>
+
+<p>Метасимвол "точка" <span class="inlinecode">.</span> находит любой символ,
+если включен <b>модификатор (?s)</b>, и любой символ
+кроме концов строк, если <b>модификатор (?s)</b> выключен (по умолчанию).</p>
+
+<p>
+При включенном модификаторе (?m) метасимвол <span class="inlinecode">^</span> находит
+начало текста и позиции за последовательностями <span class="inlinecode">\x0D\x0A</span>
+или <span class="inlinecode">\x0A</span> или <span class="inlinecode">\x0D</span>
+(в Юникод-тексте еще за \x2028 или \x2029 или \x0B или \x0C или \x85).
+Нужно учитывать, что внутри последовательности \x0D\x0A нет пустой строки. </p>
+
+<p>При включенном модификаторе (?m) метасимвол  <span class="inlinecode">$</span>  находит
+конец текста и позиции перед последовательностями <span class="inlinecode">\x0D\x0A</span>
+или <span class="inlinecode">\x0A</span> или <span class="inlinecode">\x0D</span> (в Юникод-тексте еще
+перед \x2028 или \x2029 или \x0B или \x0C или \x85). Нужно учитывать, что внутри последовательности \x0D\x0A нет пустой строки.</p>
+
+<p>Обратите внимание, что <span class="inlinecode">^.*$</span> не найдет пустую строку
+внутри последовательности <span class="inlinecode">\x0D\x0A</span>,
+но найдет внутри <span class="inlinecode">\x0A\x0D</span>.</p>
+
+<h2><a name="a006">Метасимволы - предопределенные классы</a></h2>
+<p>
+<table>
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\w</span></td>
+      <td> буква любого языка, "_", или цифра </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\W</span></td>
+      <td> всё, кроме <span class="inlinecode">\w</span></td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\d</span></td>
+      <td> цифра (0-9)</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\D</span></td>
+      <td> всё, кроме <span class="inlinecode">\d</span></td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\s</span></td>
+      <td> любой пробельный символ (совпадает с <span class="inlinecode">[ \t\n\r\f]</span>)</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\S</span></td>
+      <td> всё, кроме <span class="inlinecode">\s</span>, т.е. непробельный символ</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\h</span></td>
+      <td> hex-цифра (0-9, a-f, A-F)</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\H</span></td>
+      <td> всё, кроме <span class="inlinecode">\h</span></td>
+    </tr>
+	<tr>
+	  <td nowrap="nowrap"><span class="code">\g</span></td>
+      <td> латинская буква (a-z, A-Z, _)</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\G</span></td>
+      <td> всё, кроме <span class="inlinecode">\g</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Можно использовать \w, \d, \s, \h, \g внутри описаний <b>символьных классов</b>.
+</p>
+
+<p><strong>Примеры:</strong>
+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">foob\dr</span></td>
+      <td> найдет 'foob1r', ''foob6r', но не найдет 'foobar', 'foobbr'</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">foob[\w\s]r</span></td>
+      <td> найдет 'foobar', 'foob r', 'foobbr', но не найдет 'foob1r', 'foob=r'</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2><a name="a007">Метасимволы - границы слов</a></h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\b</span></td>
+      <td> найдет границу слова</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">\B</span></td>
+      <td>найдет не границу слова</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+Граница слова <span class="inlinecode">\b</span>
+- это место между двумя символами, из которых один <span class="inlinecode">\w</span>,
+а второй <span class="inlinecode">\W</span> (в любом порядке). При
+этом считается, что до начала строки и за ее концом есть <span class="inlinecode">\W</span> . </p>
+
+<h2><a name="a008">Метасимволы - квантификаторы</a></h2>
+
+<p>За любым элементом в регулярном выражении может стоять <b>квантификатор</b>. Этот вид
+метасимволов указывает на количество вхождений стоящего перед ним
+символа, <b>метасимвола</b>
+или <b>группы</b>.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">*</span></td>
+      <td>ноль и больше ("жадный"), совпадает с {0,}</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">+</span></td>
+      <td> один и больше ("жадный"), совпадает с {1,}</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">?</span></td>
+      <td> ноль или один ("жадный"), совпадает с {0,1}</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">{n}</span></td>
+      <td> точно n раз ("жадный")</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">{n,}</span></td>
+      <td> не меньше n раз ("жадный")</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">{n,m}</span></td>
+      <td> не меньше n и не больше m раз ("жадный")</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">*?</span></td>
+      <td> ноль и больше ("ленивый"), совпадает с {0,}?</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">+?</span></td>
+      <td> один и больше ("ленивый"), совпадает с {1,}?</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">??</span></td>
+      <td> ноль или один ("ленивый"), совпадает с {0,1}?</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">{n}?</span></td>
+      <td> точно n раз ("ленивый")</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">{n,}?</span></td>
+      <td> не меньше n раз ("ленивый")</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">{n,m}?</span></td>
+      <td> не меньше n раз и не больше m раз ("ленивый") </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Видно, что числа в фигурных скобках <span class="inlinecode">{n,m}</span> указывают на
+минимальное и максимальное количество совпадений. Допустима запись <span class="inlinecode">{n}</span>, которая означает то же,
+что <span class="inlinecode">{n,n}</span>, то есть
+"точно n раз". Запись <span class="inlinecode">{n,}</span>
+указывает на поиск "не менее n повторов". Хотя нет ограничений на
+величины для n и m, большие значения приводят к перерасходу памяти и
+замедляют применение рег.выражений.</p>
+
+<p>Если фигурные скобки появляются в других местах, они рассматриваются как обычные символы.</p>
+
+<p><strong>Примеры:</strong><br />
+
+</p>
+<table>
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">foob.*r</span></td>
+      <td>найдет 'foobar', 'foobalkjdflkj9r' and 'foobr'  </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">foob.+r</span></td>
+      <td> найдет 'foobar', 'foobalkjdflkj9r', но не найдет 'foobr'  </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">foob.?r</span></td>
+      <td> найдет 'foobar', 'foobbr' и 'foobr', но не найдет 'foobalkj9r'  </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">fooba{2}r</span></td>
+      <td> найдет 'foobaar'</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">fooba{2,}r</span></td>
+      <td> найдет 'foobaar', 'foobaaar', 'foobaaaar' и т.д.</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">fooba{2,3}r</span></td>
+      <td> найдет 'foobaar' или 'foobaaar', но не найдет 'foobaaaar'</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Про "жадность": <b>"жадный"</b> поиск найдет максимум из возможного,
+<b>"ленивый"</b> - минимум.
+Например, при поиске выражений <span class="inlinecode">b+</span> и <span class="inlinecode">b*</span> в 'abbbbc'
+оба найдут 'bbbb', поиск <span class="inlinecode">b+?</span>
+даст только 'b', поиск <span class="inlinecode">b*?</span>
+даст пустую строку, поиск <span class="inlinecode">b{2,3}?</span>
+даст 'bb', поиск <span class="inlinecode">b{2,3}</span>
+даст 'bbb'.</p>
+
+<p>Можно переключить все квантификаторы в режим <strong>"ленивые"</strong> (см.
+модификатор "g").<br />
+
+</p>
+
+<h2><a name="a009">Метасимволы - перечисления</a></h2>
+
+<p>Можно указывать несколько вариантов для поиска,
+разделяя их палочкой <span class="inlinecode">|</span>. Например, <span class="inlinecode">fee|fie|foe</span> будет искать
+любую из последовательностей "fee", "fie", "foe". Первый вариант
+начинается вместе с рег.выражением или за разделителем <span class="inlinecode">(</span>,
+<span class="inlinecode">[</span> и заканчивается
+перед <span class="inlinecode">|</span>.
+Последний вариант продолжается до конца выражения, либо до
+разделителя. Принято заключать варианты в круглые скобки, чтобы
+избегать неопределенности.</p>
+<p>Варианты проверяются слева-направо, поиск идет до первого
+подходящего. Из-за этого перечислению не требуется "жадность",
+например, если идет поиск выражения <span class="inlinecode">foo|foot</span> в "barefoot", будет найдено
+только "foo", поскольку уже первый вариант будет успешным. (Это становится
+существенным, когда используются круглые скобки.)<br />
+
+Внутри символьных классов <span class="inlinecode">|</span>
+всегда рассматривается как обычный символ, поэтому, например, <span class="inlinecode">[fee|fie|foe]</span> будет искать
+так же как <span class="inlinecode">[feio|]</span>. </p>
+
+<p><strong>Примеры:</strong><br />
+
+<span class="code">foo(bar|foo)</span> найдет 'foobar' или 'foofoo'.<br />
+
+</p>
+
+<h2><a name="a010">Метасимволы - группировка</a></h2>
+
+<p>Круглые скобки <span class="inlinecode">(</span>
+... <span class="inlinecode">)</span> указывают на группу. Группы имеют нумерацию по
+номеру открывающей скобки слева-направо. Первая группа
+имеет номер 1. Все выражение целиком имеет номер 0.</p>
+
+<p><strong>Примеры:</strong><br />
+
+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">(foobar){8,10}</span></td>
+      <td>найдет 8, 9 или 10 'foobar' подряд </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">foob([0-9]|a+)r</span></td>
+      <td> найдет 'foob0r', 'foob1r' , 'foobar', 'foobaar', 'foobaar'</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2><a name="a011">Метасимволы - обратные ссылки</a></h2>
+
+<p><b>Метасимволы</b>
+от <span class="inlinecode">\1</span> до <span class="inlinecode">\9</span> обозначают ссылки на уже
+найденные группы. \<u>n</u> (где <u>n</u> это цифра) находит такой же фрагмент, как <b>группа</b>
+с номером n.</p>
+
+<p><b>Примеры:</b></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">(.)\1+</span></td>
+      <td>найдет 'aaaa' и 'cc'</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">(.+)\1+</span></td>
+      <td>найдет 'abab' и '123123'</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">(['"]?)(\d+)\1</span></td>
+      <td>найдет число, которое, возможно, заключено в одинарные или двойные кавычки</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><b>Пример поиска и замены:</b></p>
+
+<p>Чтобы поменять местами две строки, разделенные дефисом: из <strong>"New
+York - USA"</strong> получить <strong>"USA - New York"</strong>,
+можно использовать такую замену:
+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Искать:</td>
+      <td nowrap="nowrap"><span class="code">(.+) - (.+)</span></td>
+    </tr>
+    <tr>
+      <td>Заменить на:</td>
+      <td nowrap="nowrap"><span class="code">\2 - \1</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2><a name="a012">Модификаторы</a></h2>
+<p>Модификаторы изменяют поведение обработчика регулярных выражений.
+Можно устанавливать состояния модификаторов: например, для включения "i" начните рег.выражение с <span class="inlinecode">(?i)</span>, а для выключения - с <span class="inlinecode">(?-i)</span>. <br />
+
+<table border="1">
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">i</span></td>
+      <td>Не учитывать регистр символов (поведение зависит от региональных установок ОС).<br />
+	  Умолчание - включен в диалоге настройки лексера, задаётся опцией "Учитывать регистр" в диалогах поиска, в прочих диалогах - выключен.
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">m</span></td>
+      <td>Рассматривать текст как набор строк.
+	  Если включен, то метасимволы <span class="inlinecode">^</span> и <span class="inlinecode">$</span> находят начала и концы
+	  строк, если выключен, только начало и конец текста.<br />
+	  Умолчание - включен.
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">s</span></td>
+      <td>Позволяет метасимволу <span class="inlinecode">.</span> находить все символы без исключений, то есть и разделители строк тоже.<br />
+	  Умолчание - выключен.
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">g</span></td>
+      <td>Модификатор "жадности". Если выключен, то квантификаторы становятся "ленивыми".
+	  Другими словами, следом за <span class="inlinecode">(?-g)</span> квантифитатор <span class="inlinecode">+</span> работает
+	  как <span class="inlinecode">+?</span>, а <span class="inlinecode">*</span>
+	  как <span class="inlinecode">*?</span> и так далее.<br />
+	  Умолчание - включен.
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">r</span></td>
+      <td>Используется для русских текстов.
+	  Если включен, то в диапазон <span class="inlinecode">а-я</span> входит символ 'ё',
+	  в <span class="inlinecode">А-Я</span> входит 'Ё', в <span class="inlinecode">а-Я</span> входят все кириллические символы.<br />
+	  Умолчание - выключен.
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">x</span></td>
+      <td>Позволяет использовать пробелы и вставлять комментарии (см. пояснения ниже).<br />
+	  Умолчание - выключен в диалогах поиска, включен в диалоге настройки лексера.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Замечание. Конструкции <span class="inlinecode">(?)</span> и <span class="inlinecode">(?-)</span> можно
+применять не только в начале рег.выражения. Они действуют от места применения до конца выражения, либо до другой конструкции.
+Если эти конструкции находятся внутри группы, то действуют только до конца этой группы.</p>
+
+<p><strong>Модификатор "x":</strong></p>
+<p>Модификатор "x" требует пояснения. При его включении обработчик регулярного выражения
+игнорирует пробельные символы, за исключением экранированных и входящих в символьные
+классы. Можно использовать пробельные символы (пробелы, концы строк и пр.), чтобы придать выражению
+более читабельный вид. Кроме того символ <b>#</b> становится
+метасимволом, обозначающим начало комментария, например:</p>
+<p class="code">( <br />
+(abc) # comment 1<br />
+| # You can use spaces to format r.e. - RegEx library ignores it<br />
+(efg) # comment 2<br />
+)</p>
+<p>Следует учитывать, что если требуется поиск пробелов или
+самого символа # (вне символьных классов, на которые <span class="inlinecode">(?x)</span> не действует), то можно
+либо воспользоваться экранированием, либо конструкциями <span class="inlinecode">\xnn</span> или <span class="inlinecode">\x{nnnn}</span>.
+В целом, этот модификатор позволяет создавать более понятные регулярные выражения.<br />
+</p>
+
+<p><strong>Примеры для модификатора "i":</strong><br />
+<table>
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">(?i)Saint-Petersburg</span></td>
+      <td> найтет 'Saint-petersburg' и 'Saint-Petersburg'</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">(?i)Saint-(?-i)Petersburg</span></td>
+      <td> найтет 'Saint-Petersburg', но не 'Saint-petersburg'</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">(?i)(Saint-)?Petersburg</span></td>
+      <td> найтет 'Saint-petersburg' и 'saint-petersburg'</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">((?i)Saint-)?Petersburg</span></td>
+      <td> найтет 'saint-Petersburg',но не 'saint-petersburg'</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+<p><strong>Примеры для модификатора "s":</strong><br />
+</p>
+<pre>BEGIN<br />...Some.......<br />.....Lines....<br />......Here...<br />END<br /></pre>
+<table>
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">(?s)BEGIN.*END</span></td>
+      <td> найдет весь приведенный текст</td>
+    </tr>
+  </tbody>
+</table>
+(Замечание: можно обойтись без модификатора "s",
+например так: <span class="inlinecode">BEGIN(\r|\n|.)*END</span> ).
+
+<p><strong>(?#text) </strong><br />
+Это конструкция-комментарий. Обратите внимание, что конструкция
+завершается ")", поэтому в тело самого комментария ")" вставить нельзя. </p>
+
+<h2><a name="a014">Просмотр вперед и назад</a></h2>
+Просмотр позволяет учитывать при поиске наличие/отсутствие текста
+до/после нужного фрагмента.
+
+<p><b>Примеры:</b> <br />
+
+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td nowrap="nowrap"><span class="code">Isaac (?=Asimov)</span></td>
+      <td> найдет 'Isaac ', но только если за ним есть 'Asimov'</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">Isaac (?!Asimov)</span></td>
+      <td> найдет 'Isaac ', но только если за ним нет 'Asimov' </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">(?&lt;=Mega)byte</span></td>
+      <td>найдет 'byte', если перед ним есть 'Mega', например, в 'Megabyte' найдет, а в 'Kilobyte' нет</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap"><span class="code">(?&lt;!Mega)byte</span></td>
+      <td>найдет 'byte', если перед ним нет 'Mega', например, в 'Megabyte' не найдет, а
+	в 'Kilobyte' или в 'byte' найдет</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+
+
+<a name="eng"></a>
+<h2>Движок PCRE</h2>
+
+<p>Выше описано поведение движка EControl, он используется для парсинга лексеров.
+Однако, в диалогах поиска/замены используется более мощный движок PCRE.
+PCRE почти полностью совместим с
+<a href="http://perldoc.perl.org/perlre.html" target="_blank">регулярными выражениями Perl</a>.
+Основные отличия EControl от PCRE:
+</p>
+
+<ul>
+<li>PCRE поддерживает изменение регистра для нумерованных групп.
+<li>EControl не поддерживает non-capturing groups.
+<li>Модификатора "r" нет в PCRE.
+<li>Модификатор "g" в EControl - то же самое, что "U" в PCRE.
+<li>\g и \G нет в PCRE.
+<li>\h и \H имеют другое значение в PCRE.
+<li>PCRE ловит только \x0D\x0A или \x0A или \x0D (это зависит от формата файла)
+    в качестве концов строк, при указании "^", "$" и ".".
+    Юникодные символы концов строк не поддерживаются с "^", "$" и "." в текущей реализации.
+<li>EControl использует \z для поиска всех переводов строк, а PCRE - только для поиска позиции в конце текста
+    (то же, что \Z в EControl, а в PCRE \Z имеет другое значение).
+</ul>
+<br />
+
+<a name="case"></a>
+<h2>Изменение регистра</h2>
+
+<p>Доступная только в PCRE возможность: можно изменять регистр слов при заменах. Для этого есть следующие метасимволы:
+  <ul>
+  <li><span class="inlinecode">\Un</span> вставляет n-ную группу в верхнем регистре,
+  <li><span class="inlinecode">\Ln</span> вставляет её в нижнем регистре,
+  <li><span class="inlinecode">\Fn</span> вставляет её с первым символом в верхнем регистре и остатком в нижнем регистре,
+  <li><span class="inlinecode">\In</span> вставляте её с первыми буквами слов в верхнем регистре и остатком в нижнем.
+  </ul>
+</p>
+
+<p>Например, для строки "sOMe tExt hEre":</p>
+<table>
+    <tr>
+        <th>Искать текст &nbsp;&nbsp;</th>
+	<th>Заменить на &nbsp;&nbsp;</th>
+	<th>Даёт строку</th>
+    </tr>
+    <tr>
+        <td><span class="inlinecode">(\w+)</span></td>
+	<td><span class="inlinecode">\U1</span></td>
+	<td>"SOME TEXT HERE"</td>
+    </tr>
+    <tr>
+        <td><span class="inlinecode">(\w+)</span></td>
+	<td><span class="inlinecode">\L1</span></td>
+	<td>"some text here"</td>
+    </tr>
+    <tr>
+        <td><span class="inlinecode">(^.+?$)</span></td>
+	<td><span class="inlinecode">\F1</span></td>
+	<td>"Some text here"</td>
+    </tr>
+    <tr>
+        <td><span class="inlinecode">(^.+?$)</span></td>
+	<td><span class="inlinecode">\I1</span></td>
+	<td>"Some Text Here"</td>
+    </tr>
+</table>
+
+</body>
+</html>

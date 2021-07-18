@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Dialogs "Commands", "Project Files List"</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=DialogCmdList.html'>show framing</a></center>")
+		</script>
+<h1>Dialogs "Commands", "Project Files List"</h1>
+<hr />
+
+<ul>
+<li> <a href="#in">Introduction</a>
+<li> <a href="#fuzzy">Normal and fuzzy search</a>
+<li> <a href="#fold">Project files list: File/folder names</a>
+<li> <a href="#word">Project files list: Content filter</a>
+</ul>
+
+<a name="in"></a>
+<h2>Introduction</h2>
+<p>These two dialogs share the similar look.
+They consist of items list-box and filter edit-box. 
+You can move selection (even when filter box is focused) with
+keys Up, Down, PageUp, PageDown, Ctrl+Home, Ctrl+End. Filter box allows to show only those items
+which match the filter string.</p>
+<br />
+
+<a name="fuzzy"></a>
+<h2>Normal and fuzzy search</h2>
+
+<p>If checkbox "Fuzzy search" is checked at the bottom, then filter box will use "fuzzy" algorithm:
+only those items will be left, which contain all filter letters in ascending order. E.g.:
+
+<ul>
+<li> "fsav" mathes "<font color=red>F</font>ile: <font color=red>Sav</font>e file"
+<li> "fsav" matches "<font color=red>F</font>ocu<font color=red>s</font>ing: Toggle m<font color=red>a</font>ster/sla<font color=red>v</font>e focus"
+</ul>
+
+<p>If "Fuzzy search" is unchecked, then only those items will be left, which contain all the words from the filter string. E.g.:
+
+<ul>
+<li> "fi re" matches "<font color=red>Fi</font>le: <font color=red>Re</font>open file"
+<li> "fi re ti" matches "Run: <font color=red>Ti</font>dy - con<font color=red>fi</font>gu<font color=red>re</font>"
+</ul>
+
+<br />
+<a name="fold"></a>
+<h2>Project files list: File/folder names</h2>
+
+<p>Only in the "Project files list" dialog:<br />
+You can type into filter box two strings separated with "\" char -
+first of these strings will match the directory path, and second one will match the file name. E.g.:
+
+<ul>
+<li> (normal search) "<u>mypro</u>\mycla" matches "D:\Test\<font color=red>MyPro</font>ject\<font color=red>mycla</font>ss.py"
+<li> (normal search) "\my" or "my" matches files with "My" substring in name (not path) 
+<li> (normal search) "<u>my</u>\" matches files with "My" substring in path (not name)
+<li> (fuzzy search) "<u>te\my</u>\my.py" matches "D:\<font color=red>Te</font>st<font color=red>\</font><font color=red>My</font>Project\<font color=red>my</font>class<font color=red>.py</font>"
+</ul>
+
+<br />
+<a name="word"></a>
+<h2>Project files list: Content filter</h2>
+
+<p>Only in the "Project files list" dialog:<br />
+You can add to filter box (at the end) text <font color=blue>@SomeName</font>,
+to search for text <font color=blue>SomeName</font> inside files. Only those files will be left
+which contain text specified after "@" character.</p>
+<p>Search is case-sensitive if one "@" char is typed, and case-insensitive if "@@" chars are typed before a text. Search can find partial words (not "whole words only").</p>
+<br />
+
+</body>
+</html>

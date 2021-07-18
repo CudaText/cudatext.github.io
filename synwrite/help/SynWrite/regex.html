@@ -1,0 +1,638 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Syntax of Regular Expressions</title>
+</head>
+
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=RegEx.html'>show framing</a></center>")
+		</script>
+<h1>Syntax of Regular Expressions</h1>
+<hr />
+<ul>
+<li><a href="#a001">Introduction</a></li>
+<li><a href="#a002">Simple matches</a></li>
+<li><a href="#a003">Escape sequences</a></li>
+<li><a href="#a004">Character classes</a></li>
+<li><a href="#a005">Metacharacters - line separators</a></li>
+<li><a href="#a006">Metacharacters - predefined classes</a></li>
+<li><a href="#a007">Metacharacters - word boundaries</a></li>
+<li><a href="#a008">Metacharacters - iterators</a></li>
+<li><a href="#a009">Metacharacters - alternatives</a></li>
+<li><a href="#a010">Metacharacters - subexpressions</a></li>
+<li><a href="#a011">Metacharacters - backreferences</a></li>
+<li><a href="#a012">Modifiers</a></li>
+<li><a href="#a014">Lookahead/Lookbehind assertions</a></li>
+<li><a href="#eng">PCRE regex engine</a></li>
+<li><a href="#case">Case changing</a></li>
+</ul>
+
+<h2><a name="a001">Introduction</a></h2>
+<p>Regular expressions are a widely-used method of specifying patterns of text to search for. Special <strong>metacharacters</strong> allows to specify, for instance, that a particular string you are looking for occurs at the beginning or end of a line, or contains n recurrences of a certain character.</p>
+<p>SynWrite uses RegEx syntax, which is mostly compatible with <a href="http://pcre.org/pcre.txt" target="_blank">PCRE</a>,
+with minor additions and limitations.</p>
+
+<h2><a name="a002">Simple matches</a></h2>
+<p>Any single character matches itself, unless it is a <strong>metacharacter</strong> with a special meaning described below.</p>
+<p>A series of characters matches that series of characters in the target string, so the pattern <span class="inlinecode">&quot;bluh&quot;</span> would match <span class="inlinecode">&quot;bluh&quot;</span> in the target string.</p>
+<p>You can cause characters that normally function as <strong>metacharacters</strong> or <strong>escape sequences</strong> to be interpreted literally by 'escaping' them by preceding them with a backslash <span class="inlinecode">&quot;\&quot;</span>, for instance: metacharacter <span class="inlinecode">&quot;^&quot;</span> match beginning of string, but <span class="inlinecode">&quot;\^&quot;</span> match character <span class="inlinecode">&quot;^&quot;</span>, <span class="inlinecode">&quot;\\&quot;</span> match <span class="inlinecode">&quot;\&quot;</span> and so on.</p>
+<p><strong>Examples:</strong>
+<table>
+  <tr>
+    <td nowrap><span class="code">foobar</span></td>
+    <td> matchs string 'foobar'</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\^FooBarPtr</span></td>
+    <td> matchs '^FooBarPtr'</td>
+  </tr>
+</table>
+</p>
+<h2><a name="a003">Escape sequences</a></h2>
+<p>Characters may be specified using a <strong>escape sequences</strong> syntax much like that used in C and Perl: <span class="inlinecode">&quot;\n&quot;</span> matches a newline, <span class="inlinecode">&quot;\t&quot;</span> a tab, etc. More generally, <span class="inlinecode">\xnn</span>, where nn is a string of hexadecimal digits, matches the character whose ASCII value is nn. If you need wide (Unicode) character code, you can use <span class="inlinecode">&quot;\x{nnnn}&quot;</span>, where 'nnnn' - one or more hexadecimal digits.</p>
+<p>
+<table>
+  <tr>
+    <td nowrap><span class="code">\xnn</span></td>
+    <td> char with hex code nn</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\x{nnnn}</span></td>
+    <td> char with hex code nnnn (one byte for plain text and two bytes for Unicode)</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\t</span></td>
+    <td> tab (HT/TAB), same as \x09</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\n</span></td>
+    <td> newline (NL), same as \x0a</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\r</span></td>
+    <td> car.return (CR), same as \x0d</td>
+  </tr>
+</table>
+</p>
+<p><strong>Examples:</strong>
+<table>
+  <tr>
+    <td nowrap><span class="code">foo\x20bar</span></td>
+    <td> matchs 'foo bar' (note space in the middle)</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\tfoobar</span></td>
+    <td> matchs 'foobar' predefined by tab</td>
+  </tr>
+</table>
+</p>
+<h2><a name="a004">Character classes</a></h2>
+<p>You can specify a <strong>character class</strong>, by enclosing a list of characters in <span class="inlinecode">[]</span>, which will match any <strong>one</strong> character from the list.</p>
+<p>If the first character after the <span class="inlinecode">&quot;[&quot;</span> is <span class="inlinecode">&quot;^&quot;</span>, the class matches any character not in the list.</p>
+<p><strong>Examples:</strong>
+<table>
+  <tr>
+    <td nowrap><span class="code">foob[aeiou]r</span></td>
+    <td> finds strings 'foobar', 'foober' etc. but not 'foobbr', 'foobcr' etc.</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">foob[^aeiou]r</span></td>
+    <td> find strings 'foobbr', 'foobcr' etc. but not 'foobar', 'foober' etc.</td>
+  </tr>
+</table>
+</p>
+<p>Within a list, the <span class="inlinecode">&quot;-&quot;</span> character is used to specify a <strong>range</strong>, so that a-z represents all characters between <span class="inlinecode">&quot;a&quot;</span> and <span class="inlinecode">&quot;z&quot;</span>, inclusive. </p>
+<p>If you want <span class="inlinecode">&quot;-&quot;</span> itself to be a member of a class, put it at the start or end of the list, or escape it with a backslash. If you want <span class="inlinecode">']'</span> you may place it at the start of list or escape it with a backslash.</p>
+<p><strong>Examples:</strong>
+<table>
+  <tr>
+    <td nowrap><span class="code">[-az]</span></td>
+    <td> matchs 'a', 'z' and '-'</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">[az-]</span></td>
+    <td> matchs 'a', 'z' and '-'</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">[a\-z]</span></td>
+    <td> matchs 'a', 'z' and '-'</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">[a-z]</span></td>
+    <td> matchs all twenty six small characters from 'a' to 'z'</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">[\n-\x0D]</span></td>
+    <td> matchs any of #10,#11,#12,#13.</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">[\d-t]</span></td>
+    <td> matchs any digit, '-' or 't'. </td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">[]-a]</span></td>
+    <td> matchs any char from ']'..'a'.</td>
+  </tr>
+</table>
+</p>
+<h2><a name="a005">Metacharacters</a></h2>
+<p>Metacharacters are special characters which are the essence of Regular Expressions. There are different types of metacharacters, described below.<br />
+</p>
+<h2>Metacharacters - line separators</h2>
+<p>
+<table>
+  <tr>
+    <td nowrap><span class="code">^</span></td>
+    <td> start of line</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">$</span></td>
+    <td> end of line</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\A</span></td>
+    <td> start of text</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\Z</span></td>
+    <td> end of text</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">.</span></td>
+    <td> any character in line</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\z</span></td>
+    <td> single line break. Instead of $ metacharacter it matches line break characters, not only line break position. Possible sequences:
+\x0D\x0A ; \x0D ; \x0A </td>
+  </tr>
+</table>
+</p>
+<p><strong>Examples:</strong>
+<table>
+  <tr>
+    <td nowrap><span class="code">^foobar</span></td>
+    <td> matchs string 'foobar' only if it's at the beginning of line</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">foobar$</span></td>
+    <td> matchs string 'foobar' only if it's at the end of line</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">^foobar$</span></td>
+    <td> matchs string 'foobar' only if it's the only string in line</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">foob.r</span></td>
+    <td> matchs strings like 'foobar', 'foobbr', 'foob1r' and so on</td>
+  </tr>
+</table>
+</p>
+<p>The <span class="inlinecode">&quot;^&quot;</span> metacharacter by default is only guaranteed to match at the beginning of the input string/text, the <span class="inlinecode">&quot;$&quot;</span> metacharacter only at the end. Embedded line separators will not be matched by <span class="inlinecode">&quot;^&quot;</span> or <span class="inlinecode">&quot;$&quot;</span>.<br />
+  You may wish to treat a string as a multi-line buffer, such that the <span class="inlinecode">&quot;^&quot;</span> will match after any line separator within the string, and <span class="inlinecode">&quot;$&quot;</span> will match before any line separator. You can do this by switching &quot;On&quot; the <strong>modifier (?m)</strong>.<br />
+  The <span class="inlinecode">\A</span> and <span class="inlinecode">\Z</span> are just like <span class="inlinecode">&quot;^&quot;</span> and <span class="inlinecode">&quot;$&quot;</span>, except that they won't match multiple times when the <strong>modifier (?m)</strong> is used, while <span class="inlinecode">&quot;^&quot;</span> and <span class="inlinecode">&quot;$&quot;</span> will match at every internal line separator.</p>
+<p>The <span class="inlinecode">&quot;.&quot;</span> metacharacter matches any character except newline characters, but if you switch &quot;On&quot; the <strong>modifier (?s)</strong>, then <span class="inlinecode">'.'</span> will match embedded line separators.</p>
+<p> <span class="inlinecode">&quot;^&quot;</span> is at the beginning of a input string, and, if modifier <span class="inlinecode">(?m)</span> is &quot;On&quot;, also immediately following any occurrence of <span class="inlinecode">\x0D\x0A</span> or <span class="inlinecode">\x0A</span> or <span class="inlinecode">\x0D</span> (in Unicode also \x2028 or  \x2029 or \x0B or \x0C or \x85). Note that there is no empty line within the sequence \x0D\x0A. </p>
+<p><span class="inlinecode">&quot;$&quot;</span> is at the end of a input string, and, if modifier <span class="inlinecode">(?m)</span> is &quot;On&quot;, also immediately preceding any occurrence of  <span class="inlinecode">\x0D\x0A</span> or <span class="inlinecode">\x0A</span> or <span class="inlinecode">\x0D</span> (in Unicode also \x2028 or  \x2029 or \x0B or \x0C or \x85). Note that there is no empty line within the sequence \x0D\x0A.</p>
+<p><span class="inlinecode">&quot;.&quot;</span> matchs any character, but if You switch &quot;Off&quot; modifier <span class="inlinecode">(?s)</span> then <span class="inlinecode">&quot;.&quot;</span> doesn't match <span class="inlinecode">\x0D\x0A</span> and <span class="inlinecode">\x0A</span> and <span class="inlinecode">\x0D</span> (in Unicode also \x2028 and  \x2029 and \x0B and \x0C and \x85).<br />
+    <br />
+  Note that <span class="inlinecode">&quot;^$&quot;</span> (an empty line pattern) does not match the empty string within the sequence <span class="inlinecode">\x0D\x0A</span>, but matchs the empty string within the sequence <span class="inlinecode">\x0A\x0D</span>.</p>
+<h2><a name="a006">Metacharacters - predefined classes</a></h2>
+<p>
+<table>
+  <tr>
+    <td nowrap><span class="code">\w</span></td>
+    <td>alphanumeric character (letter of any language, digit, _)</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\W</span></td>
+    <td>non-alphanumeric</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\d</span></td>
+    <td>numeric character (0-9)</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\D</span></td>
+    <td>non-numeric</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\s</span></td>
+    <td>any space (same as [ \t\n\r\f])</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\S</span></td>
+    <td>non-space</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\h</span></td>
+    <td>hexadecimal digit (0-9, a-f, A-F) </td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\H</span></td>
+    <td>all except hexadecimal digit</td>
+  </tr>
+  <!--
+  <tr>
+    <td nowrap><span class="code">\l</span></td>
+    <td>letter character (any language)</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\L</span></td>
+    <td>non-letter</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\c</span></td>
+    <td>identifier character (a-z, A-Z, 0-9, _)</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\C</span></td>
+    <td>non-identifier</td>
+  </tr>
+  -->
+  <tr>
+    <td nowrap><span class="code">\g</span></td>
+    <td>Latin letter (a-z, A-Z, _)</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\G</span></td>
+    <td>all except Latin letter</td>
+  </tr>
+  <!--
+  <tr>
+    <td nowrap><span class="code">\k</span></td>
+    <td>European digit</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\K</span></td>
+    <td>all except European digit</td>
+  </tr>
+  -->
+</table>
+</p>
+
+<p>You may use "lowercase" classes (\w, \d, \s, \h, \g) within custom <b>character classes</b>.
+</p>
+<p><strong>Examples:</strong>
+<table>
+  <tr>
+    <td nowrap><span class="code">foob\dr</span></td>
+    <td> matchs strings like 'foob1r', ''foob6r' and so on but not 'foobar', 'foobbr' and so on</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">foob[\w\s]r</span></td>
+    <td> matchs strings like 'foobar', 'foob r', 'foobbr' and so on but not 'foob1r', 'foob=r' and so on</td>
+  </tr>
+</table>
+</p>
+<h2><a name="a007">Metacharacters - word boundaries</a></h2>
+<p>
+<table>
+  <tr>
+    <td nowrap><span class="code">\b</span></td>
+    <td> Match a word boundary</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">\B</span></td>
+    <td>Match a non-(word boundary)</td>
+  </tr>
+</table>
+</p>
+<p>A word boundary <span class="inlinecode">\b</span> is a spot between two characters that has a <span class="inlinecode">\w</span> on one side of it and a <span class="inlinecode">\W</span> on the other side of it (in either order), counting the imaginary characters off the beginning and end of the string as matching a <span class="inlinecode">\W</span>. </p>
+<h2><a name="a008">Metacharacters - iterators</a></h2>
+<p>Any item of a regular expression may be followed by another type of metacharacters - <strong>iterators</strong>. Using this <strong>metacharacters</strong> you can specify number of occurences of previous character, <strong>metacharacter</strong> or <strong>subexpression</strong>.</p>
+<p>
+<table>
+  <tr>
+    <td nowrap><span class="code">*</span></td>
+    <td>zero or more (&quot;greedy&quot;), similar to {0,}</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">+</span></td>
+    <td> one or more (&quot;greedy&quot;), similar to {1,}</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">?</span></td>
+    <td> zero or one (&quot;greedy&quot;), similar to {0,1}</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">{n}</span></td>
+    <td> exactly n times (&quot;greedy&quot;)</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">{n,}</span></td>
+    <td> at least n times (&quot;greedy&quot;)</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">{n,m}</span></td>
+    <td> at least n but not more than m times (&quot;greedy&quot;)</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">*?</span></td>
+    <td> zero or more (&quot;non-greedy&quot;), similar to {0,}?</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">+?</span></td>
+    <td> one or more (&quot;non-greedy&quot;), similar to {1,}?</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">??</span></td>
+    <td> zero or one (&quot;non-greedy&quot;), similar to {0,1}?</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">{n}?</span></td>
+    <td> exactly n times (&quot;non-greedy&quot;)</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">{n,}?</span></td>
+    <td> at least n times (&quot;non-greedy&quot;)</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">{n,m}?</span></td>
+    <td> at least n but not more than m times (&quot;non-greedy&quot;)
+  </tr>
+</table>
+</p>
+<p>So, digits in curly brackets of the form <span class="inlinecode">{n,m}</span>, specify the minimum number of times to match the item n and the maximum m. The form <span class="inlinecode">{n}</span> is equivalent to <span class="inlinecode">{n,n}</span> and matches exactly n times. The form <span class="inlinecode">{n,}</span> matches n or more times. There is no limit to the size of &quot;n&quot; or &quot;m&quot;, but large numbers will chew up more memory and slow down regular expression execution.</p>
+<p>If a curly bracket occurs in any other context, it is treated as a regular character.</p>
+<p><strong>Examples:</strong><br />
+<table>
+  <tr>
+    <td nowrap><span class="code">foob.*r</span></td>
+    <td> matchs strings like 'foobar',  'foobalkjdflkj9r' and 'foobr'</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">foob.+r</span></td>
+    <td> matchs strings like 'foobar', 'foobalkjdflkj9r' but not 'foobr'</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">foob.?r</span></td>
+    <td> matchs strings like 'foobar', 'foobbr' and 'foobr' but not 'foobalkj9r'</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">fooba{2}r</span></td>
+    <td> matchs the string 'foobaar'</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">fooba{2,}r</span></td>
+    <td> matchs strings like 'foobaar', 'foobaaar', 'foobaaaar' etc.</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">fooba{2,3}r</span></td>
+    <td> matchs strings like 'foobaar', or 'foobaaar'  but not 'foobaaaar'</td>
+  </tr>
+</table>
+</p>
+<p>A little explanation about &quot;Greediness&quot;: <strong>&quot;greedy&quot;</strong> takes as many as possible, <strong>&quot;non-greedy&quot;</strong> takes as few as possible. For example, <span class="inlinecode">'b+'</span> and <span class="inlinecode">'b*'</span> applied to string 'abbbbc' return 'bbbb', <span class="inlinecode">'b+?'</span> returns 'b', <span class="inlinecode">'b*?'</span> returns empty string, <span class="inlinecode">'b{2,3}?'</span> returns 'bb', <span class="inlinecode">'b{2,3}'</span> returns 'bbb'.</p>
+<p>You can switch all iterators into <strong>&quot;non-greedy&quot;</strong> mode (see the modifier "g").<br />
+</p>
+<h2><a name="a009">Metacharacters - alternatives</a></h2>
+<p>You can specify a series of alternatives for a pattern using <span class="inlinecode">&quot;|&quot;</span> to separate them, so that <span class="inlinecode">fee|fie|foe</span> will match any of "fee", "fie", or "foe" in the target string (as would <span class="inlinecode">f(e|i|o)e</span>). The first alternative includes everything from the last pattern delimiter (<span class="inlinecode">&quot;(&quot;</span>, <span class="inlinecode">&quot;[&quot;</span>, or the beginning of the pattern) up to the first <span class="inlinecode">&quot;|&quot;</span>, and the last alternative contains everything from the last <span class="inlinecode">&quot;|&quot;</span> to the next pattern delimiter. For this reason, it's common practice to include alternatives in parentheses, to minimize confusion about where they start and end.</p>
+<p>Alternatives are tried from left to right, so the first alternative found for which the entire expression matches, is the one that is chosen. This means that alternatives are not necessarily greedy. For example: when matching <span class="inlinecode">foo|foot</span> against <span class="inlinecode">&quot;barefoot&quot;</span>, only the <span class="inlinecode">&quot;foo&quot;</span> part will match, as that is the first alternative tried, and it successfully matches the target string. (This might not seem important, but it is important when you are capturing matched text using parentheses.)<br />
+  Also remember that <span class="inlinecode">&quot;|&quot;</span> is interpreted as a literal within square brackets, so if you write <span class="inlinecode">[fee|fie|foe]</span> You're really only matching <span class="inlinecode">[feio|]</span>.</p>
+<p><strong>Examples:</strong><br />
+  <span class="code">foo(bar|foo)</span>  matchs strings 'foobar' or 'foofoo'.<br />
+</p>
+<h2><a name="a010">Metacharacters - subexpressions</a></h2>
+<p>The bracketing construct <span class="inlinecode">(</span> ... <span class="inlinecode">)</span> may also be used to define regex subexpressions.
+Subexpressions are numbered based on the left to right order of their opening parenthesis.
+First subexpression has number 1, whole regex match has number 0.</p>
+<p><strong>Examples:</strong><br />
+<table>
+  <tr>
+    <td nowrap><span class="code">(foobar){8,10}</span></td>
+    <td> matchs strings which contain 8, 9 or 10 instances of the 'foobar'</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">foob([0-9]|a+)r</span></td>
+    <td> matchs 'foob0r', 'foob1r' , 'foobar', 'foobaar', 'foobaar' etc.</td>
+  </tr>
+</table>
+</p>
+<p><b>Subexpressions for search+replace</b></p>
+<p>Text parts in round braces are taken as subexpressions.<br />
+Example: To swap two strings, when they are separated by a dash: <strong>"New York - USA"</strong>, this can be solved like this. Result will be <strong>"USA - New York"</strong>
+<table>
+  <tr>
+    <td>Search for:</td>
+    <td nowrap><span class="code">(.+) - (.+)</span></td>
+  </tr>
+  <tr>
+    <td>Replace with:</td>
+    <td nowrap><span class="code">\2 - \1</span></td>
+  </tr>
+</table>
+</p>
+
+<h2><a name="a011">Metacharacters - backreferences</a></h2>
+<p><strong>Metacharacters</strong> <span class="inlinecode">\1</span> through <span class="inlinecode">\9</span> are interpreted as backreferences. 
+\<u>n</u> (where <u>n</u> is a digit) matches previously matched <strong>subexpression</strong> with index <u>n</u>.
+<p><strong>Examples:</strong><br />
+<table>
+  <tr>
+    <td nowrap><span class="code">(.)\1+</span></td>
+    <td> matches 'aaaa' and 'cc'</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">(.+)\1+</span></td>
+    <td> also matches 'abab' and '123123'</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">(['&quot;]?)(\d+)\1</span></td>
+    <td> matches a number, which is optionally surrounded by quotes (single or double quotes)
+  </tr>
+</table>
+</p>
+<h2><a name="a012">Modifiers</a></h2>
+<p>Modifiers are for changing behaviour of RegEx library.
+You can turn modifiers on/off. E.g., to turn modifier "i" on, insert such text at RegEx start: <span class="inlinecode">(?i)</span>, 
+and to turn it off insert text <span class="inlinecode">(?-i)</span>. <br />
+
+  <table border="1">
+  <tr>
+    <td nowrap><span class="code">i</span></td>
+    <td>Do case-insensitive search (considering your current Windows locale).<br />
+    Default: off or taken from option "Case sensitive" in search dialogs, on in lexer properties dialog.
+    </td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">m</span></td>
+    <td>Treat string as multiple lines. That is, change metachars <span class="inlinecode">^</span> and <span class="inlinecode">$</span> from matching at only the very start or end of the string to the start or end of any line anywhere within the string.<br />
+    Default: on.
+    </td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">s</span></td>
+    <td>Allow dot metachar to match also newlines. That is, change <span class="inlinecode">.</span> to match any character whatsoever, even a newline chars.<br />
+    Default: off.
+    </td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">g</span></td>
+    <td>Greedy modifier. Switching it Off switches all following operators into non-greedy mode: <span class="inlinecode">+</span> works as <span class="inlinecode">+?</span>, <span class="inlinecode">*</span> works as <span class="inlinecode">*?</span> and so on.<br />
+    Default: on.
+    </td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">r</span></td>
+    <td>Used for russian text. If it's On then range <span class="inlinecode">&#1072;-&#1103;</span> also includes russian letter '&#1105;', 
+      <span class="inlinecode">&#1040;-&#1071;</span> also includes '&#1025;', and <span class="inlinecode">&#1072;-&#1071;</span> includes all russian letters.<br />
+      Default: off.
+    </td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">x</span></td>
+    <td>Ignore spaces and comments inside RegEx.<br />
+    Default: off in search dialogs, on in lexer properties dialog.
+    </td>
+  </tr>
+</table>
+
+<p>Note: You may use modifiers in the middle of RegEx too. If this construction inlined into subexpression, then it effects only this subexpression.</p>
+
+<p><strong>Modifier "x":</strong><br />
+<p>The modifier "x" needs a little more explanation. It tells the RegEx library to ignore whitespace that is neither backslashed nor within a character class. You can use this to break up your regular expression into (slightly) more readable parts. The <strong>#</strong> character is also treated as a metacharacter introducing a comment, for example:</p>
+<p class="code">( <br />
+  (abc) # comment 1<br />
+  |   # You can use spaces to format r.e. - RegEx library ignores it<br />
+  (efg) # comment 2<br />
+)</p>
+<p>This also means that if you want real whitespace or <strong>#</strong> characters in the pattern (outside a character class, where they are unaffected by "x"), that you'll either have to escape them or encode them using octal or hex escapes. Taken together, these features go a long way towards making regular expressions text more readable. <br />
+</p>
+
+<p><strong>Examples for modifier "i":</strong><br />
+<table>
+  <tr>
+    <td nowrap><span class="code">(?i)Saint-Petersburg</span></td>
+    <td> matches 'Saint-petersburg' and 'Saint-Petersburg'</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">(?i)Saint-(?-i)Petersburg</span></td>
+    <td> matches 'Saint-Petersburg' but not 'Saint-petersburg'</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">(?i)(Saint-)?Petersburg</span></td>
+    <td> matches 'Saint-petersburg' and 'saint-petersburg'</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">((?i)Saint-)?Petersburg</span></td>
+    <td> matches 'saint-Petersburg', but not 'saint-petersburg'</td>
+  </tr>
+</table>
+</p>
+<p><strong>Example for modifier "s":</strong><br />
+<pre>
+BEGIN
+...Some.......
+.....Lines....
+...... Here...
+END
+</pre>
+<table>
+  <tr>
+    <td nowrap><span class="code">(?s)BEGIN.*END</span></td>
+    <td> matches the given codeblock</td>
+  </tr>
+</table>
+(Note: Alternative regex code without modifier "s" is <span class="inlinecode">BEGIN(\r|\n|.)*END</span>).
+
+<p><strong>(?#text) </strong><br />
+A comment, the text is ignored. Note that RegEx library closes the comment as soon as it sees a &quot;)&quot;, so there is no way to put a literal &quot;)&quot; in the comment. </p>
+
+<h2><a name="a014">Lookahead/Lookbehind assertions</a></h2>
+Assertions are used to match a string that is followed by something else or to match a string that is behind something else.
+<p><strong>Examples:</strong><br />
+
+<table>
+  <tr>
+    <td nowrap><span class="code">Isaac (?=Asimov)</span></td>
+    <td> matches 'Isaac ' only if it’s followed by 'Asimov'.</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">Isaac (?!Asimov)</span></td>
+    <td> matches 'Isaac ' only if it’s not followed by 'Asimov'.</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">(?&lt;=Mega)byte</span></td>
+    <td> matches 'byte' that is preceded by 'Mega'. It matches 'byte' in 'Megabyte', but does not match 'byte' or 'Kilobyte'</td>
+  </tr>
+  <tr>
+    <td nowrap><span class="code">(?&lt;!Mega)byte</span></td>
+    <td> matches 'byte' that is not preceded by 'Mega'. It does not match 'byte' in 'Megabyte', but it matches the word 'byte' or 'byte' in 'Kilobyte'</td>
+  </tr>
+</table>
+</p>
+<br />
+
+<a name="eng"></a>
+<h2>PCRE regex engine</h2>
+
+<p>The EControl regex syntax described above is used for lexers parsing. 
+In searches from Find/Replace dialogs more powerful regex engine is used, PCRE.
+PCRE is almost 100% compatible with <a href="http://perldoc.perl.org/perlre.html" target="_blank">Perl regular expressions</a>.
+The main differences between EControl and PCRE:
+</p>
+
+<ul>
+<li>PCRE allows to change the case on replacements, see help paragraph below.
+<li>EControl doesn't support non-capturing groups which is a big drawback when you want to do some complex replacements.
+<li>"r" modifier doesn't exist in PCRE.
+<li>"g" modifier in EControl is same as "U" in PCRE.
+<li>\g and \G don't exists in PCRE.
+<li>\h and \H have another meaning in PCRE.
+<li>PCRE recognizes only \x0D\x0A or \x0A or \x0D (depending of the file format)
+    as newline characters when using "^", "$" and ".".
+    Unicode line endings are not supported with ^ $ . in current implementation, but
+    could be matched with \x metacharacter.
+<li>EControl uses \z to match any newline character, while PCRE uses \z to match only at the end of text
+    (same as \Z in EControl, but in PCRE \Z has another meaning
+    - matches at the end of the string, also matches before a newline at the end of the string).
+</ul>
+<br />
+
+<a name="case"></a>
+<h2>Case changing</h2>
+
+<p>Feature supported in PCRE engine only. You may change text case when doing replaces in editor. The following metacharacters are supported:
+  <ul>
+  <li><span class="inlinecode">\Un</span> inserts the n-th backreference in uppercase;
+  <li><span class="inlinecode">\Ln</span> inserts it in lowercase;
+  <li><span class="inlinecode">\Fn</span> inserts it with the first character in uppercase and the remainder in lowercase;
+  <li><span class="inlinecode">\In</span> inserts it with the first letter of each word capitalized, and the other letters in lowercase.
+  </ul>
+</p>
+
+<p>For example, if we have text line "sOMe tExt hEre":</p>
+<table>
+    <tr>
+        <th>Search for &nbsp;&nbsp;</th>
+	<th>Replace with &nbsp;&nbsp;</th>
+	<th>Result line</th>
+    </tr>
+    <tr>
+        <td><span class="inlinecode">(\w+)</span></td>
+	<td><span class="inlinecode">\U1</span></td>
+	<td>"SOME TEXT HERE"</td>
+    </tr>
+    <tr>
+        <td><span class="inlinecode">(\w+)</span></td>
+	<td><span class="inlinecode">\L1</span></td>
+	<td>"some text here"</td>
+    </tr>
+    <tr>
+        <td><span class="inlinecode">(^.+?$)</span></td>
+	<td><span class="inlinecode">\F1</span></td>
+	<td>"Some text here"</td>
+    </tr>
+    <tr>
+        <td><span class="inlinecode">(^.+?$)</span></td>
+	<td><span class="inlinecode">\I1</span></td>
+	<td>"Some Text Here"</td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Project Manager</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=ProjMan.html'>show framing</a></center>")
+		</script>
+<h1>Project Manager</h1>
+<hr />
+
+<ul>
+<li> <a href="#in">Introduction</a>
+<li> <a href="#dnd">Drag&drop in project tree</a>
+<li> <a href="#pre">"Preview" panel</a>
+</ul>
+
+<a name="in"><h2>Introduction</h2></a>
+
+<p>To call Project Manager in SynWrite, use one of the following:
+<ul>
+<li> open the left panel (with syntax tree) and click "Project" tab below the tree;
+<li> use command "Window -- Panels -- Project panel".
+</ul>
+</p>
+
+<p>Project Manager allows to group files into project structure/tree, which then
+can be saved to disk in a single file (only listing of files/folders is saved, not files themselves).
+Project files have "synw-proj" extension.
+</p>
+
+<p>
+<center>
+<img src="panelproj.png" alt="Project manager" />
+</center>
+</p>
+
+<p>The following toolbar buttons are present in Project Manager:
+</p>
+<ul>
+<li> Open project file
+<li> Save project file
+<li> Add empty (virtual) folder
+<li> Add disk folder's contents
+<li> Add disk file(s)
+<li> Rename current folder
+<li> Delete selected items
+<li> Open selected items in editor
+<li> Open <a href="dialogprojopt.html">"Project properties" dialog</a> or "Project tools" dialog
+</ul>
+
+<p>Projects can be made portable in such a way: put all data files into subfolders of a single folder;
+and save SynWrite project file into the same folder. Then this data folder is "portable" - you can move it
+and reopen SynWrite project file with no file paths correction.
+</p>
+<br>
+
+<a name="dnd"><h2>Drag&drop in project tree</h2></a>
+
+<p>The following kinds of tree nodes' drag&drop are possible in the project tree:
+</p>
+<ul>
+<li>drop node(s) on folder, usual - moves items inside the target folder;
+<li>drop node(s) on folder, with Alt key pressed - moves items above the target folder (into the same level as target);
+<li>drop node(s) on file - moves items above the target file (into the same level as target).
+</ul>
+
+<p>You can drag&drop files and folders from Windows Explorer into the project tree. This will add
+items to the project (considering current tree node selection). When you drop a folder,
+additional "Add folder to project" dialog apears.
+</p>
+<br>
+
+<a name="pre"><h2>"Preview" panel</h2></a>
+
+<p>There is "Preview current project file" panel, just press Space while in Project Manager to show/hide this panel.
+It shows selected project file contents in a temporary read-only editor.
+You can dock panel to the edge of main SynWrite window.
+Use button "Open in editor" on this panel to open previewed file for editing.
+</p>
+<br />
+
+
+</body>
+</html>

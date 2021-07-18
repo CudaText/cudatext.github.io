@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Customizing Status Line</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=MiscStatusText.html'>show framing</a></center>")
+		</script>
+
+<h1>Customizing Status Line</h1>
+<hr>
+<p>To customize content of statusbar 1st panel (which shows current line and column numbers),
+you need to manually edit the following options in the Syn.ini file
+(it is located in "%AppData%\SynWrite" folder by default),
+in section [View]:
+<p>
+<table border=1>
+	<tr>
+		<td>StatusNoSel</td>
+		<td>contains macros list used when no selection is made</td>
+	</tr>
+	<tr>
+		<td>StatusSmallSel</td>
+		<td>contains macros list for single-line selection</td>
+	</tr>
+	<tr>
+		<td>StatusStreamSel</td>
+		<td>contains macros list for stream selection (more than 1 line selected)</td>
+	</tr>
+	<tr>
+		<td>StatusColumnSel</td>
+		<td>contains macros list for column selection</td>
+	</tr>
+	<tr>
+		<td>StatusCarets</td>
+		<td>contains macros list for multi-carets mode</td>
+	</tr>
+	<tr>
+		<td>StatusWidth</td>
+		<td>specifies panel width, in pixels</td>
+	</tr>
+	<tr>
+		<td>StatusAlign</td>
+		<td>specifies text alignment: 0: center, 1: left, 2: right</td>
+	</tr>
+</table>
+
+<p>
+The defaults are:
+<p>
+<pre class="code">[View]
+StatusNoSel={LineNum} : {ColNum} ({TotalLines})
+StatusSmallSel={LineNum} : {ColNum} ({SelLines}x{SelCols}/{TotalLines})
+StatusStreamSel={LineNum} : {ColNum} ({SelLines}/{TotalLines})
+StatusColumnSel={LineNum} : {ColNum} ({SelLines}x{SelCols}/{TotalLines})
+StatusCarets=#={Carets} ({TotalLines})
+StatusWidth=150
+StatusAlign=0
+</pre>
+
+<p>
+The following macros are allowed in options values:
+<p>
+<table border=1>
+	<tr>
+		<td>{LineNum}</td>
+		<td>Caret's line number</td>
+	</tr>
+	<tr>
+		<td>{ColNum}</td>
+		<td>Caret's column number</td>
+	</tr>
+	<tr>
+		<td>{TotalLines}</td>
+		<td>Total lines count</td>
+	</tr>
+	<tr>
+		<td>{TotalChars}</td>
+		<td>Total characters count</td>
+	</tr>
+	<tr>
+		<td>{SelLines}</td>
+		<td>Number of selected lines</td>
+	</tr>
+	<tr>
+		<td>{SelCols}</td>
+		<td>Number of selected columns, for column blocks</td>
+	</tr>
+	<tr>
+		<td>{SelChars}</td>
+		<td>Number of selected characters</td>
+	</tr>
+    
+	<tr>
+		<td>{Carets}</td>
+		<td>Multi-carets mode: number of carets</td>
+	</tr>
+	<tr>
+		<td>{CaretsTopLine}</td>
+		<td>Multi-carets mode: line number for top caret</td>
+	</tr>
+	<tr>
+		<td>{CaretsBottomLine}</td>
+		<td>Multi-carets mode: line number for bottom caret</td>
+	</tr>
+    
+	<tr>
+		<td>{FileDate}</td>
+		<td>Date of disk file, long format</td>
+	</tr>
+	<tr>
+		<td>{FileDate2}</td>
+		<td>Date of disk file, short format</td>
+	</tr>
+	<tr>
+		<td>{FileDateOp}</td>
+		<td>Date of disk file, format using option "Date/time format"</td>
+	</tr>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<HTML><HEAD>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</HEAD>
+<BODY>
+<UL>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Обзор"><param name="Local" value="01Syn.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Использование мыши"><param name="Local" value="IntroMouse.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Параметры командной строки"><param name="Local" value="CommandLine.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Частые вопросы (FAQ)"><param name="Local" value="FAQ.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Мульти-каретки"><param name="Local" value="MultiCarets.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Мульти-выделения"><param name="Local" value="MultiSel.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Группы вкладок"><param name="Local" value="Groups.html"></OBJECT>
+
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Специальные средства кодирования"></OBJECT>
+  <UL>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Автозавершение"><param name="Local" value="HelperACP.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Автозакрытие тегов"><param name="Local" value="HelperAClose.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Автокоррекция регистра"><param name="Local" value="HelperACase.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Фрагменты (сниппеты)"><param name="Local" value="Snippets.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Синхронные правки"><param name="Local" value="HelperSyncEdit.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="SmartTagTabbing"><param name="Local" value="HelperSmartTagTabbing.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Emmet (Zen Coding)"><param name="Local" value="HelperZenCoding.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Предпросмотр цветов"><param name="Local" value="HelperColorPreview.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Предпросмотр изображений"><param name="Local" value="HelperImagePreview.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Проверка правописания с учетом синтаксиса"><param name="Local" value="HelperSpell.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Вставка даты/времени"><param name="Local" value="HelperInsertDate.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Портабельные закладки"><param name="Local" value="HelperPortableBk.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Маркеры"><param name="Local" value="HelperMarkers.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Маркеры колонок"><param name="Local" value="HelperColMarkers.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Микрокарта"><param name="Local" value="HelperMicroMap.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Комментирование"><param name="Local" value="HelperCmt.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="HTML Tidy"><param name="Local" value="HelperTidy.html"></OBJECT>
+  </UL>
+
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Дополнительные панели"></OBJECT>
+  <UL>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Менеджер проекта"><param name="Local" value="ProjMan.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Плагин Explorer"><param name="Local" value="PluginExplorer.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Плагин SynFTP"><param name="Local" value="SynFTP.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Текстовые клипы"><param name="Local" value="MiscClips.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Консоль"><param name="Local" value="PyConsole.html%20"></OBJECT>
+  </UL>
+
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Синтаксис регулярных выражений"><param name="Local" value="RegEx.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Кодировки"><param name="Local" value="Enc.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Внешние инструменты"><param name="Local" value="ExternalTools.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Плагины и дополнения"><param name="Local" value="PluginsAddons.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Сессии"><param name="Local" value="Sessions.html"></OBJECT>
+
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Диалоги"></OBJECT>
+  <UL>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Диалог 'Поиск/Замена'"><param name="Local" value="DialogFind.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Диалоги 'Команды', 'Файлы проекта'"><param name="Local" value="DialogCmdList.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Диалог 'Свойства проекта'"><param name="Local" value="DialogProjOpt.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Диалог 'Генератор Lorem Ispum'"><param name="Local" value="DialogLorem.html"></OBJECT>
+  </UL>
+
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Разное"></OBJECT>
+  <UL>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Lister-плагин для TotalCmd"><param name="Local" value="TCListerPlugin.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Клавишные команды"><param name="Local" value="Keys.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Настройка статус-строки"><param name="Local" value="MiscStatusText.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Шаблоны новых файлов"><param name="Local" value="MiscFileTpl.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Текстовые конвертеры"><param name="Local" value="MiscConv.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Формат даты/времени"><param name="Local" value="MiscDateFormat.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Как сделать IDE?"><param name="Local" value="MiscHowToMakeIDE.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Благодарность за значки"><param name="Local" value="MiscIconCredits.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Исходный код"><param name="Local" value="MiscSource.html"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Лицензионное соглашение"><param name="Local" value="Lic.html"></OBJECT>
+  </UL>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Помощь проекту"><param name="Local" value="Donate.html"></OBJECT>
+</UL>
+</BODY></HTML>

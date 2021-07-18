@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/tpl.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Common properties</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=Common.html'>show framing</a></center>")
+		</script>
+<h1>Common properties</h1>
+<hr />
+<p>All styles and rules are items derived from the same base class, so working with list is common for them.
+
+<table width="100%" border="0">
+  <tr>
+    <td width="230">
+      <img src="common.png" alt="Common controls shot" />
+    </td>
+    <td valign="top">
+      <p>Each item in list have unique name and index. <br />
+      Edit box under list allows to change name of the item. <br />
+      You can use drag&amp;drop operations to change order of items. <br />
+  <br />
+      You can disable any item. Disabled items displayed with gray color. Disabled items will not be used in syntax analysis algorithm (rules) or will not be applied to the editor canvas (styles).</p>
+      <p>Commands:
+      <ul>
+      <li> Move item down.           
+      <li> Move item up.             
+      <li> Create new item.                   
+      <li> Import items from other lexers.    
+      <li> Disable/enable item.               
+      <li> Delete item.                       
+      <li> Delete all items.                  
+      </ul>
+  </tr>
+</table>
+
+<h2>Parent restrictions for rules</h2>
+
+<p>
+<center>
+<img src="parent.png" alt="Parent properties" />
+</center>
+
+<p>  All rule classes are derived from same base class. In this class special conditions for rule enabling are defined. <br />
+  You can enable rule only within (out) some block.</p>
+
+<p><strong>Parent block</strong> - block rule of opened text range (when rule is being checked) that is verified for presence.
+<p><strong>Strict parent block</strong> - flag that specifies that parent block must be immediate parent for the rule.
+<p><strong>Not a parent</strong> - flag that specifies that &quot;parent block&quot; is not a parent of the rule.
+  
+<p><strong>Example:</strong></p>
+<table width="100%" border="0">
+  <tr>
+    <td width="21%" class="code"><p>implementation</p>
+      <p> const y: integer = 5;</p>
+      <p> function A;<br />
+        var x: integer;<br />
+        begin<br />
+        &nbsp;&nbsp;case B of<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;0: begin<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x := y;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;end;<br />
+        &nbsp;&nbsp;end; <br />
+    end;</p></td>
+    <td width="79%" valign="top" class="code">start of &quot;implementation&quot; range<br />
+      <br />
+    token detection for &quot;const&quot;<br />
+    <br />
+    start of &quot;function&quot; range<br />
+    token detection for &quot;var&quot;<br />
+    start of &quot;begin&quot; range<br />
+    start of &quot;case&quot; range<br />
+    start of &quot;begin&quot; range (second)<br />
+    <br />
+    end of &quot;begin&quot; range (second)<br />
+    end of &quot;case&quot; range<br />
+    end
+    of &quot;begin&quot; range, end of &quot;function&quot; range</td>
+  </tr>
+</table>
+<p>For the detection &quot;var&quot; range &quot;implementation&quot; is a parent, but not a strint parent, range &quot;function&quot; is parent and strict parent.<br />
+  For &quot;function&quot; range detecting you can specify parent &quot;implementation&quot;. If you set strict parent flag, nested functions will not be detected. Such restrictions will work only in units (where &quot;implementation&quot; section is present). Or you may specify that &quot;function&quot; range have not a &quot;interface&quot; parent (set flag &quot;not a parent&quot;) in this case function will be detected not only in units but in programm file or in scripts.</p>
+
+<h2>Misc</h2>
+
+<p><strong>Always enabled</strong> - flag that specifies that this rule will be active not only in the current lexer but in the nested lexers too. <br />
+For example, in Pascal function we have &quot;asm&quot; range with reference to nested &quot;Assembler&quot; lexer. We can specify that &quot;Comment&quot; token rule is always enabled. In this case in the Assembler block Pascal comments will be highlighted correctly, otherwise this rule will be inaccessible in Assembler block.</p>
+
+
+</body>
+</html>

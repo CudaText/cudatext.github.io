@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/tpl.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Sub lexers</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=Nested.html'>show framing</a></center>")
+		</script>
+<h1>Sub lexers</h1>
+<hr />
+
+<p>
+<center>
+<img src="nested.png" alt="Sub lexers" />
+</center>
+
+<p>Nested lexers allow to use external lexer for the defined text ranges. For example, in HTML we want that scripts indide "&lt;script&gt;...&lt;/script&gt;" will be processed with the corresponded lexer (JavaScript, VBScript, etc).
+Sublexer rules are intended for this purpose.
+
+<p>To detect text ranges two regular expression are used: &quot;Start condition&quot; and &quot;End condition&quot;.
+  Text range will exist from the end of the &quot;Start condition&quot; to the start of the "End condition".</p>
+<p>For example, we can use Assembler lexer inside Pascal:
+<ul>
+<li> Sub lexer  =  &quot;Assembler&quot; 
+<li> Start condition = &quot;asm&quot;
+<li> End condition = &quot;end&quot;   
+</ul>
+
+<p>In this case text range will be from the next character after &quot;asm&quot; to the previous character before &quot;end&quot;.<br />
+If text range must start from the begin of text, set property &quot;<strong>Start at the begin of text</strong>&quot;.<br />
+If text range must be closed at end of text, set property &quot;<strong>End at the end of text</strong>&quot;.
+<br />
+
+<h2>Lexer inheritance</h2>
+<p>If you want to extend some lexer without modifying it, you can do this:
+<ol>
+<li> Create new lexer.
+<li> Create &quot;Sublexer&quot; rule for the base lexer from start to end of text.
+<li> Create new rules and mark them as &quot;Always enabled&quot;.
+</ol>
+
+<p>So you create inherited lexer which have all rules of the base lexer plus rules defined in the derived lexer.
+</body>
+</html>

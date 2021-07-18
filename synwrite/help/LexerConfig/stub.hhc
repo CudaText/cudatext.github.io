@@ -1,0 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML><HEAD></HEAD>
+<BODY>
+<UL>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Overview"><param name="Local" value="Index.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Configuration dialog"><param name="Local" value="Dialog.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Common properties"><param name="Local" value="Common.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Token rules (parser)"><param name="Local" value="Parser.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Block rules"><param name="Local" value="Rules.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Name formatting"><param name="Local" value="NameFmt.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Sub lexers"><param name="Local" value="Nested.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Grammar"><param name="Local" value="Grammar.html"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Indent-based folding"><param name="Local" value="FoldIndent.html"></OBJECT>
+</UL>
+</BODY></HTML>

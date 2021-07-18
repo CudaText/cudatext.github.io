@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<link rel="StyleSheet" href="style.css" type="text/css" media="screen" />
+<title>Предпросмотр цветов</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=HelperColorPreview.html'>show framing</a></center>")
+		</script>
+
+<h1>Предпросмотр цветов</h1>
+<hr />
+
+<ul>
+	<li> <a href="#pre">Предпросмотр цветов</a></li>
+	<li> <a href="#rec">Меню последних цветов</a></li>
+</ul>
+
+<h2><a name="pre">Предпросмотр цветов</a></h2>
+<p>Есть возможность увидеть цвет, указанный в коде HTML или CSS. Когда
+курсор задерживается над конструкцией, содержащей цветовые коды,
+появляется подсказка. </p>
+
+<center>
+<img src="colorpreview.png" alt="Подсказка цвета" />
+</center>
+
+<p>Если в конструкции содержится два цвета (текст и фон), то в подсказке они
+отображаются оба:</p><center>
+<img src="colorpreview2.png" alt="Подсказка для 2х цветов" />
+</center>
+
+<p>Если нужно получить предпросмотр цвета, а конструкция
+закомментирована, то может потребоваться предварительное выделение код цвета (например, двойным кликом).
+</p>
+
+<center>
+<img src="colorpreview3.png" alt="Выделите код для просмотра" />
+</center>
+
+<p>Также нужно предварительно выделять имена цветов (см. <a href="http://www.w3schools.com/html/html_colornames.asp" title="" target="_blank">список HTML-цветов</a>) для предпросмотра.
+Выделение имеет приоритет над наведением, поэтому нужно отменять
+выделение, чтобы работал предпросмотр цветов при наведении курсора.
+</p>
+
+<p>Если цвет не распознан (например, содержит неверные hex-цифры), в
+статус-строке появится сообщение об этом.
+</p>
+
+
+<br />
+<h2><a name="rec">Меню последних цветов</a></h2>
+<p>Коды последних выбранных (через плагин "Color picker") цветов
+добавляются к меню "Последние цвета". Это меню автоматически появляется
+рядом с меню "Справка" в виде цветного прямоугольника.
+</p>
+<center>
+<img src="colorrecent.ru.png" alt="Меню последних цветов" />
+</center>
+
+<p>Советы:
+</p>
+<ul>
+	<li>Можно самостоятельно добавлять цвета в это меню: кликните правой
+	клавишей мыши над кодом цвета и выберите команду "Добавить в последние
+	цвета".</li>
+	<li>Можно удалять отдельные пункты этого меню: удерживайте Ctrl
+	при вызове лишнего пункта.</li>
+</ul>
+
+</body>
+</html>

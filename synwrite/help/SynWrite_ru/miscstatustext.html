@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<link rel="StyleSheet" href="style.css" type="text/css" media="screen" />
+<title>Настройка статус-строки</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=MiscStatusText.html'>show framing</a></center>")
+		</script>
+
+<h1>Настройка статус-строки</h1>
+
+<hr />
+<p>Для настройки данных, отображаемых в первом поле статус-строки (там
+по умолчанию стоят текущая строка и колонка), нужно самостоятельно
+отредактировать в файле Syn.ini (см. папку "%AppData%\SynWrite") в секции [View] следующие ключи:
+ </p>
+<table style="border-collapse: collapse;" border="1" cellpadding="3">
+	<tbody>
+    <tr>
+		<td>StatusNoSel</td>
+		<td>данные для состояния без выделения</td>
+	</tr>
+	<tr>
+		<td>StatusSmallSel</td>
+		<td>данные для состояния с выделением в пределах одной строки</td>
+	</tr>
+	<tr>
+		<td>StatusStreamSel</td>
+		<td>данные для состояния с обычным выделением, захватывающим несколько строк</td>
+	</tr>
+	<tr>
+		<td>StatusColumnSel</td>
+		<td>данные для состояния с вертикальным выделением, захватывающим несколько строк</td>
+	</tr>
+	<tr>
+		<td>StatusCarets</td>
+		<td>данные для состояния с несколькими каретками</td>
+	</tr>
+	<tr>
+		<td>StatusWidth</td>
+		<td>указание ширины поля в пикселах</td>
+	</tr>
+	<tr>
+		<td>StatusAlign</td>
+		<td>указание выравнивания текста: 0: по центру, 1: прижать влево, 2: прижать вправо</td>
+	</tr>
+  </tbody>
+</table>
+
+<p>
+Умолчательные значения этих ключей:
+</p>
+<pre class="code">[View]<br />StatusNoSel={LineNum} : {ColNum} ({TotalLines})<br />StatusSmallSel={LineNum} : {ColNum} ({SelLines}x{SelCols}/{TotalLines})<br />StatusStreamSel={LineNum} : {ColNum} ({SelLines}/{TotalLines})<br />StatusColumnSel={LineNum} : {ColNum} ({SelLines}x{SelCols}/{TotalLines})<br />StatusCarets=#={Carets} ({TotalLines})<br />StatusWidth=150<br />StatusAlign=0</pre>
+
+<p>В значениях этих ключей могут встречаться следующие макропеременные:
+</p>
+<table style="border-collapse: collapse;" border="1" cellpadding="3">
+	<tbody>
+    <tr>
+		<td>{LineNum}</td>
+		<td>Номер строки с кареткой</td>
+	</tr>
+	<tr>
+		<td>{ColNum}</td>
+		<td>Номер колонки с кареткой</td>
+	</tr>
+	<tr>
+		<td>{TotalLines}</td>
+		<td>Полное число строк</td>
+	</tr>
+	<tr>
+		<td>{TotalChars}</td>
+		<td>Полное число символов</td>
+	</tr>
+	<tr>
+		<td>{SelLines}</td>
+		<td>Число выделенных строк</td>
+	</tr>
+	<tr>
+		<td>{SelCols}</td>
+		<td>Число выделенных колонок при вертикальном выделении</td>
+	</tr>
+	<tr>
+		<td>{SelChars}</td>
+		<td>Число выделенных символов</td>
+	</tr>
+    
+	<tr>
+		<td>{Carets}</td>
+		<td>При нескольких каретках: число кареток</td>
+	</tr>
+	<tr>
+		<td>{CaretsTopLine}</td>
+		<td>При нескольких каретках: номер строки с верхней кареткой</td>
+	</tr>
+	<tr>
+		<td>{CaretsBottomLine}</td>
+		<td>При нескольких каретках: номер строки с нижней кареткой</td>
+	</tr>
+    
+	<tr>
+		<td>{FileDate}</td>
+		<td>Дата файла на диске в длинном формате</td>
+	</tr>
+	<tr>
+		<td>{FileDate2}</td>
+		<td>Дата файла на диске в коротком формате</td>
+	</tr>
+	<tr>
+		<td>{FileDateOp}</td>
+		<td>Дата файла на диске в формате, описанном в опции "Формат времени/даты" в диалоге "Опции"</td>
+	</tr>
+  </tbody>
+</table>
+
+</body>
+</html>

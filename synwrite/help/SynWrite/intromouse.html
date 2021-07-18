@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Mouse Usage</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=IntroMouse.html'>show framing</a></center>")
+		</script>
+
+<h1>Mouse Usage</h1>
+<hr>
+
+<p>Common shortcuts:
+<ul>
+<li>Right button click - Show context menu.
+<li>Left button click - Move caret to mouse position and start normal selection.
+<li>Middle button click - Start "auto-scroll" feature:
+  circle at clicked position is shown; if you move mouse above/below that circle than
+  editor will scroll up/down automatically.
+<p></p>
+<li>Shift + Left click - Select "normal" block from previous caret position to mouse position.
+<li>Alt + Shift + Left click - Select "column" block from previous caret position to mouse position.
+<li>Ctrl + Alt + Shift + Left click - Select "line" block from previous caret position to mouse position.
+</ul>
+</p>
+
+<p>Multi-carets shortcuts:</p>
+<ul>
+<li>Ctrl + Left click - Add caret. 
+<li>Ctrl + Shift + Left click - Add several carets aligned in a column. 
+</ul>
+
+<p>Misc shortcuts:</p>
+<ul>
+<li>Ctrl + Left click, over an URL - Open URL in default browser.
+<li>Ctrl + Alt + Left click - Perform "Go to definition" command (only with plugins installed).
+<li>Shift + rotate mouse wheel - Perform horizontal scrolling.
+</ul>
+
+<p>
+Dragging operations:
+<ul>
+<li>Alt + dragging - Perform "column" selection.
+<li>Ctrl + Alt + dragging - Perform "line" selection.
+<li>Left button click over selection block - start text dragging. Dragged text will be moved to new position. 
+    To copy selection using drag&amp;drop press Ctrl (or Ctrl+Alt) key during dragging.
+<li>You can perform drag&amp;drop on block staples. Press Ctrl+Alt keys and drag block staple. This operation will indent/unindent lines that are coupled by the block staple.
+<li>You can drag right margin to new position by left mouse button with pressed Ctrl+Alt keys.</li>
+</ul>
+
+<p>Used terms:</p>
+<ul>
+<li>"Block staples" are dashed vertical lines, which connect syntax-blocks edges. E.g. in C++ lexer syntax-blocks
+are braces {...}, in Pascal lexer they are "begin...end".
+<li>"Right margin" is solid vertical line at configurable column, e.g. column 80.
+</ul>
+
+</body>
+</html>

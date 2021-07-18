@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<LINK REL=StyleSheet href="style.css" TYPE="text/css" MEDIA=screen>
+<title>Dialog "Project Properties"</title>
+</head>
+<body><script language="javascript">
+		if ((window.name != "content") && (navigator.userAgent.indexOf("Opera") <= -1) )
+		document.write("<center><a href='index.html?page=DialogProjOpt.html'>show framing</a></center>")
+		</script>
+<h1>Dialog "Project Properties"</h1>
+<hr />
+
+<p>This dialog is called by "gear" toolbar button of "Project Manager" panel. It allows to change the following
+properties of currently opened project. These options are saved in the project file.
+</p>
+<table border="1">
+	<tr>
+		<td width="200">Encoding / Line ends / Lexer</td>
+		<td>Properties of new documents, which are applied to the newly created documents when the project is loaded.
+          They override the same settings from the main SynWrite configuration, if non-default values are chosen.</td>
+	</tr>
+	<tr>
+		<td>Working folder</td>
+		<td>Initial folder for file/folder browse dialogs for project: "Add files", "Add folder contents".
+            <br>The working folder is referred by <span class="inlinecode">{ProjectWorkDir}</span> variable in external tools dialog.</td>
+	</tr>
+	<tr>
+		<td>Main file</td>
+		<td>Full path of project's main file. Must be changed using project tree context menu, command "Set as main file".
+            <br>The main file is referred by <span class="inlinecode">{ProjectMainFileName}</span> variable in external tools dialog.</td>
+	</tr>
+	<tr>
+		<td>Files sorting</td>
+		<td>Specifies sorting mode for the project, which is considered by "Add folder contents" dialog.
+           If sorting is disabled, the mentioned dialog won't sort added folders, which is much faster for big folders.
+           Note: you may sort folders manually using project context menu.
+        </td>  
+	</tr>
+	<tr>
+		<td>Search paths</td>
+		<td>Lists of folders, which are searched by command "Open by selection" of editor context menu
+            (i.e. if you select word "wwww" in editor, context menu item "Open wwww" will appear).
+           This list appends the folders list configurable in main SynWrite options.</td>
+	</tr>
+	<tr>
+		<td>User variables</td>
+		<td>List of lines in the form:
+          <span class="inlinecode">VarName=some text</span>,
+          which initialize user variables for external tools. In the properties of external tools
+          you can refer to such variables as <span class="inlinecode">{VarName}</span>.
+          Don't use ";" char inside this option text.<br />
+          Special lines can specify additional <a href="helperacp.html#fm">auto-completion lists</a> for any lexers: 
+             <span class="inlinecode">AC[LexerName]=c:\path\MyCompletions.acp</span> ; 
+             path of file may be omitted if file is located in the same folder as project file.
+          </td>
+	</tr>
+    <!--
+	<tr>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+	</tr>
+    -->
+</table>
+
+<br>
+
+</body>
+</html>
