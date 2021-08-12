@@ -3,14 +3,21 @@
   - fixed
   * changed
 
-1.140.5 (2021/08)
+1.141.0 (2021/08)
 
-+ add: better calculation of font color for HTML colors like #rrggbb (patch by @bogen85)
++ add: duplicate bookmarks history to another key inside "history files.json"; later only this new key will be used and old bookmarks-history in session files will be ignored (thanks @MiroslavMatas)
++ add: better calculation of font color for highlighted HTML color tokens, like #rrggbb (patch by @bogen85)
++ add: lexer Python: highlight UPPERCASE words
++ add: lexer C++: support _asm/__asm blocks for MSVC
++ add: lexer Bash: support '\' char leading in line (it's not escape)
 * change: option "autocomplete_autoshow_chars" now calls the listbox less agressively (now it's called in the application-idle event)
-- fix: "autocomplete_autoshow_chars" gave a crash (thanks @halfbrained, @demanuel)
-- fix: Options Editor gave an error with older Python 3.5
+- fix: Indent/UnIndent were skipping whitespace-only lines (thanks @halfbrained)
+- fix: UI issue when code-tree is clicked, then UI-tab title is clicked
+- fix: API of Project Manager: fix for getting project variables (by @halfbrained)
+- fix: option "autocomplete_autoshow_chars" gave a crash (thanks @halfbrained, @demanuel)
+- fix: plugin Options Editor gave an error with old Python 3.5
 - fix: RegEx engine was failing in AArch64 version (and Solaris OS)
-- fix: minor fixes in lexers Markdown, reST
+- fix: lexers Markdown, reST: minor issues
 
 1.140.0 (2021/08)
 
