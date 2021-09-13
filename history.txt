@@ -3,10 +3,22 @@
   - fixed
   * changed
 
+1.144.0 (2021/09)
+
++ add: micromap can be rendered on vertical scrollbar area: new option "micromap_on_scrollbar"
++ add: option "scrollbar_click_jump" (thanks @JairoMartinezA)
++ add: lexer Python: support for future keywords "match" with "case"
+- fix: major bug in CSS auto-completion (must consider " | " separators in cudax_css.py)
+- fix: lexer Markdown: font-style modifiers worked bad with Unicode letters (thanks @MiroslavMatas); for this fix the class \l was added to the lexer RegEx syntax
+- fix: lexer Markdown: fix header rule
+- fix: lexer Markdown: highlight of <~mail@site.com> (thanks @l1ving)
+- fix: sometimes command "Undo" breaks the syntax highlight (thanks @eltonfabricio10)
+- fix: sometimes after PageDown command, app doesn't underline links (thanks @OmlineEditor)
+
 1.143.0 (2021/09)
 
 + add: option "autocomplete_html_autoclose" has additional function: on typing '</' it inserts the name of last opened tag (thanks @eltonfabricio10)
-+ add: for huge lines (length>4K) in e.g. HTML, syntax highlighting still must be calculated, to consider e.g. JS/CSS included blocks 
++ add: for huge lines (length>4K) in e.g. HTML, syntax highlighting still must be calculated, to consider e.g. JS/CSS included blocks
 + add: lexer Markdown: rework to support all font-style modifiers in all combinations (bold, italic, crossed, bold+italic, bold+crossed, italic+crossed, bold+italic+crossed); improve rule for 'headers'
 + add: lexer HTML: fix to support <script> with JSON
 + add: preinstalled toolbar theme "light_24x24" (from @effeotto)
