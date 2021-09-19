@@ -3,6 +3,20 @@
   - fixed
   * changed
 
+1.145.0 (2021/09)
+
++ add: consider Find dialog option "Case sensitive" on "Extract RegEx matches"
++ add: command "scroll to left edge"
++ add: command-line handles *.cuda-session files even without plugin Session Manager
++ add: lexer JS: folding for brackets ()[] (thanks @GHNewbiee)
++ add: lexer PHP: update word lists; keywords+classes must be case-insensitive
++ add: lexer Ini: highlight keywords "true"/"false" and numbers, support comments in the middle of a line
++ add: lexer YAML: fix string-rule, add \-escaped rule
+- fix: Project Manager: right-click must not open a file (thanks @GHNewbiee)
+- fix: Options Editor Lite: issue with arrow keys (thanks @GHNewbiee)
+- fix: API on_scroll was not called by "scroll ..." commands (thanks @OlehL)
+- fix: command "toggle side panel" sometimes shows empty panel
+
 1.144.0 (2021/09)
 
 + add: micromap can be rendered on vertical scrollbar area: new option "micromap_on_scrollbar"
