@@ -3,9 +3,23 @@
   - fixed
   * changed
 
+1.146.0 (2021/10)
+
++ add: command "add next occurrence of selected word" now wraps at the document end, like in Sublime (thanks @loziniak)
++ add: new command "skip (don't select) next occurrence of selected word" (thanks @loziniak)
+* change: option "auto_fold_comments": now several comments separated with a blank line, make several fold-ranges (thanks @GHNewbiee)
+* change: micromap min-mark-height changed from 2px to 4px (thanks @JairoMartinezA) 
+* change: 'ellipsis' Unicode char now has the full-width
++ add: lexer JS: "auto_fold_comments" works also for JS 'template strings' (thanks @GHNewbiee)
+- fix: splitted view: caret in view-2 hides if it's in folded range in view-1 (thanks @GHNewbiee)
+- fix: Project Manager: cannot show dot-files in 'Go to file' (thanks @loziniak)
+- fix: option "ui_one_instance": opening of 2nd app instance with session-file parameter didn't save previous session (thanks @JairoMartinezA)
+- fix: picture viewer: redundant mouse-wheel scrolling (thanks @eltonfabricio10)
+- fix: lexer YAML: escaping in single-quoted strings
+
 1.145.5 (2021/09)
 
-+ add: bookmarks can be shown on micromap: new option "micromap_bookmarks" (thanks @JairoMartinezA)
++ add: bookmarks can be shown on micromap: new option "micromap_bookmarks" (thanks @JairoMartinezA); it uses UI-theme color "editor, line states, added"
 + add: API allows toolbar buttons (Config Toolbar plugin) set the command-line (thanks @GHNewbiee)
 + add: plugin Multi Installer: add 'Back' buttons (thanks @GHNewbiee)
 + add: option "ui_button_hover" (note: sometimes it's buggy on Windows/GTK2)
