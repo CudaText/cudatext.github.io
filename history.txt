@@ -3,6 +3,21 @@
   - fixed
   * changed
 
+1.147.0 (2021/10)
+
++ add: before saving history/session file, check that disk free space is >1M, and give a Retry/Cancel messagebox if less (thanks @ertank)
++ add: option "paste_multiline_at_line_start", to mimic Sublime and VSCode, default is 'false' to not give a regression (thanks @hiiamboris)
++ add: option "ui_cmdpalette_hide_simple" (thanks @hiiamboris)
++ add: option "micromap_line_states" (thanks @JairoMartinezA)
++ add: command "expand selection to line, up"; before we had only "expand selection to line" which moves down (thanks @hiiamboris)
++ add: UI tabs drag-drop now works also when dropping on "+" pseudo-tab or on the right empty area (thanks @GHNewbiee) 
++ add: macOS version now detects Python 3.10 (thanks @sigzero)
++ add: lexer HTML: show block staples (thanks @eltonfabricio10)
++ add: lexer CSS: highlight std CSS functions
+- fix: error 'wrong time specification' when file from session was deleted (thanks @A-Nicoladie)
+- fix: regression: drag-drop of text: wrong selection after drop of whole lines
+- fix: regression: drag-drop of text: missing red drop marker
+
 1.146.2 (2021/10)
 
 * change: command "macros: start recording" was renamed and now it starts+stops the recording; 2 commands "macros: stop recording" and "macros: cancel recording" are deprecated and removed from Command Palette (thanks @hiiamboris)
