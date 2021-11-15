@@ -3,6 +3,13 @@
   - fixed
   * changed
 
+1.149.0 (2021/11)
+
++ add: when option "ui_reopen_session":true, also auto-save the session each 30 seconds, to make it safe if PC crashes (thanks @hiiamboris)
++ add: don't allow to reassign hotkeys Tab/Enter/Space/BkSpace w/o modifiers (thanks @WebMechanic)
+- fix: major fix for macOS text rendering - incorrect width of text fragments (visible with "renderer_offsets__mac":false) (thanks @esvignolo)
+- fix: width of Georgian letters should be 100% (thanks @66nuts)
+
 1.148.5 (2021/11)
 
 + add: commands "extend carets: up/down" did not handle going over shorter lines ("caret_after_end":false); now caret column is restored when going long line-> short line-> long line (thanks @GenuZ from linux.org.ru)
