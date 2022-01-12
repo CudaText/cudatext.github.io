@@ -3,6 +3,15 @@
   - fixed
   * changed
 
+1.153.5 (2022/01)
+
+* change: hotkey for Find (Replace) dialog always results in the search box being focused, like in ST4 and VSCode (thanks @andersaamodt)
++ add: hotkeys of commands "switch tab ..." / "... focus ..." work also in the Find dialog (thanks @andersaamodt)
++ add: better Console message on saving session: "N file(s) + M untitled"
++ add: new API for Auto Save plugin (thanks @andersaamodt)
+- fix: plugin Auto Save could overwrite session file list from another session (thanks @JairoMartinezA)
+- fix: sometimes after session loading, or 'close all tabs', editor UI control hides completely
+
 1.153.0 (2022/01)
 
 + add: it's possible to hide folding gutter icon for small blocks, via new option "fold_icon_min_range"
