@@ -3,9 +3,19 @@
   - fixed
   * changed
 
+1.155.3 (2022/01)
+
+* change: add the workaround for very slow work with huge line length=40M in XML file, which is handled by XML^ lite lexer: app now doesn't parse the line after 4K chars. The limit is taken from the old option "max_line_len_parsed". (thanks @tmsg)
++ add: new command "find: toggle+focus dialog" (thanks @DUOLabs333)
++ add: lexer Lua: add style for "documentation comments"
+- fix: wrong opening of several files at once, by Enter from Windows Explorer, with "ui_one_instance":true (thanks @jroblesr)
+- fix: if a tool from plugin External Tools is called while recording a macro, macro becomes incorrect (thanks @cser)
+- fix: dialogs 'Open file'/'Save file as' on Windows have bad looking 'filter' field
+- fix: plugin Colored Indent didn't get on_state call (thanks @JairoMartinezA) 
+- fix: lexer CSS: wrong highlight of 'rgb(func(some), ...)'
+
 1.155.0 (2022/01)
 
-+ add: "lite" lexers should skip too long lines, so the length limit 2K was set here
 + add: rendering is much faster for the case of huge line length=40M in the word-wrapped mode
 + add/change: improve logic of option "unprinted_content"; its "x" flag now works only with selection; added flag "X" which also works only with selection (thanks @JairoMartinezA)
 * change: delete last enumeration-value of option "wrap_mode" (value 3 worked the same as 2)
