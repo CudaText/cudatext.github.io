@@ -3,6 +3,16 @@
   - fixed
   * changed
 
+1.157.5 (2022/03)
+
++ add: lexer CSS: code-tree is reworked, now it can show OK even huge _minified_ CSS files
++ add: command "Paste and indent" in the Command Palette + upper menu (thanks @DUOLabs333). It mimics Sublime Text command with the same name, you can assign Ctrl+Shift+V to it.
++ add: command "Paste from history" in the Command Palette + upper menu. It mimics Sublime Text command. Feature is controlled by new option "ui_max_history_clipboard".
++ add: command "clipboard: clear history" in the Command Palette
+* change: removed menu item "Edit / Delete" (most apps don't have it)
+* change: lexer CSS: removed 'properties' nodes from code-tree (like in VSCode)
+* change: lexer CSS: removed color names (e.g. 'olive') from code-tree
+
 1.157.0 (2022/03)
 
 + add: support encoding ISO-8859-9 (thanks @ertank)
