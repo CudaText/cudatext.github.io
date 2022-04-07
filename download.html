@@ -90,13 +90,20 @@
           <li>macOS:
             <ul>
                 <li>Python engine is not included. To use plugins, you must install Python 3 from <b>python.org</b>.
-                <li>macOS AArch64 version needs this to be run: <code style="color: #c8c;">xattr -cr /Applications/CudaText.app/</code>
+                <li>macOS AArch64 version needs this to be run:
+                    <pre class="code2">xattr -cr /Applications/CudaText.app/</pre>
             </ul>  
           </li>
           <li>other Unix'es: Python engine is not included. To use plugins, see instruction inside "default.json" config about "pylib".<br>
               For Debian/Ubuntu, you need .deb package, it adds CudaText shortcut to the Applications list, 
               and adds "cudatext" to system path. For others, get .xz package, unpack it to ~/cudatext, 
               and create shortcut by hands.
+          <li>To install on Debian based OS using command-line interface:
+<pre class="code2">
+$ echo 'deb [trusted=yes] https://apt.fury.io/cudatext/ /' | sudo tee -a /etc/apt/sources.list.d/cudatext.list
+$ sudo apt update
+$ sudo apt install cudatext
+</pre>
           <li>Haiku: <a href="https://github.com/roired/CudaText-Haiku/releases" target="_blank">unofficial builds</a>, 
               currently they have problems reported in the issue-tracker.
           </ul>
