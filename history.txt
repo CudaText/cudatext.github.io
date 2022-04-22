@@ -3,6 +3,14 @@
   - fixed
   * changed
 
+1.162.5 (2022/04)
+
++ add: on editing of a line, which is start of a folded block, do unfolding of that block (thanks @veksha)
++ add: plugin Comments: support 'Line comment' commands if 'line comment' chars are absent, but 'range comment' chars are present; e.g. in CSS (thanks @ildarkhasanshin)
++ add: plugin Insert Time: added format 'unix' (Unix-time), it will be added to config after you delete the config + restart the app (thanks @mix-7)
+- fix: issue with "ui_one_instance":true on a multi-user Linux/Unix system (thanks @bogen85)
+- fix: issue with too greedy folding with "auto_fold_comments" in Nim lexer (thanks @veksha)
+
 1.162.0 (2022/04)
 
 + add: Project Manager: the work is done to support auto-saving of the last project (even untitled), and auto-loading of last active project on app start. So if user e.g. drag-drops a folder on CudaText, this makes the new project "temporary", and after app restart, "temporary" project will be restored. Also app option "ui_auto_save_session" defaults to 'true' now, to be like Sublime Text / VSCode. (thanks opennet.ru)
