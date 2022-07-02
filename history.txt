@@ -3,8 +3,10 @@
   - fixed
   * changed
 
-1.166.3 (2022/06)
+1.166.5 (2022/07)
 
++ add: small optimization: LSP plugin should not start when app starts with single empty tab
+- fix: on opening another project, current project-session was not auto-saved (thanks @MiroslavMatas)
 - fix: crash on loading session with confirmation for 'binary' file (thanks @kvichans)
 - fix: on loading session with active 2nd group, empty tab was appearing (thanks @kvichans)
 * change: on loading session, don't check files for 'binary' content
