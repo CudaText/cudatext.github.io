@@ -3,12 +3,22 @@
   - fixed
   * changed
 
+1.167.5 (2022/07)
+
++ add: use translated button captions in message-boxes, both internal and API (thanks @hexaae)
++ add: wiki page https://wiki.freepascal.org/CudaText_VS_other_editors
++ add: option "renderer_tweaks" has new sub-option "l" (thanks @veksha)
+- fix: sometimes, bookmarks-section in the history file was purged by mistake (thanks @MiroslavMatas)
+- fix: click on the folded-block-rectangle hides caret (thanks @veksha)
+- fix: in e.g. Python lexer, new typed text may be 'catched' by the upper _folded_ block (thanks @veksha)
+- fix: on some Linux systems, with dots_per_inch=91, minimap is empty (thanks @veksha)
+- fix: lexers XML/XML^: highlight quoted string only after '=' (thanks @veksha)
+- fix: lexer Markdown: rule for italics
+
 1.167.0 (2022/07)
 
 + add: API to speedup ExTerminal plugin (thanks @veksha)
 + add: dialog 'Go to': handle also leading '+' like the trailing one
-+ add: wiki topic https://wiki.freepascal.org/CudaText#Advantages_over_Visual_Studio_Code
-+ add: wiki topic https://wiki.freepascal.org/CudaText#Disadvantages_compared_to_Sublime_Text_.2F_VSCode
 + add: list "File / Open recent" stores also pictures/binaries
 + add: TRegExpr engine: update "uppercase/lowercase tables" for some unicode ranges (by @AmigoJack)
 
