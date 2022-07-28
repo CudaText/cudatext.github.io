@@ -3,11 +3,20 @@
   - fixed
   * changed
 
-1.167.5 (2022/07)
+1.168.0 (2022/07)
+
++ add: command-line parameter '-verbose' for debugging
+- fix: couple of issues with saving read/only files (thanks @veksha)
+- fix: Linux Qt5: with "caret_after_end":true, on going up/down over short lines, caret moves lefter 
+- fix: Linux: file 'ast.py' in the current folder was breaking many plugins (thanks @veksha)
+- fix: lexer Bash: wrong highlight in '~/.local' (thanks @eltonfabricio10)
+
+1.167.5 (2022/07)                                              
 
 + add: use translated button captions in message-boxes, both internal and API (thanks @hexaae)
 + add: wiki page https://wiki.freepascal.org/CudaText_VS_other_editors
 + add: option "renderer_tweaks" has new sub-option "l" (thanks @veksha)
+- fix: regression in 1.166.5: saved _named_ session was not reopened (thanks @tmsg)
 - fix: sometimes, bookmarks-section in the history file was purged by mistake (thanks @MiroslavMatas)
 - fix: click on the folded-block-rectangle hides caret (thanks @veksha)
 - fix: in e.g. Python lexer, new typed text may be 'catched' by the upper _folded_ block (thanks @veksha)
