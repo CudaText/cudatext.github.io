@@ -3,6 +3,19 @@
   - fixed
   * changed
 
+1.170.0 (2022/09)
+
++ add: when file is deleted outside, show tab title in reddish color (theme color "tabs, special marks")
++ add: option "underline_color_files" must support modern variants of rgba() and hsla(); support color-angles in units deg/rad/grad/turn (thanks @eltonfabricio10)
++ add: option "py_caret_slow" (thanks @veksha)
++ add: lexer HTML: highlight background of <svg> blocks
+* change: bracket highlight is now performed near "on_caret_slow", ie after a pause
+* change: lexer CSS: don't highlight entire color-function calls as single token: rgba(...), hsla(...) etc
+- fix: fold-ranges from command "fold selected lines" often worked wrong
+- fix: incorrect width of group of some 'Latin extended' chars (thanks @dbgrgl)
+- fix: Addon Manager "Install from Git" ignored Git branch name on 'clone' action
+- fix: option "autocomplete_autoshow_chars" small bug
+
 1.169.2 (2022/08)
 
 + add: auto-completion in plugins: avoid listbox hiding/showing, when user presses Left/Right key in auto-completion
