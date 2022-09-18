@@ -3,15 +3,21 @@
   - fixed
   * changed
 
-1.170.5 (2022/09)
+1.171.0 (2022/09)
 
++ add: when editing too long lines (2000+ chars), editor turns lexer off for a few seconds. That is to prevent caret rendering glitches on such lines. Option is added for this: "max_line_len_for_editing_keeping_lexer".
 + add: few APIs for LSP Client
 + add: better calculate wrap positions for CJK text (thanks @lookoutside)
 + add: Addon Manager: add option "Verify HTTPS certificates" (thanks @veksha, @ViCrack)
++ add: option "renderer_anti_flicker" is now per-lexer (before it was global)
+- fix: option "renderer_anti_flicker":20 gave regression in FindInFiles4 plugin's UI
+- fix: default value of "key_left_right_wrap_with_carets" was not like default.json tells (thanks @cser)
+- fix: in some cases, Delete/typing command with multi-carets places multi-carets wrong (thanks @cser)
+- fix: regression in 1.169.2: Emmet engine broken
 - fix: regression in 1.167: Down-arrow from long wrapped line, to the last short line
 - fix: after mouse wheel zoomimg, scrollbar position becomes very incorrect (thanks @veksha)
 - fix: "mouse_wheel_zoom":false -> Ctrl+wheel jumps to file beginning
-- fix: too wide combobox-arrow if Windows scale is 200%
+- fix: too wide combobox-arrow if UI scale is big (thanks @kuannng)
 
 1.170.0 (2022/09)
 
