@@ -3,6 +3,17 @@
   - fixed
   * changed
 
+1.172.5 (2022/10)
+
++ add: lexer reStructuredText: support headers with Unicode (thanks @lookoutside)
++ add: 'Check for updates': added button "Open changelog" (thanks @ildarkhasanshin)
++ add: updated file-type icons (140 unused icons removed, 40 added)
++ add: commands "dialog: find: toggle" and "dialog: replace: toggle" now consider options "find_suggest_*" (thanks @Vivalzar)
+- fix: command "dialog: find: toggle" could move Find dialog out of the main window
+- fix: Tabs List plugin: wrong columns if file-pair is opened (thanks @veksha)
+- fix: error if Ctrl+D is pressed in Console/Find/Replace input (thanks @mix-7)
+- fix: regression in 1.165.2: Alt+Down stopped working in Console/Find/Replace comboboxes
+
 1.172.0 (2022/10)
 
 + add: option "auto_copy_clp", which now replaces plugin Auto Copy To Clipboard (plugin is now ignored); unlike the old plugin, option works in all editor-fields in the app (including Find/Replace/Console/etc)
@@ -11,7 +22,7 @@
 + add: API supports HTML formatting in auto-completion listbox; it will be used in LSP
 + add: handle command-line keys -h / -v / -el before creating GUI
 + add: Options Editor supports old Python 3.4 (thanks @spyrosmas)
-* change: change defualt of "ui_backup_sessions" to 2 (thanks @Flashwalker)
+* change: change default of "ui_backup_sessions" to 2 (thanks @Flashwalker)
 * change: change default of "ui_reopen_session_cmdline" to true (thanks @Flashwalker)
 * change: remove '-' from "nonword_chars" in "settings_default/lexer Bash script.json"
 - fix: after Shift+Right, Shift+Left, simple Right makes the buggy selection (thanks @veksha)
