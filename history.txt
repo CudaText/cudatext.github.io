@@ -3,6 +3,15 @@
   - fixed
   * changed
 
+1.173.2 (2022/10)
+
+- fix: minor issues with formatting in auto-completion listbox (thanks @veksha)
+- fix: wrong filter-char highlighting in menu dialog when item is collapsed with "..." (thanks @veksha)
+- fix: LSP plugin tooltip could appear in Alt+Tab list on Windows (thanks @veksha)
+- fix: lexer PHP: wrong folding of 'default:' blocks (thanks @veksha)
+- fix: Breadcrumbs plugin: code-tree cells may appear without icons, when code-tree is hidden
+- fix: regression in 1.117 or older: in GTK2 version clipboard is cleared on exit
+
 1.173.0 (2022/10)
 
 + add: API for LSP plugin to render colored auto-completion listbox (thanks @veksha)
