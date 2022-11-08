@@ -3,6 +3,18 @@
   - fixed
   * changed
 
+1.176.0 (2022/11)
+
++ add: Windows: avoid annoying white line under themed menubar (thanks @veksha)
++ add: option to turn off 'line states': "gutter_line_states" (thanks @iconv)
++ add: Project Manager: don't sort 'by extension': a) folders, b) non-Latin extensions (thanks @iconv)
++ add: apply options "caret_view*" also to plugins' input fields
+* change: Find dialog: make all buttons not focusable (thanks @Vivalzar)
+* change: option "unprinted_content" sub-option "x": a) must hide marks when there is no selection, b) must affect line-break marks too (thanks @Vivalzar)
+* change: make jump in the "delete word" commands similar to Sublime/Firefox (thanks @iconv)
+- fix: when Project Manager opens 'preview' tab, it must be activated (thanks @iconv)
+- fix: bad rendering of 'pilcrow' unprinted mark on Unix'es
+
 1.175.0 (2022/11)
 
 * change: changed rendering of "Unicode combined characters" (accent chars), now they have separate char-cell like letters; this was needed to solve several issues with accent chars (thanks @iconv)
