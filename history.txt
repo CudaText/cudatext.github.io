@@ -3,6 +3,25 @@
   - fixed
   * changed
 
+1.185.0 (2023/02)
+
+* change: statusbar: removed msg prefix "[Read only]" but added "RO" text to the cell "selmode" instead (cell "selmode" by default is located just before the last message cell)
++ add: option "ruler_height" (thanks @qwerky)
++ add: tab-switcher dialog (Ctrl+Tab): shows the current document too; reacts to Ctrl+Shift+Tab too (thanks @d0vgan)
++ add: find/replace: show in the statusbar "border crossed" for wrapped search (thanks @d0vgan)
++ add: option "centering_width": reworked code, coz we had hard to reproduce bug when option was reset (thanks @Stefan)
++ add: option "centering_width" works also in grouping modes "2 horz", "3 horz", "4 horz", "6 horz"
++ add: option "centering_width" in floating groups: ignores grouping mode in main window
++ add: show console error when option "newdoc_lexer" has wrong lexer name 
++ add: Windows+click does the same as simple click, like VSCode (thanks @rssguy2)
++ add: lexer XML: support multi-line quoted strings
+- fix: option "mouse_column_selection":false blocked auto-scrolling on selection (thanks @Stefan)
+- fix: replacement of a char to LF on the last line was adding trailing LF (thanks @kvichans)
+- fix: in splitted view (of one tab), full-screen mode was not hiding stuff for 2nd editor
+- fix: messagebox buttons Yes / No lost accelerator: &Yes / &No (thanks @rssguy2)
+- fix: crash in find/replace with RegEx (thanks @cser)
+- fix: Ins-key did not update the statusbar 'Ins/Ovr' cell (thanks @qwerky) 
+
 1.184.0 (2023/02)
 
 + add: handle click on gutter line number, which is first line of folded range -- it selects the entire range (thanks @adoeller)
