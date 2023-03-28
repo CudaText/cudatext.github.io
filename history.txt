@@ -3,6 +3,24 @@
   - fixed
   * changed
 
+1.189.0 (2023/03)
+
+* change: statusbar now reacts to caret moving/selection with a delay, like in 1.184; it is needed to avoid rendering speed regression since 1.185 (thanks @veksha)
+* change: hide sidebar button "3 dots" when "ui_menu_show":true
+* change: change default hotkeys in the Find dialog, e.g. Alt+O to Ctrl+Alt+O, to avoid conflicts with Alt+ hotkeys of the menu bar (thanks @pintassilgo)
+* change: change default value of "lexer_folding_max_lines" from 10000 to 15000
+
++ add: option "minimap_scale" supports value<100 to show compact look
++ add: option "renderer_tweaks" has sub-option to avoid 'space at line-end in selection', like in Kate (thanks @pintassilgo)
++ add: auto-completion listbox must handle clipboard command hotkeys (thanks @veksha)
++ add: Project Manager icons recolored from black to gray, to support dark ui-themes (thanks @veksha)
++ add: lexer C/C++: better code-tree (thanks @Forum0888 from linux.org.ru)
++ add: word wrap: don't split chars '([' from word-chars (thanks @GenuZ) 
++ add: better support plugin "Console Auto-Completion" so it is activated only on pressing Ctrl+Space; and Console completion listbox stays visible on typing more text 
+
+- fix: after lexer installation, passive ui-tabs loose syntax highlighting (thanks @MichIs from linux.org.ru)
+- fix: regression: option "auto_fold_comments" was broken
+
 1.188.0 (2023/03)
 
 + add: support new macros in statusbar config: {offset_max}, {offset_caret}; the maximal supported count of lines can be changed via new option "max_lines_to_calc_offsets" (thanks @pintassilgo)
