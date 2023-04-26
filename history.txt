@@ -3,6 +3,18 @@
   - fixed
   * changed
 
+1.192.0 (2023/04)
+
+* change: commands "delete word next"/"delete word previous" changed behaviour with selection, they delete the selection first, like in Sublime/VSCode (thanks @veksha); bad effect: custom hotkeys for these commands were reset
+* change: auto-completion font now equals to 'editor font'
+
++ add: auto-completion window is now parented in the main window: 1) no more separate shadow, 2) main window don't loose focus and don't blink, 3) no more showing of autocomplete-window in Alt+Tab list (thanks d0vgan, @veksha)
++ add: new values of "ui_notif_confirm" to show _modal_ prompt to reload file (thanks @Crunchbits)
++ add: option "autocomplete_closing_delay" (thanks @pintassilgo)
++ add: option "ui_esc_close_finder" (thanks @NorbertJh)
+- fix: lexer 'Ini files ^' small bug
+- fix: tree-helper for Ini: support '#' comments
+
 1.191.5 (2023/04)
 
 * change: submenu "View / Toggle unprinted chars" replaced with menuitem "Options / Unprinted chars..." which shows new dialog "Unprinted characters", it gives much more control
