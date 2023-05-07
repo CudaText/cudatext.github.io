@@ -3,10 +3,19 @@
   - fixed
   * changed
 
+1.193.3 (2023/05)
+
+* change: replaced 2 options "lexer_dynamic_hilite" / "lexer_dynamic_hilite_max_lines" with single option "dynamic_highlight"; changed the default to 4000, ie it's now enabled by default
+* change: removed space-char from option "autocomplete_commit_chars"
++ add: new option "ui_statusbar_hint_lines" allows to set the statusbar hint height; also statusbar last cell now reacts to click (thanks @pintassilgo)
++ add: lexer Bash: added 'dynamic highlight' rules for blocks: if/fi, case/esac, do/done
+- fix: Windows: missed repaint on auto-deleting pair bracket (thanks @veksha)
+- fix: sometimes auto-completion was hiding on user typing (thanks @veksha)  
+
 1.193.0 (2023/05)
 
 core changes for huge documents:
-  * change: Undo-list is cleared when any action touches line with length>100K
+  * change: Undo-list is cleared when any action touches a line with length>100K; added the option for this: "max_line_len_for_undo"
   + add: caret must move OK in line with length up to 2G
   + add: if file has line with length>2G, don't crash but show nice error message on opening
   - fix: caret up/down moving over huge lines worked very slow
@@ -16,7 +25,8 @@ core changes for huge documents:
   - fix: bad handling of error "too many lines in file"
 
 * change: don't save document's text to session, if text size>50M
-- fix: app always copied the selection to 'primary selection' on Unix, ignoring "auto_copy_clp" option
++ add: option "max_line_len_brackets"
+- fix: app always copied the selection to 'primary selection' on Unix, ignoring the "auto_copy_clp" option
 - fix: regression since 2022/07: lexer-specific config is not applied to all N>1 files with the same lexer (thanks @veksha)
 
 1.192.0 (2023/04)
