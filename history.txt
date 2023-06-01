@@ -3,6 +3,27 @@
   - fixed
   * changed
 
+1.195.0 (2023/05)
+
++ add: combobox inputs have the embedded X icon to clear text; code-tree X button was removed
++ add: code-tree filter field handles several space-separated words
++ add: faster paint caret if it's 'empty inside' (thanks @veksha)
++ add: Addon Manager has option (only in settings/cuda_addonman.json) to set SourceForge mirror (thanks @pintassilgo)
++ add: Tabs List plugin has new 'filter' input (thanks @mix-7)
++ add: Tabs List / Snippet Panel plugins support horizontal scrolling by Shift+mouse_wheel (thanks @iconv)
++ add: Char Map dialog: grid cells have equal width; font size increased (thanks @iconv)
++ add: option "show_indent_lines" (thanks @Vivalzar)
+- fix: Tabs List plugin did not react to change "tab modified"->"tab unmodified" (thanks @iconv)
+- fix: lexer Markdown: fix $ rule, $$ rule (thanks @veksha)
+- fix: if code-tree filter was empty on exiting, history of code-tree filters was not restored on next run (thanks @mix-7)
+- fix: changed "font_size" was not applied to autocompletion listbox (thanks @veksha)
+
+* change: set default hotkeys for "current document font size: bigger/smaller" to Ctrl+NumPlus / Ctrl+NumMinus
+* change: lexer PHP was removed to add-ons
+* change: default of "show_last_line_on_top" changed to False, default of "ui_tab_switcher_dialog" changed to False, default of "bracket_highlight" changed to True (thanks @z4ziggy)
+* change: Windows: in full-screen mode, app now hides the main menu bar (to fix missing bottom ~20 pixels, it is Lazarus bug)
+* change: delete option "max_line_len_for_accurate_width" (internal value is 1024 now)
+
 1.194.4 (2023/05)
 
 + add: minimap handles Shift+click and middle-click, it allows to revert to the old behaviour of minimap click which existed before version 1.190.0 (thanks @pintassilgo)
