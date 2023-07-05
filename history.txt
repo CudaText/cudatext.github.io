@@ -3417,3 +3417,4 @@ fixes:
 + command "Delete bookmarked lines"
 - fix: Linux: hotkeys broken, if Ru layout active at start (bug in Lazarus)
 - fix: issues with caret/scroll, after fold/unfold commands
+
