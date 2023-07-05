@@ -3,6 +3,19 @@
   - fixed
   * changed
 
+1.196.0 (2023/07)
+
++ add: plugin Tabs List: allow Tab-key to change the focus
+* change: if in JSON lexer, user folds block which last line is ending with "{", this last line is excluded from folding (thanks @reregaga)
+* change: delete option "tab_max_pos_expanded" (it is now max possible value 1024)
+- fix: on 'find next' (F3) app forced focus to the Find dialog (thanks @adoeller)
+- fix: regression with plugin Insert Pics, because of "show_last_line_on_top" default changed (thanks @herbrot)
+- fix: small regression when EOL mark appeared on last line when not needed, on deleting multi-line selection (fixed by @ThaiDat)
+- fix: Windows: Chinese IME may crash (thanks @actforjason, fixed by @rasberryrabbit)
+- fix: irritating scrolling when user clicks top N lines, when "caret_proximity_vert":N (thanks @hiiamboris)
+- fix: not nice indentation when Options Editor saves user.json (thanks @reregaga)
+- fix: Find/Replace dialog: empty Find field after typing text and pressing Ctrl+Enter
+
 1.195.0 (2023/05)
 
 + add: combobox inputs have the embedded X icon to clear text; code-tree X button was removed
@@ -3417,4 +3430,3 @@ fixes:
 + command "Delete bookmarked lines"
 - fix: Linux: hotkeys broken, if Ru layout active at start (bug in Lazarus)
 - fix: issues with caret/scroll, after fold/unfold commands
-
