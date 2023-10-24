@@ -11,8 +11,8 @@
 - fix: when clicking between main window and floating groups, code-tree was not updated (thanks @SamC)
 - fix: regression: options "ui_font_output_name"/"ui_font_output_size" were ignored (thanks @ildarkhasanshin)
 - fix: if plugin sets ui-tab title ~15K characters, app freezes (thanks @ildarkhasanshin)
-- fix: if bookmarks were only auto-shifted by edition above them, they could be not auto-saved
-- fix: Lexer Detecter missed file extensions for VBScript
+- fix: if bookmarks were only auto-shifted by edition above them, they could be not auto-saved (thanks @itsmyname)
+- fix: Lexer Detecter missed detection of VBScript
 
 1.199.0 (2023/09)
 
@@ -24,7 +24,7 @@
 * change: portable releases now have the folder "cudatext" in the root
 * change: Shift+click with selection works more like in VSCode (thanks @pintassilgo)
 * change: *BSD versions: do not call 'pkexec', instead only show a message-box, like IntelliJ (thanks @alex0x08 from linux.org.ru)
-- fix: new bookmarks were not auto-saved when ui-tab was not closed before exit
+- fix: new bookmarks were not auto-saved when ui-tab was not closed before exit (thanks @itsmyname)
 - fix: Qt5 version: Find dialog: click on a button looses dialog focus (thanks @pintassilgo)
 - fix: regression in 1.172: option "key_left_right_swap_sel_and_select" didn't work 
 
