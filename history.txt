@@ -3,6 +3,14 @@
   - fixed
   * changed
 
+1.213.0 (2024/04)
+
++ add: new command "File / Rename..." (idea by @pintassilgo)
++ add: Find-dialog has new option 'Im': immediate search, ie find-as-you-type; old option 'Hi' is not connected with find-as-you-type anymore (idea+testing by @pintassilgo)
++ add: Project Manager improvements: added hotkeys Ctrl+C / Ctrl+X / Ctrl+V / Del / etc (all visible in the context menu); added context menu commands "Backup", "Copy path", "Properties..."; added toolbar button "Recent projects" (patch by @ildarkhasanshin)
++ add: better "links_regex" option value
+- fix: on toggle split-view, show folding for paired editor if it has Pascal tree-helper (thanks @mix-7)
+
 1.212.1 (2024/04)
 
 + add: command 'duplicate line(s)' moves caret down, like in Sublime and VSCode (thanks @victorel-petrovich)
