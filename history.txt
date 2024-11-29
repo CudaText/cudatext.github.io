@@ -3,6 +3,14 @@
   - fixed
   * changed
 
+1.219.1 (2024/11)
+
++ add: option "margin" now allows value<0 which means indent from the right window edge
++ add: function "Title case" makes upper case after '_' char, like it was in SynWrite (thanks @mdv)
+- fix: Windows: shifted window height after returning from full-screen mode (thanks @iconv)
+- fix: "go to bookmark" dialog bug if bookmarked line has 1 leading tab-char (thanks @ildarkhasanshin)
+- fix: option "fallback_encoding":"cp1251" was not applied (always applied cp1252) for 100Mb file with Russian text (thanks @mdv)
+
 1.219.0 (2024/11)
 
 * change: removed sub-option "E" from option "unprinted_content" and added sub-option "w", it allows better customization, ie it allows to show/hide wrapped-marks independently from line-ends-marks
