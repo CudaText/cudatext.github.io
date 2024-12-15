@@ -3,11 +3,22 @@
   - fixed
   * changed
 
+1.220.0 (2024/12)
+
++ add: toolbar Undo/Redo buttons now change their enabled-state again (thanks @Hexaae)
++ add: can specify horizontal alignment of inter-line bitmaps for 'Insert Pics' plugin, via new option "gap_bitmap_align" (thanks @FranciscoBomfim)
++ add: Python API menu-like-dialog now restores last filter text if called again with the same lines; it is useful with Snippets plugin (thanks @FranciscoBomfim)
++ add: command "Edit / Paste from history" must show multiline texts with EOL replaced to space (thanks @ildarkhasanshin)
++ add: Comments plugin: command "toggle line comment" in CSS (it has only /*...*/ comments) must add surrounding spaces (thanks @ildarkhasanshin)
+- fix: column selection (Alt+mouse_drag) starting from empty line is not honoring starting column position, if "caret_after_end":false (thanks @pintassilgo)
+- fix: Project Manager plugin: 'none' sorting option worked little wrong (thanks @ildarkhasanshin)
+- fix: after saving Shift-JIS encoded file with 'wrong' bytes, on encoding->UTF8 reading error on Shift-JIS encoded file, editor became 'locked' (hourglass icon) forever (thanks @nhp65)
+- fix: regression in 1.217.7: in Qt5/Qt6 versions, option "ui_menu_show":false did not work
+
 1.219.1 (2024/11)
 
 + add: option "margin" now allows value<0 which means indent from the right window edge
 + add: function "Title case" makes upper case after '_' char, like it was in SynWrite (thanks @mdv)
-- fix: Windows: shifted window height after returning from full-screen mode (thanks @iconv)
 - fix: "go to bookmark" dialog bug if bookmarked line has 1 leading tab-char (thanks @ildarkhasanshin)
 - fix: option "fallback_encoding":"cp1251" was not applied (always applied cp1252) for 100Mb file with Russian text (thanks @mdv)
 
