@@ -3,6 +3,13 @@
   - fixed
   * changed
 
+1.222.0 (2025/03)
+
+* change: removed word "Toggle" from menu items in the View menu
++ add: plugin API allows to set recent-filenames list
+- fix: Project Manager: code was auto-hiding toolbar's first button instead of the last 'Sync' button (thanks @ildarkhasanshin)
+- fix: find-bar gets locked if Enter is pressed on 'big' file with 'Im' option (thanks @pintassilgo)
+
 1.221.5 (2025/02)
 
 + add: auto-completion: it is possible to configure symbols-chars allowed before caret, via new option "autocomplete_symbol_chars_allowed"
