@@ -3,6 +3,42 @@
   - fixed
   * changed
 
+1.222.3 (2025/03)
+
++ add: added default value of "indent_auto_rule" in JS lexer-specific config (thanks @pintassilgo)
++ add: for JavaScript IIFE blocks, hide outer fold-block to improve fold-bar usability (thanks @pintassilgo)
++ add: Addons Manager: on updating addons, show progress like "(1/5) Updating: ..." (idea by @LouieTian0209)
++ add: 'Make Plugin' plugin: strip config code if "Add config menu item" option was not checked; better numerate plugin's folder/name (patch by @ildarkhasanshin)
++ add: session auto-saving by "ui_session_save_interval":30 now also saves backup-files, if "ui_backup_sessions" is set (thanks @longforrich)
+- fix: wrong Undo/Redo after pasting multi-line block at the end of single-line document --> code of core's TextInsert method was hardly reworked (thanks @pintassilgo)
+- fix: find-next did not update Code-Tree selection to new position (thanks @mix-7)
+- fix: Windows: after activating project-session + app restarting, session was shown in the window title wrongly
+- fix: replace dialog: bug with multi-line selection, leading to cannot replace the selection (thanks @d-mal)
+
+1.222.0 (2025/03)
+
+* change: removed word "Toggle" from menu items in the View menu
++ add: plugin API allows to set recent-filenames list
+- fix: Project Manager: code was auto-hiding toolbar's first button instead of the last 'Sync' button (thanks @ildarkhasanshin)
+- fix: find-bar gets locked if Enter is pressed on 'big' file with 'Im' option (thanks @pintassilgo)
+- fix: statusbar 'RO' state was not updated on pressing hotkey for Read-Only (thanks @BetoValle)
+
+1.221.5 (2025/02)
+
++ add: auto-completion: it is possible to configure symbols-chars allowed before caret, via new option "autocomplete_symbol_chars_allowed"
++ add: enable auto-scrolling timer also when cursor is over gutter-bookmarks-column; it is needed to perform auto-scrolling to the left when sidebar is not on the left, and window is maximized (thanks @runningwaterpro)
++ add: minor change: allow longer captions of code-tree nodes, now up to ~100 chars (thanks @FranciscoBomfim)
++ add: minor change: if caption of code-tree node has a whitespace, this whitespace is better 'trimmed' to make 1 space as word separator
++ add: support char '\' in filenames under non-Windows OS (thanks @DeivAstra)
++ add: command-palette commands "(without undo) ...." now show statusbar message after running, not translatable yet
+- fix: after saving of tab "RegEx matches", make tab title usual, ie showing the filename (thanks @adoeller)
+- fix: with selection at document end, if we do Delete, then one line was lost during Undo (thanks @pintassilgo)
+- fix: lexer JS: fixed several bugs which prevented OK highlight of Vivaldi's 3Mb minified JS file
+* change: top menu item '=' renamed to 'Split' and 3 menu items from 'View / Split tab' moved to this new 'Split'
+* change: lexer JS: disabled UPPERCASE_ID highlight; disabled function/class names highlight
+* change: lexer Python: disabled UPPERCASE_ID highlight
+* change: lexer Ini files ^: removed highlight of numbers
+
 1.221.0 (2025/01)
 
 + add: better support portable installations: CudaText and its Project Manager save recent filenames with {AppDir} macro (which means up-folder of 'settings' folder) (thanks @DeivAstra)
