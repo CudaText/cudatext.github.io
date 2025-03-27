@@ -3,6 +3,13 @@
   - fixed
   * changed
 
+1.222.5 (2025/03)
+
+* change: changed default session filename from 'history session.json' to 'default.cuda-session' - all session files should have the same file extension
+* change: on opening *.cuda-session file from command-line, don't treat file as session anymore - that caused confusion for many users who wanted just to inspect the file contents
++ add: Commane Palette command "code tree: go to block for current node, to end of block" (thanks @mix-7)
+- fix: regression in 1.222.3: on pasting block (with final EOL) in document middle, file's final EOL was removed
+
 1.222.3 (2025/03)
 
 + add: added default value of "indent_auto_rule" in JS lexer-specific config (thanks @pintassilgo)
