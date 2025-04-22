@@ -3,6 +3,17 @@
   - fixed
   * changed
 
+1.223.5 (2025/04)
+
++ add: new UI-theme color "current line BG, other wrapped parts", it's described in the Wiki (idea by @drit)
++ add: new option "line_space_top" (idea by @ags1234)
+* change: renamed option "spacing_y" to "line_space_bottom"
+* change: deleted UI-theme colors Pale1, Pale2, Pale3 (seems were not used)
++ add: after "Extract RegEx matches", focus the editor (thanks @pintassilgo)
++ add: update CSS auto-completions data to latest
+- fix: Windows: IME behaviour when mouse click happens (thanks @VenusGirl, fix by @rasberryrabbit)
+- fix: wrong Console msg "Failed to save session" (thanks @mix-7)
+
 1.223.1 (2025/04)
 
 - fix: regression: wrong behaviour of Left/Right with selection when "key_left_right_swap_sel":false
