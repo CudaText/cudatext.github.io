@@ -3,6 +3,12 @@
   - fixed
   * changed
 
+1.223.6 (2025/05)
+
++ add: on switching ui-tab, remember/restore folded state of code-tree nodes (thanks @mix-7)
+- fix: "File / New from template" did not support Unicode in templates (thanks @MiroslavMatas)
+- fix: memory leak in code-tree
+
 1.223.5 (2025/04)
 
 + add: new UI-theme color "current line BG, other wrapped parts", it's described in the Wiki (idea by @drit)
