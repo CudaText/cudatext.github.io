@@ -88,14 +88,7 @@
           <ul>
           <li>Windows: Python engine is included.
           <li>Linux Qt5/Qt6 build: you need <a href="https://wiki.freepascal.org/CudaText#Linux:_Qt5_and_Qt6_builds" target="_blank">libqt5pas/libqt6pas</a>.
-          <li>macOS:
-            <ul>
-                <li>Python engine is not included. To use plugins, you must install Python 3 from <b>python.org</b>.
-                <li>macOS AArch64 version needs this to be run:
-                    <pre class="code2">xattr -cr /Applications/CudaText.app/</pre>
-            </ul>  
-          </li>
-          <li>other Unix'es: Python engine is not included. To use plugins, see instruction inside "default.json" config about "pylib".<br>
+          <li>Linux/Unix: Python engine is not included. To use plugins, see instruction inside "default.json" config about "pylib".<br>
               For Debian/Ubuntu, you need .deb package, it adds CudaText shortcut to the Applications list, 
               and adds "cudatext" to system path. For others, get .xz package, unpack "cudatext" directory to home directory, 
               and create shortcut by hands.
@@ -108,7 +101,15 @@ $ sudo apt install cudatext
 </pre>
 -->
           <li>Fedora Linux packages: <a href="https://wiki.freepascal.org/CudaText#Linux:_Fedora_packages" target="_blank">wiki page</a>.
-          <li>Haiku: <a href="https://github.com/Begasus/CudaText-Haikuports/releases" target="_blank">unofficial builds</a>. 
+          <li>macOS:
+            <ul>
+                <li><a href="https://github.com/Alexey-T/CudaText/discussions/5590" target="_blank">unofficial builds</a>.
+                <li>Python engine is not included. To use plugins, you must install Python from <b>python.org</b>.
+                <li>macOS AArch64 version needs this to be run:
+                    <pre class="code2">xattr -cr /Applications/CudaText.app/</pre>
+            </ul>
+          </li>
+          <li>Haiku: <a href="https://github.com/Begasus/CudaText-Haikuports/releases" target="_blank">unofficial builds</a>.
           </ul>
 
           <p>
