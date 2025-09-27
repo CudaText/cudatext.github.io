@@ -3,6 +3,14 @@
   - fixed
   * changed
 
+1.228.1 (2025/09)
+
++ add: dialog "File is too big to edit": 64-bit app version allows the button "Edit anyway" if size is less than 2Gb
++ add: dialog "File is maybe non-text": also show detected binary char-code
++ add: handle OS event "app is closing" also during loading of huge file
++ add: Windows: almost all popup-menus are themed now
+- fix: fixed minor undo/redo issue, which is visible with "undo_mouse_clicks":true (thanks @badrelmers)
+
 1.228.0 (2025/09)
 
 * change: removed command "duplicate line (advanced)", it was moved to CudaExt plugin; corresponding options "duplicate_xxxx" were removed from default.json, they are now named "cuda_ext_duplicate_xxxx", documented in CudaExt file readme/options.txt
