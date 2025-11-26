@@ -3,6 +3,12 @@
   - fixed
   * changed
 
+1.230.2 (2025/11)
+
+* change: option "show_cur_line":true allows to highlight current-line even with selection (thanks @Crunchbits)
+- fix: option "font_quality" did not work
+- fix: dotted-vertical-lines for indented+wrapped line parts were invisible in some cases: on bookmarks and syntax-colored 'fenced blocks' in Markdown
+
 1.230.1 (2025/11)
 
 * change: several old/redundant APIs were removed, but all plugins (in Addons Manager) were updated for this change; if you get plugins' errors with 1.230.1, just update all your plugins via "Plugins / Addons Manager / Update"
