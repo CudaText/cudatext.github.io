@@ -3,6 +3,13 @@
   - fixed
   * changed
 
+1.230.4 (2025/12)
+
++ add: added API event which allows plugins to react to code-tree-filter-input changes
+- fix: regression in 1.172.0 (2022/10): Ctrl+BkSpace wrongly adjusted multi-carets on the same line
+- fix: Windows: IME minor fix (by @martok)
+- fix: bug in code-tree built from tree-helpers (thanks @dimon40001)
+
 1.230.2 (2025/11)
 
 * change: option "show_cur_line":true allows to highlight current-line even with selection (thanks @Crunchbits)
