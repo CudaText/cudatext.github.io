@@ -3,7 +3,23 @@
   - fixed
   * changed
 
+1.231.0 (2025/12)
+
++ add: big optimization of multi-carets editing, e.g. typing chars with 20K carets (carets aligned in a column) is now _much_ faster (thanks @badrelmers)
++ add: new API to better subscribe/unsubscribe to/from events, it improves work with Sync_Editing plugin (thanks @badrelmers)
++ add: new API to control treeview scrollbars' show-style: hide / show / auto-hide
++ add: Cmd Palette / Snippet Panel / Tabs List / plugins' listboxes: auto-hide vertical scrollbar; Code-Tree / Project Manager / plugins' treeviews: auto-hide both scrollbars (idea by @katwalk)
++ add: lexer HMTL: improved list of 'known' tags (by @ildarkhasanshin)
+- fix: Qt5/Qt6: reverted 1.230.0 change "Qt5/Qt6 version better handles IME" because it gave regression (thanks @mix-7)
+- fix: Windows: window height was increasing by ~20 pixels on toggling full-screen mode (thanks @iconv)
+- fix: regression: Project Manager cannot show CMake-icon in the project-tree when CMake lexer is installed
+- fix: on deleting multi-selections, editor scrolled to 1st caret: that was wrong (thanks @badrelmers)
+- fix: on drag-and-drop, ui-tab's 'dirty' mark was not set (thanks @badrelmers)
+- fix: event on_tab_move fired also on adding a new tab, so Tabs_List reacted 2 times to adding a new tab
+- fix: if main window is not-maximized and near the bottom edge, Command Palette window was partially out of screen bottom
+
 1.230.5 (2025/12)
+
 + add: option "auto_close_brackets" supports additional pairs “” and ‘’ and «» (idea by @dajare)
 - fix: regression in 1.172.0 (2022/10): Ctrl+BkSpace wrongly adjusted multi-carets on the same line
 - fix: Windows: IME minor fix (by @martok)
