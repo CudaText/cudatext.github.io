@@ -3,6 +3,15 @@
   - fixed
   * changed
 
+1.231.7 (2026/01)
+
++ add: non-Windows: saving of filename with bad chars ':\*?|<>' on exFAT disk: replace bad chars with '_' (thanks @mix-7)
++ add: API to allow plugin Find-Replace_Separate_History to handle app's command "clear find/replace dialog history"
++ add: lexer JS: code-tree shows funcs nested in a class
++ add: lexer JS: code-tree shows class methods and constructor (syntax without keyword 'function')
++ add: lexer JS: template strings can be multiline (thanks @Hermholtz)
+- fix: bug in EControl parser which preverted ok parsing of sub-lexers of JS lexer: html`text`, css`text` (thanks @Hermholtz)
+
 1.231.5 (2026/01)
 
 + add: GTK2 version: rendering is now about 2 times faster, thanks to the code parts from @AlexanderBagel (parts were licensed under MPL 2.0 / LGPL so we can use them)
@@ -10,7 +19,6 @@
 + add: installing ZIPs from command-line: require cuda_fmt for formatters, require cuda_lint for linters (idea by @Hanatarou)
 - fix: if editor has inter-line gaps (e.g. from Insert_Pics plugin) and some gaps are folded, caret screen position (after folded gap) is wrong
 - fix: if ui-tab with picture or viewer is opened in the non-first group, click on picture/viewer doesn't fully focus the ui-tab
-- fix: when on Linux we try to save file on NTFS disk and filename has bad chars like ':', error-message is not nice (thanks @mix-7)
 - fix: Windows: app freezes when file's folder was externally renamed/deleted, and user saves the file (thanks @ags1234)
 - fix: regression in 1.231.0: after selecting many e.g. 100 lines and doing 'clipboard cut', caret goes out if visible area
 - fix: width of Middle-Eastern chars was 200%, must be 100% (thanks @Cold)
