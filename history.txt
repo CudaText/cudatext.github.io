@@ -3,12 +3,20 @@
   - fixed
   * changed
 
+1.232.0.4 (2026/02)
+
++ add: Snippet Panel plugin: support new macro ${eol} which means newline-character (idea by @sl23)
+- fix: regression: statusbar cell "wrap" missed separator vert-line (thanks @qwerky)
+- fix: regression in Gtk2 version: option "underline_color_size":10 missed background coloring (thanks @ildarkhasanshin)
+- fix: regression: commands "clipboard copy: filepath" did not work for picture/viewer files (thanks @ThaiDat)
+
 1.232.0 (2026/01)
 
 + add: option "detect" matching reworked, now each key supports ';'-separated filemasks, and filemasks are more powerful: support e.g. "*foo", "foo*", "foo*bar"
 + add: option "detect" now supports lite lexers too
 + add: new lite lexer for config files: Config-RC
 + add: statusbar cell 'RO' is now reddish+bold
+- fix: menu-dialogs were shown on 1st monitor when need to show on 2nd one (thanks @charliewales)
 
 1.231.8 (2026/01)
 
