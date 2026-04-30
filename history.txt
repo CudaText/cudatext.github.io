@@ -3,8 +3,11 @@
   - fixed
   * changed
 
-1.234.0.4 (2026/04)
+1.234.2 (2026/04)
 
+* change: tab-bar buttons '< >' now react on mouse-down, not mouse-up; while mouse btn is pressed, scroll by timer, like in Firefox (idea by @archon66498)
++ add: new API which allows to make tiny plugin: it selects all text of the Find-dialog input-field, after pressing Find-buttons, like in Notepad++ (idea by @karhu)
++ add: new API which allows to handle clicking the '...' button in the Find-dlg
 + add: menu "File / Line ends" shows more detailed items: "Linux/Unix (LF) / Windows (CRLF) / Mac OS 9 (CR)" (idea by @iconv)
 + add: lexer CSS shows usual {}-blocks in the code-tree (idea by @BetoValle)
 + add: lexer HTML shows longer tag-names in the code-tree (thanks @BetoValle)
