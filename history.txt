@@ -3,11 +3,16 @@
   - fixed
   * changed
 
+- fix: lexer HTML: fix highlight of SVG blocks
+- fix: lexer HTML: rework several rules, before it did not handle complex webpage of Krita editor
+- fix: lexer YAML: fix rule for lines with leading '-'
+
 1.234.3 (2026/05)
 
 * change/add: UI-theme field 'EdCaret' (in the theme files in the folder "data/themes") is ignored now. New field is 'EdCarets' (with final 's'). New field supports value 'none color' (which is default) - it will re-use the text font color. New field sets the _final_ color of the caret (before it was a XOR-value), so you can set now e.g. red or green caret. (thanks @SN-CH)
 + add: macOS: improve "Info.plist" which now supports more file-types from macOS Finder context menu (by @zzm-note)
 - fix: option "auto_fold_comments" did not work for multi-line string/comment if it begins after other tokens on a line (thanks @pintassilgo)
+- fix: tab-bar drag&drop must not activate when pressing on <>+v buttons or on tab-close buttons
 
 1.234.2 (2026/04)
 
