@@ -3,8 +3,12 @@
   - fixed
   * changed
 
+1.234.4 (2026/06)
+
+- fix: regression: "Unprinted chars" dialog lost translation
+- fix: improve command "delete word previous" when only 1 space is before caret, to be like VSCode/Sublime (thanks @Uenluom)
+- fix: lexer HTML: needed to rework several rules, because before it did not handle complex webpage of the Krita editor
 - fix: lexer HTML: fix highlight of SVG blocks
-- fix: lexer HTML: rework several rules, before it did not handle complex webpage of Krita editor
 - fix: lexer YAML: fix rule for lines with leading '-'
 
 1.234.3 (2026/05)
