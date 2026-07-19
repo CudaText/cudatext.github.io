@@ -3,6 +3,11 @@
   - fixed
   * changed
 
+1.235.1 (2026/07)
+
++ add: CSS lexer: better show code-tree nodes, now they are fragments to nearest lefter '}'
++ add: better calc new untitled tab-caption like 'Untitled3' when e.g. opened tabs are 'Untitled2' and 'Untitled1' (thanks @badrelmers)
+
 1.235.0 (2026/07)
 
 * change/add: option "ui_title_path" removed; instead added option "ui_title" with more details
