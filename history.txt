@@ -3,6 +3,30 @@
   - fixed
   * changed
 
+1.236.0 (2026/08)
+
++ add: Windows: add crash/hang auto-backup of the current document (by @badrelmers). Read the new wiki topic "Windows: Crash and hang backup".
++ add: few APIs for future plugins (ideas by @badrelmers, @ildarkhasanshin)
++ add: code-tree context menu item "Sorted": unchecking now works too 
++ add: session now saves/restores also font-color of ui-tab
++ add: Unix-like OS: if app runs under root, show in the window title '(ROOT)'
++ add: new command-palette commands "set tab font-color", "reset tab font-color" (thanks @MiroslavMatas)
+* change: changed sidebar icon for code-tree
+* change/add: when findbar input becomes empty, 'Hi' marks are removed (idea by @CortexReaver)
+* change: for one-line input fields (findbar, console, code-tree filter), uncheck the property "Ctrl+C copies whole line if no selection"; now it's like in Notepad++/browsers (idea by @CortexReaver)
+* change: findbar: working of 'Hi' option must not move caret/scroll_position (idea by @CortexReaver)
+* change: lexer "RegEx" should not be visible in the lexers menu
+* change: flag 'o' in the option "renderer_tweaks" is now ignored on Gtk2/Gtk3/Windows to avoid slower rendering
+- fix: when findbar is closed by sidebar click, 'Hi' marks were not removed (thanks @CortexReaver)
+- fix: session's "margin" key was not applied ok on session-loading (thanks @badrelmers)
+- fix: command "close tab, delete file" worked wrong on _floating_ group (thanks @MiroslavMatas)
+- fix: regression in lexer Markdown for fenced-blocks (thanks @MiroslavMatas)
+- fix: encodings/bookmarks menu-dialogs should not close by click on empty space
+- fix: flickering of gutter-folding-column on editing, when lexer has tree-helper (thanks @mix-7)
+- fix: flickering of scrollbar when user types with auto-completion listbox (thanks @katwalk, @hycmos, @badrelmers)
+- fix: fold-blocks from command "fold selected lines" didn't work ok with Pascal-tree-helpers
+- fix: regression in 1.235.0: dialog "Save tabs?" button "Don't save / Keep in session" did not save the session (thanks @mix-7)
+
 1.235.1 (2026/07)
 
 + add: CSS lexer: better show code-tree nodes, now they are fragments to nearest lefter '}'
