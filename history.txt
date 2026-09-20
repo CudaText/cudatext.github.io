@@ -3,6 +3,25 @@
   - fixed
   * changed
 
+1.237.0 (2026/09)
+
++ add: Gtk3 version: rendering speed is increased, on average Python files may be 4x faster
++ add: Gtk2 version: rendering speed is increased a little
++ add: few APIs for future plugins (ideas by @badrelmers)
++ add: much improved speed of scrolling with _huge_ amount of inter-line gaps (by @badrelmers using AI)
++ add: much improved speed of inserting _huge_ amount of lines via API replace_lines (by @badrelmers using AI)
++ add: optimized speed of loading big ~500MB files, up to 6x faster now (by @badrelmers using AI)
+* change: Project Manager: return focus to project-treeview after opening a file from treeview by 1-click or dbl-click (thanks @kwappdev)
+* change: Project Manager: disable option "Check Git repo....." because it gave big slowdown
+* change: lexer Bash: highlight '${varname}' as single element, not as bracket+name+bracket
+* change: delete option "undo_pause", it worked poorly anyway
+- fix: some Python APIs, when word-wrap:on and "scrollbar_themed":false, had 2x slowdown (found by @badrelmers, AI could not fix it in 10 attempts, Alexey fixed it)
+- fix: file's trailing CR (without LF) was not detected (fixed by @badrelmers using AI)
+- fix: Gtk3 version: "underline_color_size":10 had broken color painting
+- fix: Qt5/Qt6 version: text without lexer (and text in Console) was little shrinked by width
+- fix: Tabs_List plugin shows empty tab-title when Tabs_Icons supressed that title (thanks @ildarkhasanshin)
+- fix: Command Palette items for 'recent files' cannot reopen files from home-dir (thanks @mix-7)
+
 1.236.0 (2026/08)
 
 + add: Windows: add crash/hang auto-backup of the current document (by @badrelmers). Read the new wiki topic "Windows: Crash and hang backup".
