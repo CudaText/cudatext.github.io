@@ -3,6 +3,19 @@
   - fixed
   * changed
 
+1.238.0 (2026/10)
+
++ add: using AI (Kimi K3, Z.ai), we reduced parse time of EControl lexer parser on big files by 40...60% (by Alexey T, @badrelmers)
++ add: findbar enables the 'Count all' action also in the viewer-mode (patch by @lamugu)
++ add: toolbar buttons "undo"/"case convertion"/"comments" are now disabled for picture viewer / binary viewer
++ add: picture viewer uses smoothing (anti-aliasing) if zoomed-out
+* change: renamed log 'cudatext.error' to 'cudatext_error.log'
+* change: Windows: on error, app writes 'cudatext_error.log' near 'cudatext.exe' (before: to the TEMP folder)
+- fix: vertical scrollbar can't reach the end when 'gaps' make the text taller than the editor (patch by @slicke)
+- fix: lexer Markdown: bug with backticks in bold-blocks
+- fix: lexer HTML: regression with quoted strings in !DOCTYPE tag
+- fix: in prev versions, if exception (eg file-opening error of 'history.json') occurs on startup, it gave corrupted look of GUI; now corrupted look should not happen; and in the case of startup errors app writes more details to the 'cudatext_error.log'
+
 1.237.5 (2026/10)
 
 + add: finder better shows index of found match / count of total matches, in the statusbar: now it occurs always (only if "find_hi_max_lines" is not limiting this), ie user don't need to show findbar, to activate 'Hi' option in the findbar, it is now like in VSCode (idea by @ildarkhasanshin, code by Alexey T and @badrelmers using AI)
