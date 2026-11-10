@@ -3,6 +3,15 @@
   - fixed
   * changed
 
+1.239.1 (2026/11)
+
++ add: after editor is shrinked by height (eg by showing of plugin Breadcrumbs / Folding_Caption), editor tries harder to keep caret on the bottom to remain visible, instead of being scrolled away (fixed by Z.ai)
++ add: Addons Manager: 'Update' dialog has new button 'Show updates only' (by @ildarkhasanshin)
+- fix: after paste of big block with very long last line (wrap=off), caret on last line can be only partly visible (fixed by Z.ai)
+- fix: picture viewer: on loading big picture in the 1st tab, app temporary shows 100x100 empty rectangle (fixed by Z.ai)
+- fix: if document was all-selected with very long last line, after app restart that selection 'shrinked' by 1 line
+- fix: Project Manager: crash of the 'Properties' dialog if folder has 'looped' symlinks (by @ildarkhasanshin)
+
 1.239.0 (2026/11)
 
 * change: plugin Project Manager is mostly rewritten, see the migration guide in the file "py/cuda_project_man/readme/upgrade_v2.txt", as an option see the huge changelog "py/cuda_project_man/readme/history.txt" (by @badrelmers)
